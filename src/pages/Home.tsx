@@ -2,6 +2,7 @@ import Hero from '../components/Hero'
 import { Header } from '../components/organisms/Header'
 import { VehicleShowcase } from '../components/sections/VehicleShowcase'
 import { BusinessPartners } from '../components/sections/BusinessPartners'
+import { Footer } from '../components/sections/Footer'
 
 export default function Home() {
     return (
@@ -10,6 +11,7 @@ export default function Home() {
             <Hero />
             <VehicleShowcase />
             <BusinessPartners />
+            <Footer />
         </div>
     )
 }
