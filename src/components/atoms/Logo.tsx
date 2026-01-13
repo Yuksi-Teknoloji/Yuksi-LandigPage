@@ -19,7 +19,7 @@ export const Logo: React.FC<LogoProps> = ({
     <img
       src={logoSrc}
       alt={alt}
-      className={`h-14 sm:h-16 md:h-20 lg:h-24 xl:h-28 w-auto ${className}`}
+      className={`h-8 sm:h-10 md:h-12 lg:h-14 xl:h-16 w-auto ${className}`}
     />
   );
 };

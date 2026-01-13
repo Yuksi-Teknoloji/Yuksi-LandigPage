@@ -1,3 +1,5 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 23.7877 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="ant-design:arrow-right-outlined">
+<path id="Vector" d="M20.187 10.9564L11.4107 3.5915C11.3433 3.53535 11.2573 3.50391 11.1667 3.50391H9.11087C8.93896 3.50391 8.85998 3.71055 8.99007 3.81836L17.1253 10.6465H3.53098C3.42877 10.6465 3.34514 10.7273 3.34514 10.8262V12.1738C3.34514 12.2727 3.42877 12.3535 3.53098 12.3535H17.1229L8.98775 19.1816C8.85766 19.2917 8.93664 19.4961 9.10854 19.4961H11.2341C11.2782 19.4961 11.3224 19.4804 11.3549 19.4512L20.187 12.0436C20.2674 11.9759 20.3319 11.8924 20.3761 11.7987C20.4203 11.7049 20.4431 11.603 20.4431 11.5C20.4431 11.397 20.4203 11.2951 20.3761 11.2013C20.3319 11.1076 20.2674 11.0241 20.187 10.9564V10.9564Z" fill="var(--fill-0, white)"/>
+</g>
 </svg>

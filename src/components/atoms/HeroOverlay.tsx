@@ -24,10 +24,10 @@ export const HeroOverlay: React.FC<HeroOverlayProps> = ({ activeIndex }) => {
             <CircleArc cx={cx} cy={cy} r={r} />
             <DashedRing cx={cx} cy={cy} r={r} />
             
-            <svg
-                width="100%"
-                height="100%"
-                className="absolute inset-0 overflow-visible"
+                <svg
+                    width="100%"
+                    height="100%"
+                    className="absolute inset-0 overflow-visible"
                 viewBox="0 0 1920 1080"
                 preserveAspectRatio="none"
             >
@@ -45,10 +45,10 @@ export const HeroOverlay: React.FC<HeroOverlayProps> = ({ activeIndex }) => {
                             y={y}
                             icon={icons[index]}
                             isActive={isActive}
-                        />
+                    />
                     );
                 })}
-            </svg>
+                </svg>
 
             <div className="absolute right-0 top-0 bottom-0 flex flex-col justify-center items-end pr-8 md:pr-16 space-y-16">
                 <TextLabel
@@ -75,22 +75,22 @@ interface TextLabelProps {
 
 const TextLabel: React.FC<TextLabelProps> = ({ label, isActive }) => {
     return (
-        <div
-            className={`
+            <div
+                className={`
                 text-right transition-all duration-500 ease-out
                 text-[42px] font-semibold leading-normal whitespace-pre-wrap
                 ${isActive 
                     ? 'text-[#FF5B04] opacity-100 scale-105' 
                     : 'text-white opacity-100 scale-100'
                 }
-            `}
-            style={{
+                `}
+                style={{
                 fontFamily: 'Roboto, sans-serif',
                 fontVariationSettings: '"wdth" 100',
                 textShadow: isActive ? '0 4px 12px rgba(255, 91, 4, 0.3)' : 'none',
-            }}
-        >
-            {label}
+                }}
+            >
+                {label}
         </div>
     );
 };
