@@ -101,7 +101,7 @@ export function Footer() {
                             </li>
                             <li>
                                 <a 
-                                    href="#" 
+                                    href="https://yuksi.com.tr/resellerv8" 
                                     className="flex items-center gap-2 hover:opacity-80 transition-opacity text-sm lg:text-[16px] leading-[18px] lg:leading-[19px] font-medium underline justify-center lg:justify-start"
                                     style={{ fontFamily: 'Roboto' }}
                                 >
@@ -116,7 +116,7 @@ export function Footer() {
                             </li>
                             <li>
                                 <a 
-                                    href="#" 
+                                    href="https://yuksi.com.tr/restaurantv1" 
                                     className="flex items-center gap-2 hover:opacity-80 transition-opacity text-sm lg:text-[16px] leading-[18px] lg:leading-[19px] font-medium underline justify-center lg:justify-start"
                                     style={{ fontFamily: 'Roboto' }}
                                 >
@@ -131,8 +131,8 @@ export function Footer() {
                             </li>
                             <li>
                                 <a 
-                                    href="#" 
-                                    className="flex items-center gap-2 hover:opacity-80 transition-opacity text-sm lg:text-[16px] leading-[18px] lg:leading-[19px] font-medium justify-center lg:justify-start"
+                                    href="https://yuksi.com.tr/companyv1" 
+                                    className="flex items-center gap-2 hover:opacity-80 transition-opacity text-sm lg:text-[16px] leading-[18px] lg:leading-[19px] font-medium underline justify-center lg:justify-start"
                                     style={{ fontFamily: 'Roboto' }}
                                 >
                                     <span>Şirket Girişi</span>
