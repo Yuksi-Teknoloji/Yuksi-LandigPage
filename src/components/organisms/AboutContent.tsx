@@ -1,5 +1,5 @@
 export function AboutContent() {
-    const placeholderCards = [1, 2, 3, 4];
+    const placeholderCards = [1, 2, 3];
 
     return (
         <div className="w-full bg-white">
@@ -21,7 +21,7 @@ export function AboutContent() {
                 {/* Placeholder Cards - Mobile & Tablet Scrollable */}
                 <div className="xl:hidden w-full">
                     <div 
-                        className="flex gap-4 overflow-x-auto py-4 [-webkit-overflow-scrolling:touch] -mx-4 px-4"
+                        className="flex gap-4 overflow-x-auto py-4 [-webkit-overflow-scrolling:touch] -mx-4 px-4 justify-center"
                         style={{
                             scrollbarWidth: 'none',
                             msOverflowStyle: 'none',
@@ -42,7 +42,7 @@ export function AboutContent() {
                 </div>
 
                 {/* Placeholder Cards - Desktop Grid */}
-                <div className="hidden xl:grid grid-cols-4 gap-4 sm:gap-6">
+                <div className="hidden xl:grid grid-cols-3 gap-4 sm:gap-6 justify-center max-w-4xl mx-auto">
                     {placeholderCards.map((item) => (
                         <div 
                             key={item}
@@ -94,7 +94,7 @@ export function AboutContent() {
                 {/* Placeholder Cards - Mobile & Tablet Scrollable */}
                 <div className="xl:hidden w-full">
                     <div 
-                        className="flex gap-4 overflow-x-auto py-4 [-webkit-overflow-scrolling:touch] -mx-4 px-4"
+                        className="flex gap-4 overflow-x-auto py-4 [-webkit-overflow-scrolling:touch] -mx-4 px-4 justify-center"
                         style={{
                             scrollbarWidth: 'none',
                             msOverflowStyle: 'none',
@@ -115,7 +115,7 @@ export function AboutContent() {
                 </div>
 
                 {/* Placeholder Cards - Desktop Grid */}
-                <div className="hidden xl:grid grid-cols-4 gap-4 sm:gap-6">
+                <div className="hidden xl:grid grid-cols-3 gap-4 sm:gap-6 justify-center max-w-4xl mx-auto">
                     {placeholderCards.map((item) => (
                         <div 
                             key={item}
@@ -160,7 +160,7 @@ export function AboutContent() {
                 {/* Placeholder Cards - Mobile & Tablet Scrollable */}
                 <div className="xl:hidden w-full">
                     <div 
-                        className="flex gap-4 overflow-x-auto py-4 [-webkit-overflow-scrolling:touch] -mx-4 px-4"
+                        className="flex gap-4 overflow-x-auto py-4 [-webkit-overflow-scrolling:touch] -mx-4 px-4 justify-center"
                         style={{
                             scrollbarWidth: 'none',
                             msOverflowStyle: 'none',
@@ -181,7 +181,7 @@ export function AboutContent() {
                 </div>
 
                 {/* Placeholder Cards - Desktop Grid */}
-                <div className="hidden xl:grid grid-cols-4 gap-4 sm:gap-6">
+                <div className="hidden xl:grid grid-cols-3 gap-4 sm:gap-6 justify-center max-w-4xl mx-auto">
                     {placeholderCards.map((item) => (
                         <div 
                             key={item}
@@ -226,7 +226,7 @@ export function AboutContent() {
                 {/* Placeholder Cards - Mobile & Tablet Scrollable */}
                 <div className="xl:hidden w-full">
                     <div 
-                        className="flex gap-4 overflow-x-auto py-4 [-webkit-overflow-scrolling:touch] -mx-4 px-4"
+                        className="flex gap-4 overflow-x-auto py-4 [-webkit-overflow-scrolling:touch] -mx-4 px-4 justify-center"
                         style={{
                             scrollbarWidth: 'none',
                             msOverflowStyle: 'none',
@@ -247,7 +247,7 @@ export function AboutContent() {
                 </div>
 
                 {/* Placeholder Cards - Desktop Grid */}
-                <div className="hidden xl:grid grid-cols-4 gap-4 sm:gap-6">
+                <div className="hidden xl:grid grid-cols-3 gap-4 sm:gap-6 justify-center max-w-4xl mx-auto">
                     {placeholderCards.map((item) => (
                         <div 
                             key={item}
