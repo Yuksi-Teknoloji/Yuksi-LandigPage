@@ -314,6 +314,7 @@ export function CarrierForm() {
                             checked={formik.values.acceptedTerms}
                             onChange={formik.handleChange}
                             className="w-5 h-5 rounded-[5px] border-2 border-[#FF5B04] bg-[#ffc3a3] text-[#FF5B04] focus:ring-[#FF5B04] cursor-pointer"
+                            style={{ accentColor: '#FF5B04' }}
                             required
                         />
                         <label
