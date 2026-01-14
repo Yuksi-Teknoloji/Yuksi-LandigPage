@@ -38,8 +38,8 @@ export function ServicesHero() {
                         </p>
                     </div>
 
-                    {/* Right Side - Kangaroo Image - Positioned to the far right and bottom */}
-                    <div className="hidden xl:block absolute right-0 bottom-0" style={{ right: '-34px', bottom: '-100px' }}>
+                    {/* Right Side - Kangaroo Image */}
+                    <div className="hidden xl:block absolute right-0 bottom-0" style={{ right: '80px', top: '50%', transform: 'translateY(0%)' }}>
                         <div className="relative w-[563px] h-[747px]" style={{ transform: 'rotate(180deg) scaleY(-1)' }}>
                             <img
                                 src={kangarooServices}
