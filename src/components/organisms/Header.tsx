@@ -84,6 +84,65 @@ export const Header: React.FC<HeaderProps> = ({
                 activeItem={resolvedActiveItem}
               />
 
+              <div
+                className="relative"
+                onMouseEnter={() => setIsMobileMenuOpen(false)}
+              >
+                <div className="group relative">
+                  <button
+                    type="button"
+                    className="text-[16px] font-medium text-[#3A3A3A] px-4 py-2 rounded-[5px] hover:bg-gray-100 transition-colors duration-200"
+                    style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
+                  >
+                    Başvur
+                  </button>
+
+                  <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-opacity duration-200 absolute right-0 mt-2 w-[210px] rounded-[12px] p-[2px] space-y-[6px] z-50">
+                    <div className="relative group/driver">
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        className="w-full h-[34px] !rounded-[8px] !bg-[#F4F4F4] !text-[#FF5B04] text-[11px] leading-[13px] flex items-center justify-start px-3"
+                      >
+                        Yüksi Sürücü Başvuru
+                      </Button>
+                      <div className="invisible opacity-0 group-hover/driver:visible group-hover/driver:opacity-100 transition-opacity duration-200 absolute left-full top-0 ml-2 z-50">
+                        <div className="flex flex-col gap-[6px]">
+                          <Button
+                            variant="primary"
+                            size="sm"
+                            className="w-[180px] h-[42px] !rounded-[24px] !bg-[#FF5B04] !text-white text-[14px] font-medium flex items-center justify-center"
+                          >
+                            Lojistik Kurye
+                          </Button>
+                          <Button
+                            variant="primary"
+                            size="sm"
+                            className="w-[180px] h-[42px] !rounded-[24px] !bg-[#FF5B04] !text-white text-[14px] font-medium flex items-center justify-center"
+                          >
+                            Restoran Kurye
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      className="w-full h-[34px] !rounded-[8px] !bg-[#F4F4F4] !text-[#FF5B04] text-[11px] leading-[13px] flex items-center justify-start px-3"
+                    >
+                      Franchising Başvuru
+                    </Button>
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      className="w-full h-[34px] !rounded-[8px] !bg-[#F4F4F4] !text-[#FF5B04] text-[11px] leading-[13px] flex items-center justify-start px-3"
+                    >
+                      Kurumsal Üyelik - Yüksicik
+                    </Button>
+                  </div>
+                </div>
+              </div>
+
               <Button
                 variant="primary"
                 size="md"
