@@ -5,7 +5,24 @@ export function AboutContent() {
 
     return (
         <div className="w-full bg-white">
-            <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16 lg:py-24">
+            <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16 lg:py-24 xl:hidden">
+                <div
+                    className="text-[#FF5B04] text-[28px] sm:text-[36px] md:text-[45px] xl:text-[65px] font-bold leading-tight sm:leading-normal whitespace-pre-wrap mb-4 sm:mb-6 lg:mb-8"
+                    style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
+                >
+                    <p className="mb-0">TÜRKİYE'NİN LOJİSTİK ALT YAPISI</p>
+                </div>
+                
+                <p
+                    className="text-[#333] text-sm sm:text-base md:text-lg xl:text-[32px] font-semibold leading-relaxed sm:leading-[1.15] whitespace-pre-wrap mb-6 sm:mb-8 lg:mb-12"
+                    style={{
+                        fontFamily: 'Urbanist, sans-serif',
+                        fontWeight: 600,
+                    }}
+                >
+                    Yüksi olarak vizyonumuz, lojistik sektöründe yenilikçi ve güvenilir hizmet anlayışımızla hem bireylerin hem de işletmelerin hayatını kolaylaştıran, dijital çözümlerle hız ve verimliliği en üst düzeye taşıyan öncü bir marka olmaktır. Teknolojiyi odağımıza alarak müşterilerimizin ihtiyaç duyduğu her ölçekte teslimatı güvenle gerçekleştirmek, sürdürülebilirlik ilkeleriyle büyüyerek hem Türkiye'de hem de uluslararası pazarda tercih edilen lojistik çözüm ortağı olmak istiyoruz.
+                </p>
+                
                 <h2 
                     className="text-[32px] sm:text-[40px] lg:text-[65px] font-bold text-[#FF5B04] mb-4 sm:mb-6 lg:mb-8"
                     style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}

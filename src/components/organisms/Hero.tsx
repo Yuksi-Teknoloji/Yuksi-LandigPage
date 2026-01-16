@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import heroBg from '../../assets/hero/hero-bg.png';
 import kanguru1 from '../../assets/hero/kanguru1.png';
 import kanguru2 from '../../assets/hero/kanguru2.png';
@@ -34,13 +35,15 @@ export default function Hero() {
                         alt="Yüksi kanguru"
                         className="w-[130px] h-auto object-contain"
                     />
-                    <Button
-                        variant="primary"
-                        size="md"
-                        className="w-[140px] h-[42px] -left-[10px] !rounded-[999px] text-[14px] font-medium flex items-center justify-center -mt-2"
-                    >
-                        <span>Yük Oluştur</span>
-                    </Button>
+                    <Link to="/carrier">
+                        <Button
+                            variant="primary"
+                            size="md"
+                            className="w-[140px] h-[42px] -left-[10px] !rounded-[999px] text-[14px] font-medium flex items-center justify-center -mt-2"
+                        >
+                            <span>Aramıza Katıl</span>
+                        </Button>
+                    </Link>
                 </div>
                 <div className="bg-white rounded-t-[40px] px-6 pt-20 pb-10"></div>
             </div>

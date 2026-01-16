@@ -5,6 +5,7 @@ interface IconProps {
   alt?: string;
   className?: string;
   invert?: boolean;
+  style?: React.CSSProperties;
 }
 
 export const Icon: React.FC<IconProps> = ({
@@ -12,15 +13,17 @@ export const Icon: React.FC<IconProps> = ({
   alt = '',
   className = '',
   invert = false,
+  style,
 }) => {
   const filterStyle = invert ? { filter: 'brightness(0) invert(1)' } : {};
+  const combinedStyle = { ...filterStyle, ...style };
 
   return (
     <img
       src={src}
       alt={alt}
       className={className}
-      style={filterStyle}
+      style={combinedStyle}
     />
   );
 };

@@ -1,6 +1,8 @@
+import { Link } from 'react-router-dom'
 import contactBg from '../../assets/contact/contact-mask.png'
 import contactPerson from '../../assets/contact/contact-person.png'
 import arrowRightIcon from '../../assets/icons/arrow-right.svg'
+import { Button } from '../atoms/Button'
 
 export function ContactCTA() {
     return (
@@ -41,15 +43,21 @@ export function ContactCTA() {
                                 Yüksi’nin genişleyen lojistik ağında yerinizi alın, aracınızı sadece bir ulaşım aracı olmaktan çıkarıp düzenli gelir getiren bir yatırıma dönüştürün. Sektörün en gelişmiş teknolojik altyapısı sayesinde operasyonel süreçlerinizi kolaylaştırıyor, rotanızı optimize ediyor ve verimliliğinizi artırıyoruz. Şeffaf hakediş sistemi, zamanında ödeme garantisi ve Yüksi’nin kurumsal güvencesiyle sürdürülebilir bir kazanç modeli sizi bekliyor. Hemen başvurunuzu yapın, profesyonel ekibimize katılın.
                             </p>
 
-                            <button className="mt-3 sm:mt-4 lg:mt-6 inline-flex items-center gap-3 bg-[#FF5B04] hover:bg-[#E55103] text-white font-medium text-[15px] sm:text-[16px] lg:text-[20px] px-5 sm:px-7 lg:px-[27px] py-2.5 sm:py-3 lg:py-[14px] rounded-[26px] transition-colors self-start">
-                                <span>Form Doldur</span>
-                                <img
-                                    src={arrowRightIcon}
-                                    alt=""
-                                    className="w-4 h-4 sm:w-5 sm:h-5 lg:w-[23px] lg:h-[23px]"
-                                    style={{ filter: 'brightness(0) invert(1)' }}
-                                />
-                            </button>
+                            <Link to="/contact" className="mt-3 sm:mt-4 lg:mt-6 self-start">
+                                <Button
+                                    variant="primary"
+                                    size="md"
+                                    className="inline-flex items-center gap-3 !bg-[#FF5B04] hover:!bg-[#E55103] text-white font-medium text-[15px] sm:text-[16px] lg:text-[20px] px-5 sm:px-7 lg:px-[27px] py-2.5 sm:py-3 lg:py-[14px] !rounded-[26px] transition-colors"
+                                >
+                                    <span>Form Doldur</span>
+                                    <img
+                                        src={arrowRightIcon}
+                                        alt=""
+                                        className="w-4 h-4 sm:w-5 sm:h-5 lg:w-[23px] lg:h-[23px]"
+                                        style={{ filter: 'brightness(0) invert(1)' }}
+                                    />
+                                </Button>
+                            </Link>
                         </div>
                     </div>
                 </div>
