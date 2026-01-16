@@ -46,7 +46,7 @@ export function SEOHead({
         image: fullOgImage,
         description: description,
         telephone: '+908502419316',
-        email: 'info@yuksi.com.tr',
+        email: 'info@yuksi.tr',
         address: {
             '@type': 'PostalAddress',
             streetAddress: geoData?.address || 'Ahmet Vefik Paşa OSB Mah. Bursa caddesi No:73',
@@ -88,7 +88,7 @@ export function SEOHead({
             '@type': 'ContactPoint',
             telephone: '+908502419316',
             contactType: 'customer service',
-            email: 'info@yuksi.com.tr',
+            email: 'info@yuksi.tr',
             areaServed: 'TR',
             availableLanguage: ['tr', 'en'],
         },
@@ -146,7 +146,7 @@ export function SEOHead({
             <meta name="ai:location" content="Bursa, Türkiye" />
             <meta name="ai:services" content="Motorsiklet Kurye, Minivan, Panelvan, Kamyonet, Kamyon Taşımacılık" />
             <meta name="ai:contact-phone" content="+908502419316" />
-            <meta name="ai:contact-email" content="info@yuksi.com.tr" />
+            <meta name="ai:contact-email" content="info@yuksi.tr" />
 
             {/* AI Crawler Friendly - Explicit permission */}
             <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />

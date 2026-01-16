@@ -7,6 +7,8 @@ import Help from './pages/Help'
 import Carrier from './pages/Carrier'
 import Contact from './pages/Contact'
 import Vehiclese from './pages/Vehiclese'
+import Dealer from './pages/Dealer'
+import Corporate from './pages/Corporate'
 
 function App() {
     return (
@@ -19,6 +21,8 @@ function App() {
                 <Route path="/carrier" element={<Carrier />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/vehiclese" element={<Vehiclese />} />
+                <Route path="/dealer" element={<Dealer />} />
+                <Route path="/corporate" element={<Corporate />} />
             </Routes>
             <Toaster
                 position="top-right"

@@ -1,8 +1,6 @@
 import { useFormik } from 'formik';
 import toast from 'react-hot-toast';
 import kangarooHelp from '../../assets/help/kangaroo-help.png';
-import phoneKangaroo from '../../assets/help/phone-kangaroo.png';
-import logoImage from '../../assets/logo.png';
 import arrowRightIcon from '../../assets/icons/arrow-right.svg';
 import { submitHelpRequest } from '../../services/helpService';
 
@@ -87,27 +85,8 @@ export function HelpHero() {
             {/* Content Container */}
             <div className="relative z-10 w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-[100px] py-6 sm:py-8 md:py-10 lg:py-12 xl:py-20">
                 <div className="relative w-full max-w-[1920px] mx-auto min-h-[600px] lg:min-h-[700px] xl:min-h-[822px]">
-                    {/* Left Side - Phone/Kangaroo Image - Hidden on mobile, visible on larger screens */}
-                    <div className="hidden lg:block absolute left-0 lg:left-[4%] xl:left-[calc(8.33%+20px)] top-[180px] lg:top-[200px] xl:top-[220px]">
-                        <div className="relative w-[280px] h-[370px] lg:w-[350px] lg:h-[460px] xl:w-[470px] xl:h-[682px]">
-                            <img
-                                src={phoneKangaroo}
-                                alt="Yüksi telefon kanguru"
-                                className="w-full h-full object-contain"
-                            />
-                        </div>
-                        {/* Small logo on phone */}
-                        <div className="absolute left-[calc(25%-9.54px)] top-[520px] lg:top-[550px] xl:top-[579px] w-[60px] h-[60px] lg:w-[65px] lg:h-[65px] xl:w-[70px] xl:h-[70px] flex items-center justify-center">
-                            <img
-                                src={logoImage}
-                                alt="Yüksi Logo"
-                                className="w-full h-full object-contain"
-                            />
-                        </div>
-                    </div>
-
                     {/* Center/Right Side - Title and Form */}
-                    <div className="w-full lg:ml-[calc(40%+20px)] xl:ml-[calc(45.83%+3px)] 2xl:ml-[calc(45.83%+50px)] lg:max-w-[550px] xl:max-w-[917px] 2xl:max-w-[1000px] flex flex-col gap-4 sm:gap-5 md:gap-6 lg:gap-8">
+                    <div className="w-full lg:max-w-[550px] xl:max-w-[917px] 2xl:max-w-[1000px] mx-auto lg:mx-0 lg:ml-auto flex flex-col gap-4 sm:gap-5 md:gap-6 lg:gap-8">
                         {/* Main Title */}
                         <h1
                             className="text-white text-[28px] sm:text-[36px] md:text-[45px] lg:text-[52px] xl:text-[65px] 2xl:text-[70px] font-bold leading-tight sm:leading-normal whitespace-pre-wrap mt-4 sm:mt-6 lg:mt-0"

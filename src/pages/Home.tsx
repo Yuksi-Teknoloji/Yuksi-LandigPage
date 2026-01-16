@@ -31,7 +31,7 @@ export default function Home() {
                     logo: 'https://yuksi.com.tr/logo.png',
                     description: 'Modern lojistik çözümleri ile yanınızdayız. Motokurye, minivan, panelvan, kamyonet ve kamyon hizmetleri.',
                     telephone: '+908502419316',
-                    email: 'info@yuksi.com.tr',
+                    email: 'info@yuksi.tr',
                     address: {
                         '@type': 'PostalAddress',
                         streetAddress: 'Ahmet Vefik Paşa OSB Mah. Bursa caddesi No:73',

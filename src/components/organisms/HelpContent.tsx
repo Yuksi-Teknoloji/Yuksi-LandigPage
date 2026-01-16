@@ -1,48 +1,30 @@
-import { Link } from 'react-router-dom';
-import arrowRightIcon from '../../assets/icons/arrow-right.svg';
+import phoneKangaroo from '../../assets/help/phone-kangaroo.png';
+import logoImage from '../../assets/logo.png';
 
 export function HelpContent() {
     return (
         <section className="w-full bg-white py-8 sm:py-10 md:py-12 lg:py-16 xl:py-20">
-            <div className="w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-[100px]">
+            <div className="w-full mx-auto px-4 sm:px-6 md:px-8 lg:px-[100px] relative">
                 {/* Two Column Layout */}
-                <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 xl:gap-16">
-                    {/* Left Side - General Questions */}
-                    <div className="w-full lg:w-[35%] lg:flex-shrink-0">
-                        {/* Title */}
-                        <h2
-                            className="text-[#FF5B04] text-[24px] sm:text-[28px] md:text-[32px] lg:text-[36px] font-bold mb-6 sm:mb-8 lg:mb-10"
-                            style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
-                        >
-                            Genel sorular
-                        </h2>
-
-                        {/* Buttons */}
-                        <div className="flex flex-col gap-4 sm:gap-5 lg:gap-6">
-                            <Link
-                                to="/carrier"
-                                className="bg-[#FF5B04] hover:bg-[#E55103] text-white font-medium text-[18px] sm:text-[20px] lg:text-[24px] py-4 sm:py-5 px-6 sm:px-8 rounded-[35px] flex items-center justify-between transition-colors w-full sm:w-auto sm:max-w-[600px]"
-                                style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
-                            >
-                                <span>Taşıyıcı Olmak İstiyorum</span>
-                                <img src={arrowRightIcon} alt="" className="w-5 h-5 flex-shrink-0" style={{ filter: 'brightness(0) invert(1)' }} />
-                            </Link>
-
-                            <button
-                                className="bg-[#FF5B04] hover:bg-[#E55103] text-white font-medium text-[18px] sm:text-[20px] lg:text-[24px] py-4 sm:py-5 px-6 sm:px-8 rounded-[35px] flex items-center justify-between transition-colors w-full sm:w-auto sm:max-w-[600px]"
-                                style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
-                            >
-                                <span>Aracım Gelmedi</span>
-                                <img src={arrowRightIcon} alt="" className="w-5 h-5 flex-shrink-0" style={{ filter: 'brightness(0) invert(1)' }} />
-                            </button>
-
-                            <button
-                                className="bg-[#FF5B04] hover:bg-[#E55103] text-white font-medium text-[18px] sm:text-[20px] lg:text-[24px] py-4 sm:py-5 px-6 sm:px-8 rounded-[35px] flex items-center justify-between transition-colors w-full sm:w-auto sm:max-w-[600px]"
-                                style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
-                            >
-                                <span>Ürünüm Gelmedi</span>
-                                <img src={arrowRightIcon} alt="" className="w-5 h-5 flex-shrink-0" style={{ filter: 'brightness(0) invert(1)' }} />
-                            </button>
+                <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 xl:gap-16 items-center">
+                    {/* Left Side - Phone/Kangaroo Image - Hidden on mobile, visible on larger screens */}
+                    <div className="hidden lg:block lg:w-[35%] lg:flex-shrink-0 relative flex items-center justify-center">
+                        <div className="relative w-full">
+                            <div className="relative w-[240px] h-[320px] lg:w-[300px] lg:h-[400px] xl:w-[400px] xl:h-[580px] mx-auto">
+                                <img
+                                    src={phoneKangaroo}
+                                    alt="Yüksi telefon kanguru"
+                                    className="w-full h-full object-contain"
+                                />
+                            </div>
+                            {/* Small logo on phone */}
+                            <div className="absolute left-1/2 -translate-x-1/2 top-[380px] lg:top-[420px] xl:top-[500px] w-[50px] h-[50px] lg:w-[55px] lg:h-[55px] xl:w-[60px] xl:h-[60px] flex items-center justify-center">
+                                <img
+                                    src={logoImage}
+                                    alt="Yüksi Logo"
+                                    className="w-full h-full object-contain"
+                                />
+                            </div>
                         </div>
                     </div>
 

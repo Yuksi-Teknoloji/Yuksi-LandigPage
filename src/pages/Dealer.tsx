@@ -1,16 +1,16 @@
 import { Header } from '../components/organisms/Header';
 import { Footer } from '../components/organisms/Footer';
-import { ContactFormSection } from '../components/organisms/ContactFormSection';
+import { DealerForm } from '../components/organisms/DealerForm';
 import { SEOHead } from '../components/molecules/SEOHead';
 
-export default function Contact() {
+export default function Dealer() {
     return (
         <>
             <SEOHead
-                title="İletişim - Yüksi Lojistik"
-                description="Yüksi Lojistik ile iletişime geçin. Bursa merkezli ofisimiz: Ahmet Vefik Paşa OSB Mah. Bursa caddesi No:73, Kestel/BURSA. Telefon: 0850 241 93 16 | Email: info@yuksi.tr"
-                keywords="yüksi iletişim, lojistik firması iletişim, Bursa lojistik adres, taşımacılık telefon, nakliye email"
-                canonical="/contact"
+                title="Bayi Başvurusu - Yüksi Lojistik"
+                description="Yüksi Lojistik bayi olmak için başvurun. Franchise fırsatları, bayi koşulları ve avantajları hakkında bilgi alın. Bursa merkezli, Türkiye genelinde bayi ağımıza katılın."
+                keywords="yüksi bayi, franchise, bayi başvurusu, lojistik bayi, taşımacılık bayi, Bursa bayi, Türkiye bayi"
+                canonical="/dealer"
                 geoData={{
                     address: 'Ahmet Vefik Paşa OSB Mah. Bursa caddesi No:73',
                     city: 'Kestel',
@@ -36,11 +36,10 @@ export default function Contact() {
                 }}
             />
             <div className="w-full min-h-screen relative bg-white">
-                <Header activeItem="/contact" />
-                <ContactFormSection />
+                <Header activeItem="/dealer" />
+                <DealerForm />
                 <Footer />
             </div>
         </>
     );
 }
-

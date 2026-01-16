@@ -58,7 +58,7 @@ export function Footer() {
                         <div className="flex flex-col gap-3 sm:gap-4 lg:gap-4">
                             {/* Email */}
                             <a 
-                                href="mailto:info@yuksi.com.tr" 
+                                href="mailto:info@yuksi.tr" 
                                 className="flex items-center justify-center lg:items-start lg:justify-start gap-3 hover:opacity-90 active:opacity-70 transition-all group py-2 sm:py-0 -mx-2 px-2 sm:mx-0 sm:px-0 rounded-md sm:rounded-none touch-manipulation"
                             >
                                 <svg 
@@ -70,7 +70,7 @@ export function Footer() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                 </svg>
                                 <span className="text-sm sm:text-base lg:text-base font-medium break-all text-center lg:text-left" style={{ fontFamily: 'Roboto' }}>
-                                    info@yuksi.com.tr
+                                    info@yuksi.tr
                                 </span>
                             </a>
 
