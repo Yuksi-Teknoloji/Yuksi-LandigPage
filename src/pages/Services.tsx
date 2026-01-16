@@ -2,6 +2,7 @@ import { Header } from '../components/organisms/Header'
 import { ServicesHero } from '../components/organisms/ServicesHero'
 import { VehicleServiceSection } from '../components/organisms/VehicleServiceSection'
 import { Footer } from '../components/organisms/Footer'
+import { SEOHead } from '../components/molecules/SEOHead'
 import motorcycleImg from '../assets/services/motorcycle.png'
 import minivanImg from '../assets/services/minivan.png'
 import panelvanImg from '../assets/services/panelvan.png'
@@ -58,9 +59,82 @@ Nakliyeden ticari sevkiyata, pazar ve mağaza teslimatından tarım ürünlerine
     ];
 
     return (
-        <div className="w-full min-h-screen relative bg-white">
-            <Header activeItem="/services" />
-            <ServicesHero />
+        <>
+            <SEOHead
+                title="Hizmetlerimiz - Yüksi Lojistik"
+                description="Yüksi lojistik hizmetleri: Motorsiklet kurye (40-50 kg), Minivan (500-800 kg), Panelvan (1.000-1.500 kg), Kamyonet (1.500-3.500 kg), Kamyon (3.500-20.000 kg). Şehir içi ve şehirler arası taşımacılık çözümleri."
+                keywords="lojistik hizmetleri, motorsiklet kurye, minivan taşımacılık, panelvan nakliye, kamyonet sevkiyat, kamyon taşımacılık, şehir içi lojistik, şehirler arası taşımacılık"
+                canonical="/services"
+                geoData={{
+                    address: 'Ahmet Vefik Paşa OSB Mah. Bursa caddesi No:73',
+                    city: 'Kestel',
+                    region: 'Bursa',
+                    country: 'TR',
+                }}
+                structuredData={{
+                    '@context': 'https://schema.org',
+                    '@type': 'Service',
+                    serviceType: 'Lojistik ve Taşımacılık Hizmetleri',
+                    provider: {
+                        '@type': 'LocalBusiness',
+                        name: 'Yüksi Lojistik',
+                        url: 'https://yuksi.com.tr',
+                    },
+                    areaServed: {
+                        '@type': 'Country',
+                        name: 'Türkiye',
+                    },
+                    hasOfferCatalog: {
+                        '@type': 'OfferCatalog',
+                        name: 'Lojistik Hizmetleri',
+                        itemListElement: [
+                            {
+                                '@type': 'Offer',
+                                itemOffered: {
+                                    '@type': 'Service',
+                                    name: 'Motorsiklet Kurye',
+                                    description: '40-50 kg\'a kadar hızlı teslimat hizmeti. Yemek siparişi, belge, ilaç ve küçük paketler için ideal.',
+                                },
+                            },
+                            {
+                                '@type': 'Offer',
+                                itemOffered: {
+                                    '@type': 'Service',
+                                    name: 'Minivan Taşımacılık',
+                                    description: '500-800 kg\'a kadar şehir içi taşımacılık. Ev eşyaları, ofis ihtiyaçları, market teslimatı.',
+                                },
+                            },
+                            {
+                                '@type': 'Offer',
+                                itemOffered: {
+                                    '@type': 'Service',
+                                    name: 'Panelvan Taşımacılık',
+                                    description: '1.000-1.500 kg\'a kadar profesyonel nakliye. Büyük koliler, mobilya, e-ticaret teslimatı.',
+                                },
+                            },
+                            {
+                                '@type': 'Offer',
+                                itemOffered: {
+                                    '@type': 'Service',
+                                    name: 'Kamyonet Taşımacılık',
+                                    description: '1.500-3.500 kg\'a kadar ticari sevkiyat. İnşaat malzemesi, büyük mobilyalar, tarım ürünleri.',
+                                },
+                            },
+                            {
+                                '@type': 'Offer',
+                                itemOffered: {
+                                    '@type': 'Service',
+                                    name: 'Kamyon Taşımacılık',
+                                    description: '3.500-20.000 kg\'a kadar ağır yük taşımacılığı. Şehirler arası lojistik, endüstriyel ürünler.',
+                                },
+                            },
+                        ],
+                    },
+                }}
+            />
+            <div className="w-full min-h-screen relative bg-white">
+                <Header activeItem="/services" />
+                <ServicesHero />
             
             {/* Mobile-only text section - shown only on mobile */}
             <section className="md:hidden w-full bg-white py-8 px-4 sm:px-6">
@@ -96,5 +170,6 @@ Nakliyeden ticari sevkiyata, pazar ve mağaza teslimatından tarım ürünlerine
             ))}
             <Footer />
         </div>
+        </>
     )
 }

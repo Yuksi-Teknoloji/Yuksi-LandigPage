@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Header } from '../components/organisms/Header';
 import { Footer } from '../components/organisms/Footer';
+import { SEOHead } from '../components/molecules/SEOHead';
 import motorcycleImg from '../assets/services/motorcycle.png';
 import minivanImg from '../assets/services/minivan.png';
 import panelvanImg from '../assets/services/panelvan.png';
@@ -193,6 +194,19 @@ export default function Vehiclese() {
     }, [activeIndex]);
 
     return (
+        <>
+            <SEOHead
+                title={`${activeVehicle.title} - Yüksi Lojistik`}
+                description={activeVehicle.description}
+                keywords={`${activeVehicle.title.toLowerCase()}, yüksi ${activeVehicle.title.toLowerCase()}, lojistik, taşımacılık, ${activeVehicle.title.toLowerCase()} hizmeti`}
+                canonical="/vehiclese"
+                geoData={{
+                    address: 'Ahmet Vefik Paşa OSB Mah. Bursa caddesi No:73',
+                    city: 'Kestel',
+                    region: 'Bursa',
+                    country: 'TR',
+                }}
+            />
         <div className="w-full min-h-screen" style={{ background: activeVehicle.background }}>
             <div className="relative z-10">
             <Header activeItem="/services" />
@@ -364,5 +378,6 @@ export default function Vehiclese() {
             </div>
             </div>
         </div>
+        </>
     );
 }

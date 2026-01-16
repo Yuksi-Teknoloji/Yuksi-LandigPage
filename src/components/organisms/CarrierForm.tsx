@@ -4,7 +4,6 @@ import kangarooCarrier from '../../assets/carrier/kangaroo-carrier.png';
 import { submitCarrierApplication } from '../../services/carrierService';
 import { Input } from '../atoms/Input';
 import { Select } from '../atoms/Select';
-import { Checkbox } from '../atoms/Checkbox';
 import { FileUpload } from '../atoms/FileUpload';
 import { Button } from '../atoms/Button';
 
@@ -48,7 +47,6 @@ export function CarrierForm() {
             if (values.vehicleYear && Number.isNaN(Number(values.vehicleYear))) errors.vehicleYear = 'Yıl sayı olmalı';
             if (!values.vehicleDocument) errors.vehicleDocument = 'Zorunlu';
             if (!values.carrierDocument) errors.carrierDocument = 'Zorunlu';
-            if (!values.acceptedTerms) errors.acceptedTerms = 'Zorunlu';
 
             return errors;
         },
@@ -62,7 +60,7 @@ export function CarrierForm() {
                     phone_number: values.phone,
                     vehicle_type: values.vehicleType,
                     vehicle_registration_year: Number(values.vehicleYear),
-                    terms_accepted: values.acceptedTerms,
+                    terms_accepted: true,
                     vehicle_documents: values.vehicleDocument as File,
                     carrier_documents: values.carrierDocument as File,
                 });
@@ -234,16 +232,6 @@ export function CarrierForm() {
                         value={formik.values.carrierDocument}
                         placeholder="Taşıyıcı Belgelerini Yükle"
                         helperText="Adli Sicil Belgesi/ Ehliyet"
-                    />
-
-                    {/* Kabul onay tiki */}
-                    <Checkbox
-                        id="acceptedTerms"
-                        name="acceptedTerms"
-                        checked={formik.values.acceptedTerms}
-                        onChange={formik.handleChange}
-                        label="Kabul onay tiki"
-                        required
                     />
 
                     {/* Gönder Butonu */}

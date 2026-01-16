@@ -113,13 +113,15 @@ export const Header: React.FC<HeaderProps> = ({
 
                   <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-opacity duration-200 absolute right-0 mt-2 w-[210px] rounded-[12px] p-[2px] space-y-[6px] z-50">
                     <div className="relative group/driver">
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        className="w-full h-[34px] !rounded-[8px] !bg-[#F4F4F4] !text-[#FF5B04] text-[11px] leading-[13px] flex items-center justify-start px-3"
-                      >
-                        Yüksi Sürücü Başvuru
-                      </Button>
+                      <Link to="/carrier">
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          className="w-full h-[34px] !rounded-[8px] !bg-[#F4F4F4] !text-[#FF5B04] text-[11px] leading-[13px] flex items-center justify-start px-3"
+                        >
+                          Yüksi Sürücü Başvuru
+                        </Button>
+                      </Link>
                       <div className="invisible opacity-0 group-hover/driver:visible group-hover/driver:opacity-100 transition-opacity duration-200 absolute left-full top-0 ml-2 z-50">
                         <div className="flex flex-col gap-[6px]">
                           <Button
@@ -257,13 +259,15 @@ export const Header: React.FC<HeaderProps> = ({
                 {isApplicationMenuOpen && (
                   <div className="mt-4 ml-4 flex flex-col gap-3">
                     <div className="flex flex-col gap-2">
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        className="w-full h-[34px] !rounded-[8px] !bg-[#F4F4F4] !text-[#FF5B04] text-[14px] leading-[16px] flex items-center justify-start px-3"
-                      >
-                        Yüksi Sürücü Başvuru
-                      </Button>
+                      <Link to="/carrier" onClick={() => setIsMobileMenuOpen(false)}>
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          className="w-full h-[34px] !rounded-[8px] !bg-[#F4F4F4] !text-[#FF5B04] text-[14px] leading-[16px] flex items-center justify-start px-3"
+                        >
+                          Yüksi Sürücü Başvuru
+                        </Button>
+                      </Link>
                       <div className="ml-4 flex flex-col gap-2">
                         <Button
                           variant="primary"

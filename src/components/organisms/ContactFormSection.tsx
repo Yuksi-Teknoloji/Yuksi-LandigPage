@@ -2,7 +2,6 @@ import { useFormik } from 'formik';
 import toast from 'react-hot-toast';
 import { Input } from '../atoms/Input';
 import { Textarea } from '../atoms/Textarea';
-import { Checkbox } from '../atoms/Checkbox';
 import { Button } from '../atoms/Button';
 import contactHero from '../../assets/contact/contact-hero.png';
 import instagramIcon from '../../assets/contact/instagram.svg';
@@ -74,11 +73,6 @@ export function ContactFormSection() {
                 errors.message = 'Mesajınız en fazla 5000 karakter olabilir';
             }
 
-            // Terms validation: must be true
-            if (!values.acceptedTerms) {
-                errors.acceptedTerms = 'Lütfen şartları kabul ediniz';
-            }
-
             return errors;
         },
         onSubmit: async (values, helpers) => {
@@ -89,7 +83,7 @@ export function ContactFormSection() {
                     phone: values.phone,
                     subject: values.subject,
                     message: values.message,
-                    terms_accepted: values.acceptedTerms,
+                    terms_accepted: true,
                 });
 
                 if (response.success) {
@@ -211,20 +205,6 @@ export function ContactFormSection() {
                                 />
                                     {formik.touched.message && formik.errors.message && (
                                         <p className="mt-1 text-sm text-red-500">{formik.errors.message}</p>
-                                    )}
-                                </div>
-
-                                {/* Kabul onay tiki */}
-                                <div>
-                                <Checkbox
-                                    id="acceptedTerms"
-                                    name="acceptedTerms"
-                                    checked={formik.values.acceptedTerms}
-                                    onChange={formik.handleChange}
-                                    label="Kabul onay tiki"
-                                />
-                                    {formik.touched.acceptedTerms && formik.errors.acceptedTerms && (
-                                        <p className="mt-1 text-sm text-red-500">{formik.errors.acceptedTerms}</p>
                                     )}
                                 </div>
 

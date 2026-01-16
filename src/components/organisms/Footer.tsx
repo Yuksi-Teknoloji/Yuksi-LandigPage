@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import logoImage from '../../assets/logo.png'
 import { FooterLink } from '../molecules/FooterLink'
 
@@ -8,12 +9,14 @@ export function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 sm:gap-12 lg:gap-12 xl:gap-16">
                     {/* Left Column - Logo */}
                     <div className="flex flex-col items-center lg:items-start gap-4 sm:gap-5">
+                        <Link to="/" className="cursor-pointer">
                         <img 
                             src={logoImage} 
                             alt="Yüksi Logo" 
                             className="w-[140px] sm:w-[160px] h-auto lg:w-[195px] lg:h-[181px] object-contain transition-transform hover:scale-105 duration-300"
                             style={{ filter: 'brightness(0) invert(1)' }}
                         />
+                        </Link>
                         <p className="text-sm sm:text-base lg:text-base text-white/90 text-center lg:text-left max-w-xs leading-relaxed" style={{ fontFamily: 'Roboto' }}>
                             Modern lojistik çözümleri ile yanınızdayız.
                         </p>
@@ -88,24 +91,6 @@ export function Footer() {
                                     0850 241 93 16
                                 </span>
                             </a>
-
-                            {/* Address */}
-                            <div className="flex items-center justify-center lg:items-start lg:justify-start gap-3 py-2 sm:py-0">
-                                <svg 
-                                    className="w-5 h-5 sm:w-5 sm:h-5 flex-shrink-0" 
-                                    fill="none" 
-                                    stroke="currentColor" 
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
-                                <p className="text-sm sm:text-base lg:text-base leading-relaxed font-medium text-center lg:text-left" style={{ fontFamily: 'Roboto' }}>
-                                    Ahmet Vefik Paşa OSB Mah.<br />
-                                    Bursa caddesi No:73<br />
-                                    Kestel/BURSA
-                                </p>
-                            </div>
                         </div>
                     </div>
                 </div>
