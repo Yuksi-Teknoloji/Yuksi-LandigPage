@@ -24,13 +24,29 @@ async function request<T>(path: string, method: HttpMethod, options: RequestOpti
         ...rest,
     });
 
+    const contentType = response.headers.get('Content-Type') || '';
+    const isJson = contentType.includes('application/json');
+
     if (!response.ok) {
-        const errorText = await response.text().catch(() => '');
-        throw new Error(`HTTP error ${response.status}: ${errorText}`);
+        if (isJson) {
+            try {
+                const errorData = await response.json() as { message?: string; success?: boolean };
+                const errorMessage = errorData.message || `HTTP error ${response.status}`;
+                const error = new Error(errorMessage);
+                (error as any).response = errorData;
+                throw error;
+            } catch (parseError) {
+                // If JSON parsing fails, fall back to text
+                const errorText = await response.text().catch(() => '');
+                throw new Error(`HTTP error ${response.status}: ${errorText}`);
+            }
+        } else {
+            const errorText = await response.text().catch(() => '');
+            throw new Error(`HTTP error ${response.status}: ${errorText}`);
+        }
     }
 
-    const contentType = response.headers.get('Content-Type') || '';
-    if (contentType.includes('application/json')) {
+    if (isJson) {
         return response.json() as Promise<T>;
     }
 

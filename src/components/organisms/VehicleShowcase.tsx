@@ -61,10 +61,13 @@ export function VehicleShowcase() {
                 <div className="w-full lg:hidden relative">
                     <div 
                         ref={scrollContainerRef}
-                        className="flex gap-4 overflow-x-auto py-4 [-webkit-overflow-scrolling:touch] px-4"
+                        className="flex gap-4 overflow-x-auto py-4 [-webkit-overflow-scrolling:touch] snap-x snap-mandatory"
                         style={{
                             scrollbarWidth: 'none',
                             msOverflowStyle: 'none',
+                            scrollSnapType: 'x mandatory',
+                            paddingLeft: 'calc(50% - 100px)',
+                            paddingRight: 'calc(50% - 100px)',
                         }}
                     >
                         <style>{`
@@ -95,13 +98,15 @@ export function VehicleShowcase() {
                             return (
                                 <div
                                     key={vehicle.alt}
-                                    className="min-w-[200px] flex items-center justify-center h-44 relative"
+                                    className="min-w-[200px] flex items-center justify-center h-44 relative snap-center"
                                     style={{
                                         transform: `scale(${scale}) translateX(${translateX}px) translateZ(${translateZ}px)`,
                                         opacity: opacity,
                                         filter: `blur(${blur}px)`,
                                         zIndex: zIndex,
-                                        transition: 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease-out, filter 0.3s ease-out',
+                                        transition: 'transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease-out, filter 0.2s ease-out',
+                                        scrollSnapAlign: 'center',
+                                        scrollSnapStop: 'always',
                                     }}
                                 >
                                     <img

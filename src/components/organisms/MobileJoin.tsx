@@ -41,7 +41,7 @@ export function MobileJoin() {
                 <img
                     src={boxesImage}
                     alt=""
-                    className={`absolute w-[85px] xs:w-[100px] sm:w-[130px] lg:w-[150px] top-16 xs:top-20 sm:top-24 right-[6%] xs:right-[8%] sm:right-[10%] rotate-8 drop-shadow-xl transition-all duration-700 ease-out ${
+                    className={`absolute w-[85px] xs:w-[100px] sm:w-[130px] lg:w-[150px] top-12 xs:top-16 sm:top-20 right-[4%] xs:right-[6%] sm:right-[8%] rotate-8 drop-shadow-xl transition-all duration-700 ease-out ${
                         showContent ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
                     }`}
                     style={{ transitionDelay: '2400ms' }}

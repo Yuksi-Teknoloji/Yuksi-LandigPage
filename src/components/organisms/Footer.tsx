@@ -3,79 +3,118 @@ import { FooterLink } from '../molecules/FooterLink'
 
 export function Footer() {
     return (
-        <footer className="w-full bg-[#FF5B04] text-white" style={{ minHeight: '350px', boxSizing: 'border-box' }}>
-            <div className="w-full max-w-[1552px] mx-auto px-4 lg:px-8 py-8 lg:py-0 lg:h-[350px] flex items-center">
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 w-full">
+        <footer className="w-full bg-[#FF5B04] text-white">
+            <div className="w-full max-w-[1552px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-10 sm:py-12 lg:py-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 sm:gap-12 lg:gap-12 xl:gap-16">
                     {/* Left Column - Logo */}
-                    <div className="flex items-start justify-center lg:justify-start">
+                    <div className="flex flex-col items-center lg:items-start gap-4 sm:gap-5">
                         <img 
                             src={logoImage} 
                             alt="Yüksi Logo" 
-                            className="w-[120px] h-[111px] lg:w-[195px] lg:h-[181px] object-contain"
+                            className="w-[140px] sm:w-[160px] h-auto lg:w-[195px] lg:h-[181px] object-contain transition-transform hover:scale-105 duration-300"
                             style={{ filter: 'brightness(0) invert(1)' }}
                         />
+                        <p className="text-sm sm:text-base lg:text-base text-white/90 text-center lg:text-left max-w-xs leading-relaxed" style={{ fontFamily: 'Roboto' }}>
+                            Modern lojistik çözümleri ile yanınızdayız.
+                        </p>
                     </div>
 
-                    {/* Middle Column - Bilgi ve Sözleşmeler */}
-                    <div className="flex flex-col gap-3 lg:gap-4">
-                        <h3 className="text-xl lg:text-[26px] leading-[24px] lg:leading-[30px] font-medium mb-1 lg:mb-2 text-center lg:text-left" style={{ fontFamily: 'Roboto' }}>
-                            Bilgi ve Sözleşmeler
+                    {/* Middle Column - Sayfalar */}
+                    <div className="flex flex-col gap-4 sm:gap-5 lg:gap-5">
+                        <h3 
+                            className="text-xl sm:text-2xl lg:text-2xl font-bold mb-2 sm:mb-3 text-center lg:text-left border-b border-white/20 pb-3 sm:pb-4" 
+                            style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
+                        >
+                            Sayfalar
                         </h3>
-                        <ul className="flex flex-col gap-2 lg:gap-3">
+                        <ul className="flex flex-col gap-1 sm:gap-2 lg:gap-3">
                             {[
-                                'Yüksi Hakkımızda',
-                                'Kurye Gizlilik Sözleşmesi',
-                                'Kurye Taşıyıcı Sözleşmesi',
-                                'Gizlilik Sözleşmesi',
-                                'Kullanıcı Sözleşmesi'
-                            ].map((item, index) => (
-                                <li key={index}>
-                                    <FooterLink href="#">
-                                        {item}
+                                { href: '/', label: 'Ana Sayfa' },
+                                { href: '/about', label: 'Hakkımızda' },
+                                { href: '/services', label: 'Hizmetler' },
+                                { href: '/help', label: 'Yardım' },
+                                { href: '/contact', label: 'İletişim' },
+                            ].map((item) => (
+                                <li key={item.href} className="w-full">
+                                    <FooterLink href={item.href}>
+                                        {item.label}
                                     </FooterLink>
                                 </li>
                             ))}
                         </ul>
                     </div>
 
-                    {/* Right Column - Gizlilik ve Sözleşmeler */}
-                    <div className="flex flex-col gap-3 lg:gap-4">
-                        <h3 className="text-xl lg:text-[26px] leading-[24px] lg:leading-[30px] font-medium mb-1 lg:mb-2 text-center lg:text-left" style={{ fontFamily: 'Roboto' }}>
-                            Gizlilik ve Sözleşmeler
+                    {/* Right Column - İletişim */}
+                    <div className="flex flex-col gap-4 sm:gap-5 lg:gap-5">
+                        <h3 
+                            className="text-xl sm:text-2xl lg:text-2xl font-bold mb-2 sm:mb-3 text-center lg:text-left border-b border-white/20 pb-3 sm:pb-4" 
+                            style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
+                        >
+                            İletişim
                         </h3>
-                        <ul className="flex flex-col gap-2 lg:gap-3">
-                            <li>
-                                <FooterLink href="#">
-                                    Anasayfa
-                                </FooterLink>
-                            </li>
-                            <li>
-                                <FooterLink href="#">
-                                    İletişim
-                                </FooterLink>
-                            </li>
-                            <li>
-                                <FooterLink href="mailto:info@yuksi.com.tr" className="break-all">
+                        <div className="flex flex-col gap-3 sm:gap-4 lg:gap-4">
+                            {/* Email */}
+                            <a 
+                                href="mailto:info@yuksi.com.tr" 
+                                className="flex items-center justify-center lg:items-start lg:justify-start gap-3 hover:opacity-90 active:opacity-70 transition-all group py-2 sm:py-0 -mx-2 px-2 sm:mx-0 sm:px-0 rounded-md sm:rounded-none touch-manipulation"
+                            >
+                                <svg 
+                                    className="w-5 h-5 sm:w-5 sm:h-5 flex-shrink-0 group-hover:scale-110 transition-transform pointer-events-none" 
+                                    fill="none" 
+                                    stroke="currentColor" 
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                                <span className="text-sm sm:text-base lg:text-base font-medium break-all text-center lg:text-left" style={{ fontFamily: 'Roboto' }}>
                                     info@yuksi.com.tr
-                                </FooterLink>
-                            </li>
-                            <li>
-                                <FooterLink href="https://yuksi.com.tr/resellerv8" className="underline">
-                                    Bayi Girişi
-                                </FooterLink>
-                            </li>
-                            <li>
-                                <FooterLink href="https://yuksi.com.tr/restaurantv1" className="underline">
-                                    Restaurant Girişi
-                                </FooterLink>
-                            </li>
-                            <li>
-                                <FooterLink href="https://yuksi.com.tr/companyv1" className="underline">
-                                    Şirket Girişi
-                                </FooterLink>
-                            </li>
-                        </ul>
+                                </span>
+                            </a>
+
+                            {/* Phone */}
+                            <a 
+                                href="tel:08502419316" 
+                                className="flex items-center justify-center lg:items-start lg:justify-start gap-3 hover:opacity-90 active:opacity-70 transition-all group py-2 sm:py-0 -mx-2 px-2 sm:mx-0 sm:px-0 rounded-md sm:rounded-none touch-manipulation"
+                            >
+                                <svg 
+                                    className="w-5 h-5 sm:w-5 sm:h-5 flex-shrink-0 group-hover:scale-110 transition-transform pointer-events-none" 
+                                    fill="none" 
+                                    stroke="currentColor" 
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                </svg>
+                                <span className="text-sm sm:text-base lg:text-base font-medium text-center lg:text-left" style={{ fontFamily: 'Roboto' }}>
+                                    0850 241 93 16
+                                </span>
+                            </a>
+
+                            {/* Address */}
+                            <div className="flex items-center justify-center lg:items-start lg:justify-start gap-3 py-2 sm:py-0">
+                                <svg 
+                                    className="w-5 h-5 sm:w-5 sm:h-5 flex-shrink-0" 
+                                    fill="none" 
+                                    stroke="currentColor" 
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                <p className="text-sm sm:text-base lg:text-base leading-relaxed font-medium text-center lg:text-left" style={{ fontFamily: 'Roboto' }}>
+                                    Ahmet Vefik Paşa OSB Mah.<br />
+                                    Bursa caddesi No:73<br />
+                                    Kestel/BURSA
+                                </p>
+                            </div>
+                        </div>
                     </div>
+                </div>
+
+                {/* Bottom Border */}
+                <div className="mt-8 sm:mt-10 lg:mt-12 pt-6 sm:pt-7 lg:pt-8 border-t border-white/20">
+                    <p className="text-center text-xs sm:text-sm lg:text-base text-white/80 px-2" style={{ fontFamily: 'Roboto' }}>
+                        © {new Date().getFullYear()} Yüksi. Tüm hakları saklıdır.
+                    </p>
                 </div>
             </div>
         </footer>

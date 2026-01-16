@@ -6,9 +6,10 @@ import { Checkbox } from '../atoms/Checkbox';
 import { Button } from '../atoms/Button';
 import contactHero from '../../assets/contact/contact-hero.png';
 import instagramIcon from '../../assets/contact/instagram.svg';
+import { submitSiteContact } from '../../services/siteContactService';
 
 interface ContactFormValues {
-    firstName: string;
+    name: string;
     email: string;
     phone: string;
     subject: string;
@@ -19,7 +20,7 @@ interface ContactFormValues {
 export function ContactFormSection() {
     const formik = useFormik<ContactFormValues>({
         initialValues: {
-            firstName: '',
+            name: '',
             email: '',
             phone: '',
             subject: '',
@@ -29,24 +30,77 @@ export function ContactFormSection() {
         validate: (values) => {
             const errors: Partial<Record<keyof ContactFormValues, string>> = {};
 
-            if (!values.firstName) errors.firstName = 'Zorunlu';
-            if (!values.email) errors.email = 'Zorunlu';
-            if (!values.phone) errors.phone = 'Zorunlu';
-            if (!values.subject) errors.subject = 'Zorunlu';
-            if (!values.message) errors.message = 'Zorunlu';
-            if (!values.acceptedTerms) errors.acceptedTerms = 'Zorunlu';
+            // Name validation: min 2, max 200
+            if (!values.name) {
+                errors.name = 'Lütfen isminizi giriniz';
+            } else if (values.name.length < 2) {
+                errors.name = 'İsminiz en az 2 karakter olmalıdır';
+            } else if (values.name.length > 200) {
+                errors.name = 'İsminiz en fazla 200 karakter olabilir';
+            }
+
+            // Email validation: required and valid format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!values.email) {
+                errors.email = 'Lütfen e-posta adresinizi giriniz';
+            } else if (!emailRegex.test(values.email)) {
+                errors.email = 'Geçerli bir e-posta adresi giriniz';
+            }
+
+            // Phone validation: min 5, max 50
+            if (!values.phone) {
+                errors.phone = 'Lütfen telefon numaranızı giriniz';
+            } else if (values.phone.length < 5) {
+                errors.phone = 'Telefon numaranız en az 5 karakter olmalıdır';
+            } else if (values.phone.length > 50) {
+                errors.phone = 'Telefon numaranız en fazla 50 karakter olabilir';
+            }
+
+            // Subject validation: min 2, max 200
+            if (!values.subject) {
+                errors.subject = 'Lütfen konu başlığını giriniz';
+            } else if (values.subject.length < 2) {
+                errors.subject = 'Konu başlığı en az 2 karakter olmalıdır';
+            } else if (values.subject.length > 200) {
+                errors.subject = 'Konu başlığı en fazla 200 karakter olabilir';
+            }
+
+            // Message validation: min 2, max 5000
+            if (!values.message) {
+                errors.message = 'Lütfen mesajınızı yazınız';
+            } else if (values.message.length < 2) {
+                errors.message = 'Mesajınız en az 2 karakter olmalıdır';
+            } else if (values.message.length > 5000) {
+                errors.message = 'Mesajınız en fazla 5000 karakter olabilir';
+            }
+
+            // Terms validation: must be true
+            if (!values.acceptedTerms) {
+                errors.acceptedTerms = 'Lütfen şartları kabul ediniz';
+            }
 
             return errors;
         },
         onSubmit: async (values, helpers) => {
             try {
-                // TODO: Wire this up to a real API when available
-                console.log('Contact form submitted:', values);
-                toast.success('Mesajınız başarıyla gönderildi.');
+                const response = await submitSiteContact({
+                    name: values.name,
+                    email: values.email,
+                    phone: values.phone,
+                    subject: values.subject,
+                    message: values.message,
+                    terms_accepted: values.acceptedTerms,
+                });
+
+                if (response.success) {
+                    toast.success('Mesajınız başarıyla iletildi! En kısa sürede size dönüş yapacağız. 🎉');
                 helpers.resetForm();
-            } catch (error) {
+                } else {
+                    toast.error('Bir şeyler ters gitti. Lütfen tekrar deneyin veya bizimle doğrudan iletişime geçin.');
+                }
+            } catch (error: unknown) {
                 console.error('Contact form error:', error);
-                toast.error('Form gönderilirken bir hata oluştu. Lütfen tekrar deneyin.');
+                toast.error('Mesajınız gönderilirken bir sorun oluştu. Lütfen tekrar deneyin veya bizimle doğrudan iletişime geçin.');
             }
         },
     });
@@ -80,17 +134,24 @@ export function ContactFormSection() {
                                 onSubmit={formik.handleSubmit}
                                 className="max-w-[532px] mx-auto lg:mx-0 space-y-4"
                             >
-                                {/* Soy İsim (single name field per design) */}
+                                {/* İsim/Soy İsim */}
+                                <div>
                                 <Input
                                     type="text"
-                                    name="firstName"
-                                    value={formik.values.firstName}
+                                        name="name"
+                                        value={formik.values.name}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
-                                    placeholder="Soy İsim"
+                                        placeholder="İsim/Soy İsim"
+                                        error={!!(formik.touched.name && formik.errors.name)}
                                 />
+                                    {formik.touched.name && formik.errors.name && (
+                                        <p className="mt-1 text-sm text-red-500">{formik.errors.name}</p>
+                                    )}
+                                </div>
 
                                 {/* E-mail */}
+                                <div>
                                 <Input
                                     type="email"
                                     name="email"
@@ -98,9 +159,15 @@ export function ContactFormSection() {
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                     placeholder="E-mail"
+                                        error={!!(formik.touched.email && formik.errors.email)}
                                 />
+                                    {formik.touched.email && formik.errors.email && (
+                                        <p className="mt-1 text-sm text-red-500">{formik.errors.email}</p>
+                                    )}
+                                </div>
 
                                 {/* Telefon Numarası */}
+                                <div>
                                 <Input
                                     type="tel"
                                     name="phone"
@@ -108,9 +175,15 @@ export function ContactFormSection() {
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                     placeholder="Telefon Numarası"
+                                        error={!!(formik.touched.phone && formik.errors.phone)}
                                 />
+                                    {formik.touched.phone && formik.errors.phone && (
+                                        <p className="mt-1 text-sm text-red-500">{formik.errors.phone}</p>
+                                    )}
+                                </div>
 
                                 {/* Mesajınızın Konusu */}
+                                <div>
                                 <Input
                                     type="text"
                                     name="subject"
@@ -118,9 +191,15 @@ export function ContactFormSection() {
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                     placeholder="Mesajınızın Konusu"
+                                        error={!!(formik.touched.subject && formik.errors.subject)}
                                 />
+                                    {formik.touched.subject && formik.errors.subject && (
+                                        <p className="mt-1 text-sm text-red-500">{formik.errors.subject}</p>
+                                    )}
+                                </div>
 
                                 {/* Mesaj */}
+                                <div>
                                 <Textarea
                                     name="message"
                                     value={formik.values.message}
@@ -128,9 +207,15 @@ export function ContactFormSection() {
                                     onBlur={formik.handleBlur}
                                     placeholder="Mesaj"
                                     className="h-[182px]"
+                                        error={!!(formik.touched.message && formik.errors.message)}
                                 />
+                                    {formik.touched.message && formik.errors.message && (
+                                        <p className="mt-1 text-sm text-red-500">{formik.errors.message}</p>
+                                    )}
+                                </div>
 
                                 {/* Kabul onay tiki */}
+                                <div>
                                 <Checkbox
                                     id="acceptedTerms"
                                     name="acceptedTerms"
@@ -138,6 +223,10 @@ export function ContactFormSection() {
                                     onChange={formik.handleChange}
                                     label="Kabul onay tiki"
                                 />
+                                    {formik.touched.acceptedTerms && formik.errors.acceptedTerms && (
+                                        <p className="mt-1 text-sm text-red-500">{formik.errors.acceptedTerms}</p>
+                                    )}
+                                </div>
 
                                 {/* Gönder Butonu */}
                                 <div className="pt-2">

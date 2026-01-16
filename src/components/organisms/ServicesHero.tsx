@@ -19,8 +19,8 @@ export function ServicesHero() {
             {/* Content Container */}
             <div className="relative z-10 w-full px-4 sm:px-6 xl:px-8 py-6 sm:py-8 md:py-10 lg:py-12 xl:py-20">
                 <div className="relative w-full">
-                    {/* Left Side - Text Content */}
-                    <div className="w-full lg:max-w-[60%] pl-4 sm:pl-6 md:pl-8 xl:pl-12 flex flex-col gap-3 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-8">
+                    {/* Left Side - Text Content - Hidden on mobile */}
+                    <div className="hidden md:flex w-full lg:max-w-[60%] pl-4 sm:pl-6 md:pl-8 xl:pl-12 flex-col gap-3 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-8">
                         {/* Main Title */}
                         <h1 className="text-white text-[20px] sm:text-[28px] md:text-[36px] lg:text-[44px] xl:text-[60px] font-bold leading-tight sm:leading-tight md:leading-normal whitespace-pre-wrap" style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}>
                             SİZE YÜKSE BİZE YÜKSİ

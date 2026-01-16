@@ -175,15 +175,6 @@ export default function Vehiclese() {
                         </div>
                     </div>
 
-                    <div className="absolute left-0 sm:left-0 lg:left-0 bottom-[-8px] translate-y-1/2">
-                        <button
-                            className="flex items-center gap-3 bg-white text-[#333] rounded-[30px] px-4 sm:px-5 py-2.5 sm:py-3 shadow-[0_10px_30px_rgba(0,0,0,0.2)] text-[16px] sm:text-[18px] font-medium hover:bg-[#F5F5F5] transition-colors"
-                            style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
-                        >
-                            <span>Yük Oluştur</span>
-                            <span className="text-[20px] leading-none">→</span>
-                        </button>
-                    </div>
                 </section>
             </main>
 

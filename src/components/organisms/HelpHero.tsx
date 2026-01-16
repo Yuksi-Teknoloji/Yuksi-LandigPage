@@ -1,9 +1,75 @@
+import { useFormik } from 'formik';
+import toast from 'react-hot-toast';
 import kangarooHelp from '../../assets/help/kangaroo-help.png';
 import phoneKangaroo from '../../assets/help/phone-kangaroo.png';
 import logoImage from '../../assets/logo.png';
 import arrowRightIcon from '../../assets/icons/arrow-right.svg';
+import { submitHelpRequest } from '../../services/helpService';
+
+interface HelpFormValues {
+    name: string;
+    email: string;
+    message: string;
+}
 
 export function HelpHero() {
+    const formik = useFormik<HelpFormValues>({
+        initialValues: {
+            name: '',
+            email: '',
+            message: '',
+        },
+        validate: (values) => {
+            const errors: Partial<Record<keyof HelpFormValues, string>> = {};
+
+            // Name validation: min 2, max 200
+            if (!values.name) {
+                errors.name = 'Lütfen isminizi giriniz';
+            } else if (values.name.length < 2) {
+                errors.name = 'İsminiz en az 2 karakter olmalıdır';
+            } else if (values.name.length > 200) {
+                errors.name = 'İsminiz en fazla 200 karakter olabilir';
+            }
+
+            // Email validation: required and valid format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!values.email) {
+                errors.email = 'Lütfen e-posta adresinizi giriniz';
+            } else if (!emailRegex.test(values.email)) {
+                errors.email = 'Geçerli bir e-posta adresi giriniz';
+            }
+
+            // Message validation: min 2, max 5000
+            if (!values.message) {
+                errors.message = 'Lütfen mesajınızı yazınız';
+            } else if (values.message.length < 2) {
+                errors.message = 'Mesajınız en az 2 karakter olmalıdır';
+            } else if (values.message.length > 5000) {
+                errors.message = 'Mesajınız en fazla 5000 karakter olabilir';
+            }
+
+            return errors;
+        },
+        onSubmit: async (values, helpers) => {
+            try {
+                const response = await submitHelpRequest({
+                    name: values.name,
+                    email: values.email,
+                    message: values.message,
+                });
+
+                if (response.success) {
+                    toast.success('Mesajınız başarıyla iletildi! En kısa sürede size dönüş yapacağız. 🎉');
+                    helpers.resetForm();
+                } else {
+                    toast.error('Bir şeyler ters gitti. Lütfen tekrar deneyin veya bizimle doğrudan iletişime geçin.');
+                }
+            } catch (error: unknown) {
+                console.error('Help form error:', error);
+                toast.error('Mesajınız gönderilirken bir sorun oluştu. Lütfen tekrar deneyin veya bizimle doğrudan iletişime geçin.');
+            }
+        },
+    });
     return (
         <section className="relative w-full min-h-[400px] sm:min-h-[500px] md:min-h-[600px] lg:min-h-[700px] xl:min-h-[822px] overflow-hidden">
             {/* Background Image */}
@@ -52,7 +118,7 @@ export function HelpHero() {
                         </h1>
 
                         {/* Contact Form */}
-                        <div className="mt-4 sm:mt-6 lg:mt-8 flex flex-col gap-4 sm:gap-5">
+                        <form onSubmit={formik.handleSubmit} className="mt-4 sm:mt-6 lg:mt-8 flex flex-col gap-4 sm:gap-5">
                             {/* Form Title */}
                             <p
                                 className="text-white text-[20px] sm:text-[24px] lg:text-[28px] font-medium"
@@ -62,12 +128,21 @@ export function HelpHero() {
                             </p>
 
                             {/* Message Input */}
-                            <div className="backdrop-blur-[10px] backdrop-filter bg-[rgba(255,255,255,0.5)] rounded-[10px] shadow-[0px_4px_18.3px_0px_rgba(0,0,0,0.25)] p-4 w-full sm:w-full lg:w-[calc(384px*2+20px)] xl:w-[calc(384px*2+20px)]">
-                                <textarea
-                                    placeholder="Mesajınızı buraya yazın..."
-                                    className="w-full h-[120px] sm:h-[140px] lg:h-[168px] bg-transparent border-none outline-none text-white placeholder-white/70 text-sm sm:text-base resize-none"
-                                    style={{ fontFamily: 'Roboto, sans-serif' }}
-                                />
+                            <div className="w-full sm:w-full lg:w-[calc(384px*2+20px)] xl:w-[calc(384px*2+20px)]">
+                                <div className={`backdrop-blur-[10px] backdrop-filter bg-[rgba(255,255,255,0.5)] rounded-[10px] shadow-[0px_4px_18.3px_0px_rgba(0,0,0,0.25)] p-4 ${formik.touched.message && formik.errors.message ? 'ring-2 ring-red-400' : ''}`}>
+                                    <textarea
+                                        name="message"
+                                        value={formik.values.message}
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        placeholder="Mesajınızı buraya yazın..."
+                                        className="w-full h-[120px] sm:h-[140px] lg:h-[168px] bg-transparent border-none outline-none text-white placeholder-white/70 text-sm sm:text-base resize-none"
+                                        style={{ fontFamily: 'Roboto, sans-serif' }}
+                                    />
+                                </div>
+                                {formik.touched.message && formik.errors.message && (
+                                    <p className="mt-1 text-sm text-red-300 font-medium">{formik.errors.message}</p>
+                                )}
                             </div>
 
                             {/* Name and Email Inputs */}
@@ -79,14 +154,21 @@ export function HelpHero() {
                                     >
                                         İsim / Soy İsim
                                     </p>
-                                    <div className="backdrop-blur-[10px] backdrop-filter bg-[rgba(255,255,255,0.5)] rounded-[10px] shadow-[0px_4px_18.3px_0px_rgba(0,0,0,0.25)] p-3 sm:p-4 h-[51px] flex items-center">
+                                    <div className={`backdrop-blur-[10px] backdrop-filter bg-[rgba(255,255,255,0.5)] rounded-[10px] shadow-[0px_4px_18.3px_0px_rgba(0,0,0,0.25)] p-3 sm:p-4 h-[51px] flex items-center ${formik.touched.name && formik.errors.name ? 'ring-2 ring-red-400' : ''}`}>
                                         <input
                                             type="text"
+                                            name="name"
+                                            value={formik.values.name}
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
                                             placeholder=""
                                             className="w-full bg-transparent border-none outline-none text-white placeholder-white/70 text-sm sm:text-base"
                                             style={{ fontFamily: 'Roboto, sans-serif' }}
                                         />
                                     </div>
+                                    {formik.touched.name && formik.errors.name && (
+                                        <p className="mt-1 text-sm text-red-300 font-medium">{formik.errors.name}</p>
+                                    )}
                                 </div>
                                 <div className="flex-1 lg:max-w-[384px] xl:max-w-[384px]">
                                     <p
@@ -95,26 +177,37 @@ export function HelpHero() {
                                     >
                                         E-mail Adresi
                                     </p>
-                                    <div className="backdrop-blur-[10px] backdrop-filter bg-[rgba(255,255,255,0.5)] rounded-[10px] shadow-[0px_4px_18.3px_0px_rgba(0,0,0,0.25)] p-3 sm:p-4 h-[51px] flex items-center">
+                                    <div className={`backdrop-blur-[10px] backdrop-filter bg-[rgba(255,255,255,0.5)] rounded-[10px] shadow-[0px_4px_18.3px_0px_rgba(0,0,0,0.25)] p-3 sm:p-4 h-[51px] flex items-center ${formik.touched.email && formik.errors.email ? 'ring-2 ring-red-400' : ''}`}>
                                         <input
                                             type="email"
+                                            name="email"
+                                            value={formik.values.email}
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
                                             placeholder=""
                                             className="w-full bg-transparent border-none outline-none text-white placeholder-white/70 text-sm sm:text-base"
                                             style={{ fontFamily: 'Roboto, sans-serif' }}
                                         />
                                     </div>
+                                    {formik.touched.email && formik.errors.email && (
+                                        <p className="mt-1 text-sm text-red-300 font-medium">{formik.errors.email}</p>
+                                    )}
                                 </div>
                             </div>
-                        </div>
 
-                        {/* Send Button */}
-                        <button
-                            className="bg-[#FF5B04] hover:bg-[#E55103] text-white font-medium text-[18px] sm:text-[20px] lg:text-[24px] py-3 sm:py-4 px-6 sm:px-8 rounded-[35px] flex items-center justify-center gap-2 transition-colors self-center mt-4 sm:mt-5"
-                            style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
-                        >
-                            <span>GÖNDER</span>
-                            <img src={arrowRightIcon} alt="" className="w-5 h-5" style={{ filter: 'brightness(0) invert(1)' }} />
-                        </button>
+                            {/* Send Button */}
+                            <button
+                                type="submit"
+                                disabled={formik.isSubmitting}
+                                className="bg-[#FF5B04] hover:bg-[#E55103] disabled:opacity-60 disabled:cursor-not-allowed text-white font-medium text-[18px] sm:text-[20px] lg:text-[24px] py-3 sm:py-4 px-6 sm:px-8 rounded-[35px] flex items-center justify-center gap-2 transition-colors self-center mt-4 sm:mt-5"
+                                style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
+                            >
+                                <span>{formik.isSubmitting ? 'GÖNDERİLİYOR...' : 'GÖNDER'}</span>
+                                {!formik.isSubmitting && (
+                                    <img src={arrowRightIcon} alt="" className="w-5 h-5" style={{ filter: 'brightness(0) invert(1)' }} />
+                                )}
+                            </button>
+                        </form>
                     </div>
 
                     

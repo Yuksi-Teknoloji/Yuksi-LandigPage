@@ -17,7 +17,6 @@ export default function Services() {
 Yemek siparişinden alışveriş ürünlerine, ilaçtan belgeye kadar pek çok şeyi hızlıca ulaştırmak için moto kuryeler şehirde en pratik çözümdür.`,
             image: motorcycleImg,
             imageAlt: 'Yüksi Motorsiklet',
-            primaryButtonText: 'Yük Oluştur',
             secondaryButtonText: 'Kurye İçin Başvur',
         },
         {
@@ -27,7 +26,6 @@ Yemek siparişinden alışveriş ürünlerine, ilaçtan belgeye kadar pek çok �
 Taşınmadan ofis ihtiyaçlarına, market teslimatından küçük nakliyeye kadar minivanlar şehir içi pratik ve güvenli çözümler sunar.`,
             image: minivanImg,
             imageAlt: 'Yüksi Minivan',
-            primaryButtonText: 'Yük Oluştur',
             secondaryButtonText: 'Ekspres İçin Başvur',
         },
         {
@@ -37,7 +35,6 @@ Taşınmadan ofis ihtiyaçlarına, market teslimatından küçük nakliyeye kada
 Ev taşımadan mağaza sevkiyatına, e-ticaret teslimatından profesyonel nakliyeye kadar panelvanlar güvenli ve güçlü bir çözümdür.`,
             image: panelvanImg,
             imageAlt: 'Yüksi Panelvan',
-            primaryButtonText: 'Yük Oluştur',
             secondaryButtonText: 'Ekspres İçin Başvur',
         },
         {
@@ -47,7 +44,6 @@ Ev taşımadan mağaza sevkiyatına, e-ticaret teslimatından profesyonel nakliy
 Nakliyeden ticari sevkiyata, pazar ve mağaza teslimatından tarım ürünlerine kadar kamyonetler hem şehir içi hem de şehirler arası güvenilir çözümler sunar.`,
             image: kamyonetImg,
             imageAlt: 'Yüksi Kamyonet',
-            primaryButtonText: 'Yük Oluştur',
             secondaryButtonText: 'Taşımacılık İçin Başvur',
         },
         {
@@ -57,7 +53,6 @@ Nakliyeden ticari sevkiyata, pazar ve mağaza teslimatından tarım ürünlerine
 Şehirler arası taşımacılıktan lojistik sevkiyata, inşaat malzemelerinden endüstriyel ürünlere kadar kamyonlar güvenli ve yüksek kapasiteli çözümler sunar.`,
             image: kamyonImg,
             imageAlt: 'Yüksi Kamyon',
-            primaryButtonText: 'Yük Oluştur',
             secondaryButtonText: 'Taşımacılık İçin Başvur',
         },
     ];
@@ -66,6 +61,29 @@ Nakliyeden ticari sevkiyata, pazar ve mağaza teslimatından tarım ürünlerine
         <div className="w-full min-h-screen relative bg-white">
             <Header activeItem="/services" />
             <ServicesHero />
+            
+            {/* Mobile-only text section - shown only on mobile */}
+            <section className="md:hidden w-full bg-white py-8 px-4 sm:px-6">
+                <div className="w-full max-w-7xl mx-auto flex flex-col gap-4">
+                    <h1
+                        className="text-[#FF5B04] text-[24px] font-bold leading-tight"
+                        style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
+                    >
+                        SİZE YÜKSE BİZE YÜKSİ
+                    </h1>
+                    
+                    <p
+                        className="text-[#333] text-[16px] font-semibold leading-relaxed"
+                        style={{
+                            fontFamily: 'Urbanist, sans-serif',
+                            fontWeight: 600,
+                        }}
+                    >
+                        Yüksi, modern lojistik ihtiyaçlarınıza hızlı ve esnek çözümler sunar. İster mobil uygulamamızdan ister web sitemizden kolayca araç çağırabilir, motokuryeden minivan, panelvan, kamyonet ve kamyona kadar geniş araç filomuzla gönderilerinizi güvenle taşıtabilirsiniz. Hızlı, pratik ve güvenilir hizmet için Yüksi her zaman yanınızda.
+                    </p>
+                </div>
+            </section>
+            
             {vehicles.map((vehicle, index) => (
                 <VehicleServiceSection
                     key={index}
@@ -73,7 +91,6 @@ Nakliyeden ticari sevkiyata, pazar ve mağaza teslimatından tarım ürünlerine
                     description={vehicle.description}
                     image={vehicle.image}
                     imageAlt={vehicle.imageAlt}
-                    primaryButtonText={vehicle.primaryButtonText}
                     secondaryButtonText={vehicle.secondaryButtonText}
                 />
             ))}

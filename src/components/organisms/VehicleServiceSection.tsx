@@ -5,9 +5,7 @@ interface VehicleServiceSectionProps {
     description: string;
     image: string;
     imageAlt: string;
-    primaryButtonText: string;
     secondaryButtonText: string;
-    onPrimaryClick?: () => void;
     onSecondaryClick?: () => void;
 }
 
@@ -16,9 +14,7 @@ export function VehicleServiceSection({
     description,
     image,
     imageAlt,
-    primaryButtonText,
     secondaryButtonText,
-    onPrimaryClick,
     onSecondaryClick,
 }: VehicleServiceSectionProps) {
     return (
@@ -42,17 +38,8 @@ export function VehicleServiceSection({
                         
                         <div className="flex flex-row w-full gap-3 lg:gap-4">
                             <button
-                                onClick={onPrimaryClick}
-                                className="flex-1 lg:flex-1 bg-[#FF5B04] hover:bg-[#E55103] text-white font-bold text-[16px] lg:text-[24px] h-[42px] lg:h-auto lg:py-3 lg:px-6 rounded-[35px] flex items-center justify-center gap-2 transition-colors"
-                                style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
-                            >
-                                <span>{primaryButtonText}</span>
-                                <img src={arrowRightIcon} alt="" className="w-4 h-4 lg:w-5 lg:h-5" style={{ filter: 'brightness(0) invert(1)' }} />
-                            </button>
-                            
-                            <button
                                 onClick={onSecondaryClick}
-                                className="flex-1 lg:flex-1 bg-[#FF5B04] hover:bg-[#E55103] text-white font-bold text-[14px] lg:text-[16px] h-[42px] lg:h-auto lg:py-3 lg:px-6 rounded-[35px] flex items-center justify-center gap-2 transition-colors"
+                                className="w-full bg-[#FF5B04] hover:bg-[#E55103] text-white font-bold text-[14px] lg:text-[16px] h-[42px] lg:h-auto lg:py-3 lg:px-6 rounded-[35px] flex items-center justify-center gap-2 transition-colors"
                                 style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
                             >
                                 <span>{secondaryButtonText}</span>
