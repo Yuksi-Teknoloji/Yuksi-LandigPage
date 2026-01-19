@@ -7,8 +7,8 @@ export default function Corporate() {
     return (
         <>
             <SEOHead
-                title="Kurumsal Üyelik - Yüksi Lojistik"
-                description="Yüksi Lojistik kurumsal üyelik başvurusu. Kurumsal müşteriler için özel fiyatlandırma ve avantajlar. Bursa merkezli, Türkiye genelinde kurumsal lojistik çözümleri."
+                title="Kurumsal Üyelik - Yüksi"
+                description="Yüksi kurumsal üyelik başvurusu. Kurumsal müşteriler için özel fiyatlandırma ve avantajlar. Bursa merkezli, Türkiye genelinde kurumsal lojistik çözümleri."
                 keywords="yüksi kurumsal üyelik, kurumsal lojistik, kurumsal taşımacılık, işletme lojistik, kurumsal müşteri, Bursa kurumsal lojistik"
                 canonical="/corporate"
                 geoData={{
@@ -22,7 +22,7 @@ export default function Corporate() {
                     '@type': 'ContactPage',
                     mainEntity: {
                         '@type': 'LocalBusiness',
-                        name: 'Yüksi Lojistik',
+                        name: 'Yüksi',
                         telephone: '+908502419316',
                         email: 'info@yuksi.tr',
                         address: {

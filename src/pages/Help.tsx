@@ -8,8 +8,8 @@ export default function Help() {
     return (
         <>
             <SEOHead
-                title="Yardım ve Destek - Yüksi Lojistik"
-                description="Yüksi Lojistik yardım merkezi. Sık sorulan sorular, kullanım kılavuzu, teknik destek ve müşteri hizmetleri. Size nasıl yardımcı olabiliriz?"
+                title="Yardım ve Destek - Yüksi"
+                description="Yüksi yardım merkezi. Sık sorulan sorular, kullanım kılavuzu, teknik destek ve müşteri hizmetleri. Size nasıl yardımcı olabiliriz?"
                 keywords="yüksi yardım, lojistik destek, müşteri hizmetleri, sık sorulan sorular, teknik destek, kullanım kılavuzu"
                 canonical="/help"
                 geoData={{

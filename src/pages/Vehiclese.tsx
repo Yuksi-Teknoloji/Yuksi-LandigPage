@@ -196,7 +196,7 @@ export default function Vehiclese() {
     return (
         <>
             <SEOHead
-                title={`${activeVehicle.title} - Yüksi Lojistik`}
+                title={`${activeVehicle.title} - Yüksi`}
                 description={activeVehicle.description}
                 keywords={`${activeVehicle.title.toLowerCase()}, yüksi ${activeVehicle.title.toLowerCase()}, lojistik, taşımacılık, ${activeVehicle.title.toLowerCase()} hizmeti`}
                 canonical="/vehiclese"

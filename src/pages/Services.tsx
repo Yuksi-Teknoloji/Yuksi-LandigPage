@@ -61,8 +61,8 @@ Nakliyeden ticari sevkiyata, pazar ve mağaza teslimatından tarım ürünlerine
     return (
         <>
             <SEOHead
-                title="Hizmetlerimiz - Yüksi Lojistik"
-                description="Yüksi lojistik hizmetleri: Motorsiklet kurye (40-50 kg), Minivan (500-800 kg), Panelvan (1.000-1.500 kg), Kamyonet (1.500-3.500 kg), Kamyon (3.500-20.000 kg). Şehir içi ve şehirler arası taşımacılık çözümleri."
+                title="Hizmetlerimiz - Yüksi"
+                description="Yüksi hizmetleri: Motorsiklet kurye (40-50 kg), Minivan (500-800 kg), Panelvan (1.000-1.500 kg), Kamyonet (1.500-3.500 kg), Kamyon (3.500-20.000 kg). Şehir içi ve şehirler arası taşımacılık çözümleri."
                 keywords="lojistik hizmetleri, motorsiklet kurye, minivan taşımacılık, panelvan nakliye, kamyonet sevkiyat, kamyon taşımacılık, şehir içi lojistik, şehirler arası taşımacılık"
                 canonical="/services"
                 geoData={{
@@ -77,7 +77,7 @@ Nakliyeden ticari sevkiyata, pazar ve mağaza teslimatından tarım ürünlerine
                     serviceType: 'Lojistik ve Taşımacılık Hizmetleri',
                     provider: {
                         '@type': 'LocalBusiness',
-                        name: 'Yüksi Lojistik',
+                        name: 'Yüksi',
                         url: 'https://yuksi.com.tr',
                     },
                     areaServed: {

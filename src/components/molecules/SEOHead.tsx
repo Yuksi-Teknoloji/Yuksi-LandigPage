@@ -32,14 +32,14 @@ export function SEOHead({
     const baseUrl = 'https://yuksi.com.tr';
     const fullCanonical = canonical ? `${baseUrl}${canonical}` : baseUrl;
     const fullOgImage = ogImage.startsWith('http') ? ogImage : `${baseUrl}${ogImage}`;
-    const fullTitle = title.includes('Yüksi') ? title : `${title} | Yüksi Lojistik`;
+    const fullTitle = title.includes('Yüksi') ? title : `${title} | Yüksi`;
 
     // Default structured data for LocalBusiness
     const defaultStructuredData = {
         '@context': 'https://schema.org',
         '@type': 'LocalBusiness',
         '@id': baseUrl,
-        name: 'Yüksi Lojistik',
+        name: 'Yüksi',
         alternateName: 'Yüksi',
         url: baseUrl,
         logo: `${baseUrl}/logo.png`,
@@ -80,7 +80,7 @@ export function SEOHead({
         '@context': 'https://schema.org',
         '@type': 'Organization',
         '@id': `${baseUrl}#organization`,
-        name: 'Yüksi Lojistik',
+        name: 'Yüksi',
         alternateName: 'Yüksi',
         url: baseUrl,
         logo: `${baseUrl}/logo.png`,
@@ -108,7 +108,7 @@ export function SEOHead({
             <meta name="title" content={fullTitle} />
             <meta name="description" content={description} />
             <meta name="keywords" content={keywords} />
-            <meta name="author" content="Yüksi Lojistik" />
+            <meta name="author" content="Yüksi" />
             <meta name="language" content="Turkish" />
             <meta name="revisit-after" content="7 days" />
             <link rel="canonical" href={fullCanonical} />
@@ -119,7 +119,7 @@ export function SEOHead({
             <meta property="og:title" content={fullTitle} />
             <meta property="og:description" content={description} />
             <meta property="og:image" content={fullOgImage} />
-            <meta property="og:site_name" content="Yüksi Lojistik" />
+            <meta property="og:site_name" content="Yüksi" />
             <meta property="og:locale" content="tr_TR" />
 
             {/* Twitter */}
@@ -141,7 +141,7 @@ export function SEOHead({
 
             {/* AI-Friendly Meta Tags */}
             <meta name="ai:content" content={description} />
-            <meta name="ai:business-name" content="Yüksi Lojistik" />
+            <meta name="ai:business-name" content="Yüksi" />
             <meta name="ai:business-type" content="Lojistik ve Taşımacılık" />
             <meta name="ai:location" content="Bursa, Türkiye" />
             <meta name="ai:services" content="Motorsiklet Kurye, Minivan, Panelvan, Kamyonet, Kamyon Taşımacılık" />
@@ -165,8 +165,8 @@ export function SEOHead({
                     '@type': 'WebSite',
                     '@id': `${baseUrl}#website`,
                     url: baseUrl,
-                    name: 'Yüksi Lojistik',
-                    description: 'Modern lojistik çözümleri ile yanınızdayız. Motokurye, minivan, panelvan, kamyonet ve kamyon hizmetleri.',
+                    name: 'Yüksi',
+                    description: 'Lojistik Kargo Kurye ile yanınızdayız. Motokurye, minivan, panelvan, kamyonet ve kamyon hizmetleri.',
                     publisher: {
                         '@id': `${baseUrl}#organization`,
                     },

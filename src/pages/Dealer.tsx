@@ -7,8 +7,8 @@ export default function Dealer() {
     return (
         <>
             <SEOHead
-                title="Bayi Başvurusu - Yüksi Lojistik"
-                description="Yüksi Lojistik bayi olmak için başvurun. Franchise fırsatları, bayi koşulları ve avantajları hakkında bilgi alın. Bursa merkezli, Türkiye genelinde bayi ağımıza katılın."
+                title="Bayi Başvurusu - Yüksi"
+                description="Yüksi bayi olmak için başvurun. Franchise fırsatları, bayi koşulları ve avantajları hakkında bilgi alın. Bursa merkezli, Türkiye genelinde bayi ağımıza katılın."
                 keywords="yüksi bayi, franchise, bayi başvurusu, lojistik bayi, taşımacılık bayi, Bursa bayi, Türkiye bayi"
                 canonical="/dealer"
                 geoData={{
@@ -22,7 +22,7 @@ export default function Dealer() {
                     '@type': 'ContactPage',
                     mainEntity: {
                         '@type': 'LocalBusiness',
-                        name: 'Yüksi Lojistik',
+                        name: 'Yüksi',
                         telephone: '+908502419316',
                         email: 'info@yuksi.tr',
                         address: {

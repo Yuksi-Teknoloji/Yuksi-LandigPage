@@ -8,8 +8,8 @@ export default function About() {
     return (
         <>
             <SEOHead
-                title="Hakkımızda - Yüksi Lojistik"
-                description="Yüksi Lojistik hakkında bilgi edinin. Modern lojistik çözümleri sunan, müşteri memnuniyetini ön planda tutan güvenilir taşımacılık firması. Bursa merkezli, Türkiye genelinde hizmet veriyoruz."
+                title="Hakkımızda - Yüksi"
+                description="Yüksi hakkında bilgi edinin. Lojistik Kargo Kurye sunan, müşteri memnuniyetini ön planda tutan güvenilir taşımacılık firması. Bursa merkezli, Türkiye genelinde hizmet veriyoruz."
                 keywords="yüksi hakkında, lojistik firması, taşımacılık şirketi, Bursa lojistik, güvenilir nakliye, müşteri odaklı lojistik"
                 canonical="/about"
                 geoData={{

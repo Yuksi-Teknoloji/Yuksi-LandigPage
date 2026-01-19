@@ -18,7 +18,7 @@ export function Footer() {
                         />
                         </Link>
                         <p className="text-sm sm:text-base lg:text-base text-white/90 text-center lg:text-left max-w-xs leading-relaxed" style={{ fontFamily: 'Roboto' }}>
-                            Modern lojistik çözümleri ile yanınızdayız.
+                            Lojistik Kargo Kurye ile yanınızdayız.
                         </p>
                     </div>
 

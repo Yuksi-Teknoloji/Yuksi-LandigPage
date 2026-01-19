@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nMarka adını ''Yüksi Lojistik'' yerine ''Yüksi'' olarak güncelle ve slogan değişikliği yap\n\n- Tüm sayfalarda ve SEO meta etiketlerinde \"Yüksi Lojistik\" ifadesini \"Yüksi\" olarak değiştir\n- Ana sayfa açıklamasında \"Bursa ve Türkiye genelinde\" ifadesini \"Türkiye genelinde\" olarak güncelle\n- \"Modern lojistik çözümleri\" sloganını \"Lojistik Kargo Kurye\" olarak değiştir\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")"
+    ]
+  }
+}

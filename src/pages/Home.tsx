@@ -11,8 +11,8 @@ export default function Home() {
     return (
         <>
             <SEOHead
-                title="Yüksi Lojistik - Modern Lojistik Çözümleri"
-                description="Yüksi ile lojistik ihtiyaçlarınıza hızlı ve esnek çözümler. Motokurye, minivan, panelvan, kamyonet ve kamyon hizmetleri. Bursa ve Türkiye genelinde güvenilir taşımacılık."
+                title="Yüksi - Lojistik Kargo Kurye"
+                description="Yüksi ile lojistik ihtiyaçlarınıza hızlı ve esnek çözümler. Motokurye, minivan, panelvan, kamyonet ve kamyon hizmetleri. Türkiye genelinde güvenilir taşımacılık."
                 keywords="yüksi, lojistik, kurye, nakliye, taşımacılık, motorsiklet kurye, minivan, panelvan, kamyonet, kamyon, Bursa lojistik, Türkiye lojistik, hızlı teslimat, güvenilir lojistik"
                 canonical="/"
                 geoData={{
@@ -25,11 +25,11 @@ export default function Home() {
                     '@context': 'https://schema.org',
                     '@type': 'LocalBusiness',
                     '@id': 'https://yuksi.com.tr',
-                    name: 'Yüksi Lojistik',
+                    name: 'Yüksi',
                     alternateName: 'Yüksi',
                     url: 'https://yuksi.com.tr',
                     logo: 'https://yuksi.com.tr/logo.png',
-                    description: 'Modern lojistik çözümleri ile yanınızdayız. Motokurye, minivan, panelvan, kamyonet ve kamyon hizmetleri.',
+                    description: 'Lojistik Kargo Kurye ile yanınızdayız. Motokurye, minivan, panelvan, kamyonet ve kamyon hizmetleri.',
                     telephone: '+908502419316',
                     email: 'info@yuksi.tr',
                     address: {
