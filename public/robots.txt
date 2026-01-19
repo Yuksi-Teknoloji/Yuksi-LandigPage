@@ -40,6 +40,3 @@ Allow: /
 
 # Sitemap
 Sitemap: https://yuksi.com.tr/sitemap.xml
-
-# Crawl-delay
-Crawl-delay: 1
