@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import Hero from '../components/organisms/Hero'
 import { Header } from '../components/organisms/Header'
 import { VehicleShowcase } from '../components/organisms/VehicleShowcase'
@@ -6,21 +7,29 @@ import { MobileJoin } from '../components/organisms/MobileJoin'
 import { ContactCTA } from '../components/organisms/ContactCTA'
 import { Footer } from '../components/organisms/Footer'
 import { SEOHead } from '../components/molecules/SEOHead'
+import { getAlternateUrls } from '../i18n'
 
 export default function Home() {
+    const { t, i18n } = useTranslation()
+    const currentLang = i18n.language as 'tr' | 'en' | 'de'
+
+    const alternateUrls = getAlternateUrls('home')
+
     return (
         <>
             <SEOHead
-                title="Yüksi - Lojistik Kargo Kurye"
-                description="Yüksi ile lojistik ihtiyaçlarınıza hızlı ve esnek çözümler. Motokurye, minivan, panelvan, kamyonet ve kamyon hizmetleri. Türkiye genelinde güvenilir taşımacılık."
+                title={t('home.seo.title')}
+                description={t('home.seo.description')}
                 keywords="yüksi, lojistik, kurye, nakliye, taşımacılık, motorsiklet kurye, minivan, panelvan, kamyonet, kamyon, Bursa lojistik, Türkiye lojistik, hızlı teslimat, güvenilir lojistik"
                 canonical="/"
+                lang={currentLang}
                 geoData={{
                     address: 'Ahmet Vefik Paşa OSB Mah. Bursa caddesi No:73',
                     city: 'Kestel',
                     region: 'Bursa',
                     country: 'TR',
                 }}
+                alternateLanguages={alternateUrls}
                 structuredData={{
                     '@context': 'https://schema.org',
                     '@type': 'LocalBusiness',
@@ -29,7 +38,7 @@ export default function Home() {
                     alternateName: 'Yüksi',
                     url: 'https://yuksi.com.tr',
                     logo: 'https://yuksi.com.tr/logo.png',
-                    description: 'Lojistik Kargo Kurye ile yanınızdayız. Motokurye, minivan, panelvan, kamyonet ve kamyon hizmetleri.',
+                    description: t('home.seo.description'),
                     telephone: '+908502419316',
                     email: 'info@yuksi.tr',
                     address: {
@@ -43,52 +52,6 @@ export default function Home() {
                     areaServed: {
                         '@type': 'Country',
                         name: 'Türkiye',
-                    },
-                    hasOfferCatalog: {
-                        '@type': 'OfferCatalog',
-                        name: 'Lojistik Hizmetleri',
-                        itemListElement: [
-                            {
-                                '@type': 'Offer',
-                                itemOffered: {
-                                    '@type': 'Service',
-                                    name: 'Motorsiklet Kurye',
-                                    description: '40-50 kg\'a kadar hızlı teslimat hizmeti',
-                                },
-                            },
-                            {
-                                '@type': 'Offer',
-                                itemOffered: {
-                                    '@type': 'Service',
-                                    name: 'Minivan Taşımacılık',
-                                    description: '500-800 kg\'a kadar şehir içi taşımacılık',
-                                },
-                            },
-                            {
-                                '@type': 'Offer',
-                                itemOffered: {
-                                    '@type': 'Service',
-                                    name: 'Panelvan Taşımacılık',
-                                    description: '1.000-1.500 kg\'a kadar profesyonel nakliye',
-                                },
-                            },
-                            {
-                                '@type': 'Offer',
-                                itemOffered: {
-                                    '@type': 'Service',
-                                    name: 'Kamyonet Taşımacılık',
-                                    description: '1.500-3.500 kg\'a kadar ticari sevkiyat',
-                                },
-                            },
-                            {
-                                '@type': 'Offer',
-                                itemOffered: {
-                                    '@type': 'Service',
-                                    name: 'Kamyon Taşımacılık',
-                                    description: '3.500-20.000 kg\'a kadar ağır yük taşımacılığı',
-                                },
-                            },
-                        ],
                     },
                 }}
             />

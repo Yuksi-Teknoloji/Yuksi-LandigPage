@@ -1,30 +1,41 @@
-import { Header } from '../components/organisms/Header';
-import { HelpHero } from '../components/organisms/HelpHero';
-import { HelpContent } from '../components/organisms/HelpContent';
-import { Footer } from '../components/organisms/Footer';
-import { SEOHead } from '../components/molecules/SEOHead';
+import { useTranslation } from 'react-i18next'
+import { Header } from '../components/organisms/Header'
+import { HelpHero } from '../components/organisms/HelpHero'
+import { HelpContent } from '../components/organisms/HelpContent'
+import { Footer } from '../components/organisms/Footer'
+import { SEOHead } from '../components/molecules/SEOHead'
+import { getLocalizedPath, getAlternateUrls } from '../i18n'
+import { useLanguageFromUrl } from '../hooks/useLanguageFromUrl'
 
 export default function Help() {
+    const { t } = useTranslation()
+    const currentLang = useLanguageFromUrl()
+
+    const currentPath = getLocalizedPath('help', currentLang)
+    const alternateUrls = getAlternateUrls('help')
+
     return (
         <>
             <SEOHead
-                title="Yardım ve Destek - Yüksi"
-                description="Yüksi yardım merkezi. Sık sorulan sorular, kullanım kılavuzu, teknik destek ve müşteri hizmetleri. Size nasıl yardımcı olabiliriz?"
+                title={t('help.seo.title')}
+                description={t('help.seo.description')}
                 keywords="yüksi yardım, lojistik destek, müşteri hizmetleri, sık sorulan sorular, teknik destek, kullanım kılavuzu"
-                canonical="/help"
+                canonical={currentPath}
+                lang={currentLang}
                 geoData={{
                     address: 'Ahmet Vefik Paşa OSB Mah. Bursa caddesi No:73',
                     city: 'Kestel',
                     region: 'Bursa',
                     country: 'TR',
                 }}
+                alternateLanguages={alternateUrls}
             />
             <div className="w-full min-h-screen relative bg-white">
-                <Header activeItem="/help" />
+                <Header activeItem={currentPath} />
                 <HelpHero />
                 <HelpContent />
                 <Footer />
             </div>
         </>
-    );
+    )
 }

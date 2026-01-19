@@ -1,5 +1,10 @@
 import { Helmet } from 'react-helmet-async';
 
+interface AlternateLanguage {
+    lang: string;
+    href: string;
+}
+
 interface SEOHeadProps {
     title: string;
     description: string;
@@ -17,7 +22,15 @@ interface SEOHeadProps {
         postalCode?: string;
         country?: string;
     };
+    alternateLanguages?: AlternateLanguage[];
+    lang?: string;
 }
+
+const localeMap: Record<string, string> = {
+    tr: 'tr_TR',
+    en: 'en_US',
+    de: 'de_DE',
+};
 
 export function SEOHead({
     title,
@@ -28,6 +41,8 @@ export function SEOHead({
     ogType = 'website',
     structuredData,
     geoData,
+    alternateLanguages,
+    lang = 'tr',
 }: SEOHeadProps) {
     const baseUrl = 'https://yuksi.com.tr';
     const fullCanonical = canonical ? `${baseUrl}${canonical}` : baseUrl;
@@ -113,6 +128,14 @@ export function SEOHead({
             <meta name="revisit-after" content="7 days" />
             <link rel="canonical" href={fullCanonical} />
 
+            {/* Alternate Language Links (hreflang) */}
+            {alternateLanguages?.map(({ lang: altLang, href }) => (
+                <link key={altLang} rel="alternate" hrefLang={altLang} href={`${baseUrl}${href}`} />
+            ))}
+            {alternateLanguages && alternateLanguages.length > 0 && (
+                <link rel="alternate" hrefLang="x-default" href={`${baseUrl}${alternateLanguages.find(l => l.lang === 'tr')?.href || '/'}`} />
+            )}
+
             {/* Open Graph / Facebook */}
             <meta property="og:type" content={ogType} />
             <meta property="og:url" content={fullCanonical} />
@@ -120,7 +143,10 @@ export function SEOHead({
             <meta property="og:description" content={description} />
             <meta property="og:image" content={fullOgImage} />
             <meta property="og:site_name" content="Yüksi" />
-            <meta property="og:locale" content="tr_TR" />
+            <meta property="og:locale" content={localeMap[lang] || 'tr_TR'} />
+            {alternateLanguages?.filter(l => l.lang !== lang).map(({ lang: altLang }) => (
+                <meta key={altLang} property="og:locale:alternate" content={localeMap[altLang] || altLang} />
+            ))}
 
             {/* Twitter */}
             <meta name="twitter:card" content="summary_large_image" />

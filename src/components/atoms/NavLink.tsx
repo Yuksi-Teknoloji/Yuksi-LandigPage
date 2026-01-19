@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface NavLinkProps {
   href: string;
@@ -14,19 +15,18 @@ export const NavLink: React.FC<NavLinkProps> = ({
   className = '',
 }) => {
   return (
-    <a
-      href={href}
+    <Link
+      to={href}
       className={`
         text-base font-medium transition-colors duration-200
-        ${
-          active
-            ? 'text-orange'
-            : 'text-gray hover:text-orange'
+        ${active
+          ? 'text-orange'
+          : 'text-gray hover:text-orange'
         }
         ${className}
       `}
     >
       {children}
-    </a>
+    </Link>
   );
 };

@@ -1,4 +1,5 @@
 import { useFormik } from 'formik';
+import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 import { Input } from '../atoms/Input';
 import { Textarea } from '../atoms/Textarea';
@@ -17,6 +18,8 @@ interface ContactFormValues {
 }
 
 export function ContactFormSection() {
+    const { t } = useTranslation();
+
     const formik = useFormik<ContactFormValues>({
         initialValues: {
             name: '',
@@ -31,46 +34,46 @@ export function ContactFormSection() {
 
             // Name validation: min 2, max 200
             if (!values.name) {
-                errors.name = 'Lütfen isminizi giriniz';
+                errors.name = t('contact.form.validation.nameRequired');
             } else if (values.name.length < 2) {
-                errors.name = 'İsminiz en az 2 karakter olmalıdır';
+                errors.name = t('contact.form.validation.nameMin');
             } else if (values.name.length > 200) {
-                errors.name = 'İsminiz en fazla 200 karakter olabilir';
+                errors.name = t('contact.form.validation.nameMax');
             }
 
             // Email validation: required and valid format
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!values.email) {
-                errors.email = 'Lütfen e-posta adresinizi giriniz';
+                errors.email = t('contact.form.validation.emailRequired');
             } else if (!emailRegex.test(values.email)) {
-                errors.email = 'Geçerli bir e-posta adresi giriniz';
+                errors.email = t('contact.form.validation.emailInvalid');
             }
 
             // Phone validation: min 5, max 50
             if (!values.phone) {
-                errors.phone = 'Lütfen telefon numaranızı giriniz';
+                errors.phone = t('contact.form.validation.phoneRequired');
             } else if (values.phone.length < 5) {
-                errors.phone = 'Telefon numaranız en az 5 karakter olmalıdır';
+                errors.phone = t('contact.form.validation.phoneMin');
             } else if (values.phone.length > 50) {
-                errors.phone = 'Telefon numaranız en fazla 50 karakter olabilir';
+                errors.phone = t('contact.form.validation.phoneMax');
             }
 
             // Subject validation: min 2, max 200
             if (!values.subject) {
-                errors.subject = 'Lütfen konu başlığını giriniz';
+                errors.subject = t('contact.form.validation.subjectRequired');
             } else if (values.subject.length < 2) {
-                errors.subject = 'Konu başlığı en az 2 karakter olmalıdır';
+                errors.subject = t('contact.form.validation.subjectMin');
             } else if (values.subject.length > 200) {
-                errors.subject = 'Konu başlığı en fazla 200 karakter olabilir';
+                errors.subject = t('contact.form.validation.subjectMax');
             }
 
             // Message validation: min 2, max 5000
             if (!values.message) {
-                errors.message = 'Lütfen mesajınızı yazınız';
+                errors.message = t('contact.form.validation.messageRequired');
             } else if (values.message.length < 2) {
-                errors.message = 'Mesajınız en az 2 karakter olmalıdır';
+                errors.message = t('contact.form.validation.messageMin');
             } else if (values.message.length > 5000) {
-                errors.message = 'Mesajınız en fazla 5000 karakter olabilir';
+                errors.message = t('contact.form.validation.messageMax');
             }
 
             return errors;
@@ -87,14 +90,14 @@ export function ContactFormSection() {
                 });
 
                 if (response.success) {
-                    toast.success('Mesajınız başarıyla iletildi! En kısa sürede size dönüş yapacağız. 🎉');
-                helpers.resetForm();
+                    toast.success(t('contact.form.success'));
+                    helpers.resetForm();
                 } else {
-                    toast.error('Bir şeyler ters gitti. Lütfen tekrar deneyin veya bizimle doğrudan iletişime geçin.');
+                    toast.error(t('contact.form.error'));
                 }
             } catch (error: unknown) {
                 console.error('Contact form error:', error);
-                toast.error('Mesajınız gönderilirken bir sorun oluştu. Lütfen tekrar deneyin veya bizimle doğrudan iletişime geçin.');
+                toast.error(t('contact.form.error'));
             }
         },
     });
@@ -121,7 +124,7 @@ export function ContactFormSection() {
                                 className="text-[32px] sm:text-[40px] lg:text-[48px] font-bold text-[#FF5B04] leading-tight mb-6"
                                 style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
                             >
-                                Bizimle iletişime geçin!
+                                {t('contact.form.title')}
                             </h1>
 
                             <form
@@ -130,15 +133,15 @@ export function ContactFormSection() {
                             >
                                 {/* İsim/Soy İsim */}
                                 <div>
-                                <Input
-                                    type="text"
+                                    <Input
+                                        type="text"
                                         name="name"
                                         value={formik.values.name}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                        placeholder="İsim/Soy İsim"
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        placeholder={t('contact.form.namePlaceholder')}
                                         error={!!(formik.touched.name && formik.errors.name)}
-                                />
+                                    />
                                     {formik.touched.name && formik.errors.name && (
                                         <p className="mt-1 text-sm text-red-500">{formik.errors.name}</p>
                                     )}
@@ -146,15 +149,15 @@ export function ContactFormSection() {
 
                                 {/* E-mail */}
                                 <div>
-                                <Input
-                                    type="email"
-                                    name="email"
-                                    value={formik.values.email}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    placeholder="E-mail"
+                                    <Input
+                                        type="email"
+                                        name="email"
+                                        value={formik.values.email}
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        placeholder={t('contact.form.emailPlaceholder')}
                                         error={!!(formik.touched.email && formik.errors.email)}
-                                />
+                                    />
                                     {formik.touched.email && formik.errors.email && (
                                         <p className="mt-1 text-sm text-red-500">{formik.errors.email}</p>
                                     )}
@@ -162,15 +165,15 @@ export function ContactFormSection() {
 
                                 {/* Telefon Numarası */}
                                 <div>
-                                <Input
-                                    type="tel"
-                                    name="phone"
-                                    value={formik.values.phone}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    placeholder="Telefon Numarası"
+                                    <Input
+                                        type="tel"
+                                        name="phone"
+                                        value={formik.values.phone}
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        placeholder={t('contact.form.phonePlaceholder')}
                                         error={!!(formik.touched.phone && formik.errors.phone)}
-                                />
+                                    />
                                     {formik.touched.phone && formik.errors.phone && (
                                         <p className="mt-1 text-sm text-red-500">{formik.errors.phone}</p>
                                     )}
@@ -178,15 +181,15 @@ export function ContactFormSection() {
 
                                 {/* Mesajınızın Konusu */}
                                 <div>
-                                <Input
-                                    type="text"
-                                    name="subject"
-                                    value={formik.values.subject}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    placeholder="Mesajınızın Konusu"
+                                    <Input
+                                        type="text"
+                                        name="subject"
+                                        value={formik.values.subject}
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        placeholder={t('contact.form.subjectPlaceholder')}
                                         error={!!(formik.touched.subject && formik.errors.subject)}
-                                />
+                                    />
                                     {formik.touched.subject && formik.errors.subject && (
                                         <p className="mt-1 text-sm text-red-500">{formik.errors.subject}</p>
                                     )}
@@ -194,15 +197,15 @@ export function ContactFormSection() {
 
                                 {/* Mesaj */}
                                 <div>
-                                <Textarea
-                                    name="message"
-                                    value={formik.values.message}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    placeholder="Mesaj"
-                                    className="h-[182px]"
+                                    <Textarea
+                                        name="message"
+                                        value={formik.values.message}
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        placeholder={t('contact.form.messagePlaceholder')}
+                                        className="h-[182px]"
                                         error={!!(formik.touched.message && formik.errors.message)}
-                                />
+                                    />
                                     {formik.touched.message && formik.errors.message && (
                                         <p className="mt-1 text-sm text-red-500">{formik.errors.message}</p>
                                     )}
@@ -215,7 +218,7 @@ export function ContactFormSection() {
                                         disabled={formik.isSubmitting}
                                         className="w-full h-16 bg-[#333333] hover:bg-[#2a2a2a] text-white font-bold text-xl sm:text-2xl shadow-[0px_4px_15px_0px_rgba(0,0,0,0.09)] disabled:opacity-60 disabled:cursor-not-allowed"
                                     >
-                                        {formik.isSubmitting ? 'Gönderiliyor...' : 'Gönder'}
+                                        {formik.isSubmitting ? t('contact.form.sending') : t('contact.form.send')}
                                     </Button>
                                 </div>
                             </form>
@@ -227,17 +230,17 @@ export function ContactFormSection() {
                                 className="font-semibold"
                                 style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
                             >
-                                Görüşlerinizi bizimle{' '}
+                                {t('contact.form.contactInfo')}{' '}
                                 <a
                                     href="mailto:info@yuksi.tr"
                                     className="text-[#FF5B04] underline"
                                 >
                                     info@yuksi.tr
                                 </a>{' '}
-                                üzerinden ya da iletişim formu ile görüşlerinizi bizimle paylaşabilirsiniz
+                                {t('contact.form.contactInfo2')}
                             </p>
                             <p style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}>
-                                İletişim Numarası:
+                                {t('contact.form.phoneLabel')}:
                                 <span className="font-medium"> 0850 241 93 16</span>
                             </p>
                             <p
@@ -251,7 +254,7 @@ export function ContactFormSection() {
                 </div>
 
                 {/* Instagram block (yuksi.tr) */}
-                        <div className="mt-2 lg:mt-4 flex justify-center lg:justify-end">
+                <div className="mt-2 lg:mt-4 flex justify-center lg:justify-end">
                     <a
                         href="https://instagram.com/yuksi.tr"
                         target="_blank"

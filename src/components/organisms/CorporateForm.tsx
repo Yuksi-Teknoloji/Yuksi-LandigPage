@@ -1,4 +1,5 @@
 import { useFormik } from 'formik';
+import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 import { Input } from '../atoms/Input';
 import { Textarea } from '../atoms/Textarea';
@@ -8,6 +9,7 @@ import { submitSiteContact } from '../../services/siteContactService';
 
 interface CorporateFormValues {
     name: string;
+    companyName: string;
     email: string;
     phone: string;
     subject: string;
@@ -15,9 +17,12 @@ interface CorporateFormValues {
 }
 
 export function CorporateForm() {
+    const { t } = useTranslation();
+
     const formik = useFormik<CorporateFormValues>({
         initialValues: {
             name: '',
+            companyName: '',
             email: '',
             phone: '',
             subject: '',
@@ -26,48 +31,57 @@ export function CorporateForm() {
         validate: (values) => {
             const errors: Partial<Record<keyof CorporateFormValues, string>> = {};
 
-            // Name validation: min 2, max 200
+            // Name validation
             if (!values.name) {
-                errors.name = 'Lütfen isminizi giriniz';
+                errors.name = t('corporate.form.validation.nameRequired');
             } else if (values.name.length < 2) {
-                errors.name = 'İsminiz en az 2 karakter olmalıdır';
+                errors.name = t('corporate.form.validation.nameMin');
             } else if (values.name.length > 200) {
-                errors.name = 'İsminiz en fazla 200 karakter olabilir';
+                errors.name = t('corporate.form.validation.nameMax');
             }
 
-            // Email validation: required and valid format
+            // Company name validation
+            if (!values.companyName) {
+                errors.companyName = t('corporate.form.validation.companyRequired');
+            } else if (values.companyName.length < 2) {
+                errors.companyName = t('corporate.form.validation.companyMin');
+            } else if (values.companyName.length > 200) {
+                errors.companyName = t('corporate.form.validation.companyMax');
+            }
+
+            // Email validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!values.email) {
-                errors.email = 'Lütfen e-posta adresinizi giriniz';
+                errors.email = t('corporate.form.validation.emailRequired');
             } else if (!emailRegex.test(values.email)) {
-                errors.email = 'Geçerli bir e-posta adresi giriniz';
+                errors.email = t('corporate.form.validation.emailInvalid');
             }
 
-            // Phone validation: min 5, max 50
+            // Phone validation
             if (!values.phone) {
-                errors.phone = 'Lütfen telefon numaranızı giriniz';
+                errors.phone = t('corporate.form.validation.phoneRequired');
             } else if (values.phone.length < 5) {
-                errors.phone = 'Telefon numaranız en az 5 karakter olmalıdır';
+                errors.phone = t('corporate.form.validation.phoneMin');
             } else if (values.phone.length > 50) {
-                errors.phone = 'Telefon numaranız en fazla 50 karakter olabilir';
+                errors.phone = t('corporate.form.validation.phoneMax');
             }
 
-            // Subject validation: min 2, max 200
+            // Subject validation
             if (!values.subject) {
-                errors.subject = 'Lütfen konu başlığını giriniz';
+                errors.subject = t('corporate.form.validation.subjectRequired');
             } else if (values.subject.length < 2) {
-                errors.subject = 'Konu başlığı en az 2 karakter olmalıdır';
+                errors.subject = t('corporate.form.validation.subjectMin');
             } else if (values.subject.length > 200) {
-                errors.subject = 'Konu başlığı en fazla 200 karakter olabilir';
+                errors.subject = t('corporate.form.validation.subjectMax');
             }
 
-            // Message validation: min 2, max 5000
+            // Message validation
             if (!values.message) {
-                errors.message = 'Lütfen mesajınızı yazınız';
+                errors.message = t('corporate.form.validation.messageRequired');
             } else if (values.message.length < 2) {
-                errors.message = 'Mesajınız en az 2 karakter olmalıdır';
+                errors.message = t('corporate.form.validation.messageMin');
             } else if (values.message.length > 5000) {
-                errors.message = 'Mesajınız en fazla 5000 karakter olabilir';
+                errors.message = t('corporate.form.validation.messageMax');
             }
 
             return errors;
@@ -79,19 +93,19 @@ export function CorporateForm() {
                     email: values.email,
                     phone: values.phone,
                     subject: values.subject,
-                    message: values.message,
+                    message: `${t('corporate.form.companyNamePlaceholder')}: ${values.companyName}\n\n${values.message}`,
                     terms_accepted: true,
                 });
 
                 if (response.success) {
-                    toast.success('Başvurunuz başarıyla iletildi! En kısa sürede size dönüş yapacağız. 🎉');
+                    toast.success(t('corporate.form.success'));
                     helpers.resetForm();
                 } else {
-                    toast.error('Bir şeyler ters gitti. Lütfen tekrar deneyin veya bizimle doğrudan iletişime geçin.');
+                    toast.error(t('corporate.form.error'));
                 }
             } catch (error: unknown) {
                 console.error('Corporate form error:', error);
-                toast.error('Mesajınız gönderilirken bir sorun oluştu. Lütfen tekrar deneyin veya bizimle doğrudan iletişime geçin.');
+                toast.error(t('corporate.form.error'));
             }
         },
     });
@@ -118,7 +132,7 @@ export function CorporateForm() {
                                 className="text-[32px] sm:text-[40px] lg:text-[48px] font-bold text-[#FF5B04] leading-tight mb-6"
                                 style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
                             >
-                                Kurumsal Üye Olmak İçin Bizimle İletişime Geçin
+                                {t('corporate.form.title')}
                             </h1>
 
                             <form
@@ -133,11 +147,27 @@ export function CorporateForm() {
                                         value={formik.values.name}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
-                                        placeholder="İsim/Soy İsim"
+                                        placeholder={t('corporate.form.namePlaceholder')}
                                         error={!!(formik.touched.name && formik.errors.name)}
                                     />
                                     {formik.touched.name && formik.errors.name && (
                                         <p className="mt-1 text-sm text-red-500">{formik.errors.name}</p>
+                                    )}
+                                </div>
+
+                                {/* İşletme Ünvanı */}
+                                <div>
+                                    <Input
+                                        type="text"
+                                        name="companyName"
+                                        value={formik.values.companyName}
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        placeholder={t('corporate.form.companyNamePlaceholder')}
+                                        error={!!(formik.touched.companyName && formik.errors.companyName)}
+                                    />
+                                    {formik.touched.companyName && formik.errors.companyName && (
+                                        <p className="mt-1 text-sm text-red-500">{formik.errors.companyName}</p>
                                     )}
                                 </div>
 
@@ -149,7 +179,7 @@ export function CorporateForm() {
                                         value={formik.values.email}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
-                                        placeholder="E-mail"
+                                        placeholder={t('corporate.form.emailPlaceholder')}
                                         error={!!(formik.touched.email && formik.errors.email)}
                                     />
                                     {formik.touched.email && formik.errors.email && (
@@ -165,7 +195,7 @@ export function CorporateForm() {
                                         value={formik.values.phone}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
-                                        placeholder="Telefon Numarası"
+                                        placeholder={t('corporate.form.phonePlaceholder')}
                                         error={!!(formik.touched.phone && formik.errors.phone)}
                                     />
                                     {formik.touched.phone && formik.errors.phone && (
@@ -181,7 +211,7 @@ export function CorporateForm() {
                                         value={formik.values.subject}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
-                                        placeholder="Mesajınızın Konusu"
+                                        placeholder={t('corporate.form.subjectPlaceholder')}
                                         error={!!(formik.touched.subject && formik.errors.subject)}
                                     />
                                     {formik.touched.subject && formik.errors.subject && (
@@ -196,7 +226,7 @@ export function CorporateForm() {
                                         value={formik.values.message}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
-                                        placeholder="Mesaj"
+                                        placeholder={t('corporate.form.messagePlaceholder')}
                                         className="h-[182px]"
                                         error={!!(formik.touched.message && formik.errors.message)}
                                     />
@@ -212,7 +242,7 @@ export function CorporateForm() {
                                         disabled={formik.isSubmitting}
                                         className="w-full h-16 bg-[#333333] hover:bg-[#2a2a2a] text-white font-bold text-xl sm:text-2xl shadow-[0px_4px_15px_0px_rgba(0,0,0,0.09)] disabled:opacity-60 disabled:cursor-not-allowed"
                                     >
-                                        {formik.isSubmitting ? 'Gönderiliyor...' : 'Gönder'}
+                                        {formik.isSubmitting ? t('corporate.form.submitting') : t('corporate.form.submit')}
                                     </Button>
                                 </div>
                             </form>
@@ -224,17 +254,17 @@ export function CorporateForm() {
                                 className="font-semibold"
                                 style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
                             >
-                                Kurumsal üye olmak için bizimle{' '}
+                                {t('corporate.form.contactInfo')}{' '}
                                 <a
                                     href="mailto:info@yuksi.tr"
                                     className="text-[#FF5B04] underline"
                                 >
                                     info@yuksi.tr
                                 </a>{' '}
-                                üzerinden ya da iletişim formu ile görüşlerinizi bizimle paylaşabilirsiniz
+                                {t('corporate.form.contactInfo2')}
                             </p>
                             <p style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}>
-                                İletişim Numarası:
+                                {t('corporate.form.phoneLabel')}:
                                 <span className="font-medium"> 0850 241 93 16</span>
                             </p>
                             <p

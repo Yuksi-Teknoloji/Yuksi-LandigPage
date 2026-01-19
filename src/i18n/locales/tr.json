@@ -1,0 +1,461 @@
+{
+  "nav": {
+    "home": "Ana Sayfa",
+    "about": "Hakkımızda",
+    "services": "Hizmetler",
+    "help": "Yardım",
+    "contact": "İletişim",
+    "apply": "Başvur",
+    "login": "Giriş Yap",
+    "joinUs": "Aramıza Katıl",
+    "driverApplication": "Yüksi Sürücü Başvuru",
+    "logisticsCourier": "Lojistik Kurye",
+    "restaurantCourier": "Restoran Kurye",
+    "franchiseApplication": "Franchising Başvuru",
+    "corporateMembership": "Kurumsal Üyelik - Yüksicik",
+    "corporateLogin": "Kurumsal Giriş",
+    "corporateLoginDesc": "İşletme hesabınıza erişin",
+    "dealerLogin": "Bayi Giriş",
+    "dealerLoginDesc": "Bayi panelinize erişin",
+    "restaurantLogin": "Restoran Giriş",
+    "restaurantLoginDesc": "Restoran panelinize erişin",
+    "helpMessage": "Size nasıl yardımcı olabilirim?",
+    "openMenu": "Menüyü aç",
+    "closeMenu": "Menüyü kapat",
+    "menuIcon": "Menü",
+    "closeIcon": "Kapat"
+  },
+  "home": {
+    "seo": {
+      "title": "Yüksi - Lojistik Kargo Kurye",
+      "description": "Yüksi ile lojistik ihtiyaçlarınıza hızlı ve esnek çözümler. Motokurye, minivan, panelvan, kamyonet ve kamyon hizmetleri. Türkiye genelinde güvenilir taşımacılık."
+    },
+    "hero": {
+      "title": "LOJİSTİK KARGO KURYE",
+      "subtitle": "ile yanınızdayız",
+      "description": "Yüksi, modern lojistik ihtiyaçlarınıza hızlı ve esnek çözümler sunar. İster mobil uygulamamızdan ister web sitemizden kolayca araç çağırabilir, motokuryeden minivan, panelvan, kamyonet ve kamyona kadar geniş araç filomuzla gönderilerinizi güvenle taşıtabilirsiniz.",
+      "downloadApp": "Uygulamayı İndir",
+      "callVehicle": "Araç Çağır",
+      "yuksiLogistics": "YÜKSİ LOJİSTİK",
+      "yuksiCargo": "YÜKSİ KARGO",
+      "yuksiCourier": "YÜKSİ KURYE"
+    },
+    "vehicleShowcase": {
+      "title": "LOJİSTİĞİN SÜPER APP'İ YÜKSİ",
+      "subtitle": "Araç Sınıflarımız",
+      "explore": "İncele",
+      "motorcycle": "Motorsiklet",
+      "motorcycleDesc": "40-50 kg'a kadar hızlı teslimat",
+      "minivan": "Minivan",
+      "minivanDesc": "500-800 kg şehir içi taşımacılık",
+      "panelvan": "Panelvan",
+      "panelvanDesc": "1.000-1.500 kg profesyonel nakliye",
+      "pickup": "Kamyonet",
+      "pickupDesc": "1.500-3.500 kg ticari sevkiyat",
+      "truck": "Kamyon",
+      "truckDesc": "3.500-20.000 kg ağır yük taşımacılığı"
+    },
+    "mobileJoin": {
+      "title": "Yüksi Mobile Katıl",
+      "description1": "Yüksi ile istediğin yükü, istediğin araçla ve istediğin yere taşıtmak artık parmaklарının ucunda! İster küçük bir paket, ister devasa bir yük olsun; Yüksi'de motosikletten kamyona kadar her tür araç seni bekliyor.",
+      "description2": "Uygulama, akıllı konum bazlı sistem sayesinde seni en uygun taşıyıcıyla saniyeler içinde eşleştirir. Böylece zamandan tasarruf eder, gereksiz masraflardan kurtulursun.",
+      "description3": "Üstelik her şey kilometre bazlı fiyatlandırma ile şeffaf ve net! Yüksi ile taşıma işi artık zahmet değil, keyifli bir deneyim. Sen yükünü hazırla, biz seni doğru araç ve güvenilir taşıyıcıyla buluşturalım.",
+      "description": "Yüksi mobil uygulaması ile taşımacılık işlemlerinizi kolayca yönetin.",
+      "downloadNow": "Hemen İndir"
+    },
+    "contactCta": {
+      "title": "Taşıyıcı olmak ister misin?",
+      "subtitle": "Bizimle İletişime Geçin",
+      "description": "Yüksi'nin genişleyen lojistik ağında yerinizi alın, aracınızı sadece bir ulaşım aracı olmaktan çıkarıp düzenli gelir getiren bir yatırıma dönüştürün. Sektörün en gelişmiş teknolojik altyapısı sayesinde operasyonel süreçlerinizi kolaylaştırıyor, rotanızı optimize ediyor ve verimliliğinizi artırıyoruz. Şeffaf hakediş sistemi, zamanında ödeme garantisi ve Yüksi'nin kurumsal güvencesiyle sürdürülebilir bir kazanç modeli sizi bekliyor. Hemen başvurunuzu yapın, profesyonel ekibimize katılın.",
+      "button": "Form Doldur",
+      "contactUs": "İletişime Geç"
+    },
+    "businessPartners": {
+      "title": "Hizmet Verdiğimiz Sektörler",
+      "logistics": {
+        "name": "Lojistik",
+        "description": "Kilometre üzerinden fiyatlandırma modeli ile motorsikletten kamyona kadar dilediğin tüm araç sınıfları parmaklarının ucunda!"
+      },
+      "cargo": {
+        "name": "Kargo",
+        "description": "Türkiye'nin 81 ile en uygun fiyatlar ile kargonu gönder!"
+      },
+      "courier": {
+        "name": "Kurye",
+        "description": "Restoranın için en yenilikçi çözümler Yüksi'de!"
+      }
+    }
+  },
+  "about": {
+    "hero": {
+      "title": "TÜRKİYE'NİN LOJİSTİK ALT YAPISI",
+      "description": "Yüksi olarak vizyonumuz, lojistik sektöründe yenilikçi ve güvenilir hizmet anlayışımızla hem bireylerin hem de işletmelerin hayatını kolaylaştıran, dijital çözümlerle hız ve verimliliği en üst düzeye taşıyan öncü bir marka olmaktır. Teknolojiyi odağımıza alarak müşterilerimizin ihtiyaç duyduğu her ölçekte teslimatı güvenle gerçekleştirmek, sürdürülebilirlik ilkeleriyle büyüyerek hem Türkiye'de hem de uluslararası pazarda tercih edilen lojistik çözüm ortağı olmak istiyoruz.",
+      "imageAlt": "Yüksi lojistik hizmet",
+      "kangarooAlt": "Yüksi kanguru"
+    },
+    "aboutUs": {
+      "title": "Hakkımızda",
+      "description": "Yüksi, lojistik ve taşımacılık sektörüne yenilikçi çözümler sunmak amacıyla geliştirilmiş dijital bir platformdur. Yüksi mobil uygulaması sayesinde, yük verenlerle taşıyıcıları güvenli, hızlı ve verimli bir şekilde bir araya getiriyoruz."
+    },
+    "serviceFeatures": {
+      "title": "Hizmet Özellikleri",
+      "smartMatching": {
+        "title": "Akıllı Eşleştirme:",
+        "description": "Gelişmiş algoritmalarımız sayesinde yükler, en uygun taşıyıcılarla saniyeler içinde eşleştirilir."
+      },
+      "realTimeTracking": {
+        "title": "Gerçek Zamanlı Takip:",
+        "description": "Sevkiyat süreci boyunca araçların konumunu anlık olarak izleyebilirsiniz."
+      },
+      "certifiedNetwork": {
+        "title": "Belgeli Taşıyıcı Ağı:",
+        "description": "Tüm taşıyıcılarımız, gerekli belgeleri ve yeterlilikleri sağladığı onaylı bir ağa dahildir."
+      },
+      "flexiblePayment": {
+        "title": "Esnek Ödeme Çözümleri:",
+        "description": "Güvenli ödeme altyapısı ile ödemeler hızlı ve sorunsuz gerçekleşir."
+      }
+    },
+    "customerAdvantages": {
+      "title": "Müşteri Avantajları",
+      "timeCost": {
+        "title": "Zaman ve Maliyet Tasarrufu:",
+        "description": "Doğru eşleşme, gereksiz beklemeleri ve boş taşımaları ortadan kaldırır."
+      },
+      "transparency": {
+        "title": "Şeffaflık ve Güven:",
+        "description": "Her işlem dijital olarak kayıt altına alınır, taraflar arası güven artırılır."
+      },
+      "support": {
+        "title": "7/24 Destek:",
+        "description": "Operasyonel sorunlarınızda her zaman yanınızda olan destek ekibimiz mevcuttur."
+      }
+    },
+    "technology": {
+      "title": "Teknolojik Altyapı",
+      "locationBased": {
+        "title": "Konum Tabanlı Akıllı Sistem:",
+        "description": "En yakın ve en uygun taşıyıcıları anında tespit eder."
+      },
+      "aiPlanning": {
+        "title": "Yapay Zeka Destekli Planlama:",
+        "description": "Trafik, hava durumu ve rota verilerine göre optimum taşıma planları oluşturulur."
+      },
+      "cloudBased": {
+        "title": "Bulut Tabanlı Mimari:",
+        "description": "Güvenli, hızlı ve ölçeklenebilir altyapımız ile tüm işlemler sorunsuz yürütülür."
+      }
+    },
+    "seo": {
+      "title": "Hakkımızda | Yüksi - Türkiye'nin Lojistik Platformu",
+      "description": "Yüksi hakkında bilgi edinin. Türkiye'nin yenilikçi lojistik platformu olarak vizyonumuz, hizmetlerimiz ve teknolojik altyapımız."
+    }
+  },
+  "services": {
+    "seo": {
+      "title": "Hizmetlerimiz - Yüksi",
+      "description": "Yüksi hizmetleri: Motorsiklet kurye (40-50 kg), Minivan (500-800 kg), Panelvan (1.000-1.500 kg), Kamyonet (1.500-3.500 kg), Kamyon (3.500-20.000 kg). Şehir içi ve şehirler arası taşımacılık çözümleri."
+    },
+    "hero": {
+      "title": "SİZE YÜKSE BİZE YÜKSİ",
+      "description": "Yüksi, modern lojistik ihtiyaçlarınıza hızlı ve esnek çözümler sunar. İster mobil uygulamamızdan ister web sitemizden kolayca araç çağırabilir, motokuryeden minivan, panelvan, kamyonet ve kamyona kadar geniş araç filomuzla gönderilerinizi güvenle taşıtabilirsiniz. Hızlı, pratik ve güvenilir hizmet için Yüksi her zaman yanınızda.",
+      "backgroundAlt": "Yüksi lojistik hizmet",
+      "kangarooAlt": "Yüksi kanguru"
+    },
+    "motorcycle": {
+      "title": "Motorsiklet",
+      "description": "Moto kuryeler genelde 40–50 kg'a kadar yük taşıyabilir. Ama ister sadece bir zarf olsun, ister market poşeti ya da paket yemek, hepsi güvenle teslim edilir.\n\nYemek siparişinden alışveriş ürünlerine, ilaçtan belgeye kadar pek çok şeyi hızlıca ulaştırmak için moto kuryeler şehirde en pratik çözümdür.",
+      "buttonText": "Kurye İçin Başvur"
+    },
+    "minivan": {
+      "title": "Minivan",
+      "description": "Minivanlar genelde 500–800 kg'a kadar yük taşıyabilir. İster birkaç koli, ister küçük ev eşyaları ya da toplu alışveriş ürünleri olsun, hepsi rahatlıkla sığar.\n\nTaşınmadan ofis ihtiyaçlarına, market teslimatından küçük nakliyeye kadar minivanlar şehir içi pratik ve güvenli çözümler sunar.",
+      "buttonText": "Ekspres İçin Başvur"
+    },
+    "panelvan": {
+      "title": "Panelvan",
+      "description": "Panelvanlar genelde 1.000–1.500 kg'a kadar yük taşıyabilir. İster büyük koliler, ister mobilya ya da toplu sipariş ürünleri olsun, geniş hacimleriyle hepsi kolayca taşınır.\n\nEv taşımadan mağaza sevkiyatına, e-ticaret teslimatından profesyonel nakliyeye kadar panelvanlar güvenli ve güçlü bir çözümdür.",
+      "buttonText": "Ekspres İçin Başvur"
+    },
+    "pickup": {
+      "title": "Kamyonet",
+      "description": "Kamyonetler genelde 1.500–3.500 kg'a kadar yük taşıyabilir. İster inşaat malzemesi, ister büyük mobilyalar ya da toplu ticari ürünler olsun, güçlü yapıları sayesinde kolayca taşınır.\n\nNakliyeden ticari sevkiyata, pazar ve mağaza teslimatından tarım ürünlerine kadar kamyonetler hem şehir içi hem de şehirler arası güvenilir çözümler sunar.",
+      "buttonText": "Taşımacılık İçin Başvur"
+    },
+    "truck": {
+      "title": "Kamyon",
+      "description": "Kamyonlar genelde 3.500 kg'dan başlayıp 20.000 kg'a kadar yük taşıyabilir. İster ağır makineler, ister büyük hacimli eşyalar ya da toplu ticari ürünler olsun, geniş kasa ve güçlü motorları sayesinde rahatça taşınır.\n\nŞehirler arası taşımacılıktan lojistik sevkiyata, inşaat malzemelerinden endüstriyel ürünlere kadar kamyonlar güvenli ve yüksek kapasiteli çözümler sunar.",
+      "buttonText": "Taşımacılık İçin Başvur"
+    }
+  },
+  "help": {
+    "seo": {
+      "title": "Yardım ve Destek - Yüksi",
+      "description": "Yüksi yardım merkezi. Sık sorulan sorular, kullanım kılavuzu, teknik destek ve müşteri hizmetleri. Size nasıl yardımcı olabiliriz?",
+      "backgroundAlt": "Yüksi lojistik hizmet",
+      "kangarooPhoneAlt": "Yüksi telefon kanguru",
+      "logoAlt": "Yüksi Logo"
+    },
+    "hero": {
+      "titleLine1": "SANA NASIL",
+      "titleLine2": "YARDIMCI OLABİLİRİZ",
+      "formTitle": "Bize Ulaş",
+      "messagePlaceholder": "Mesajınızı buraya yazın...",
+      "nameLabel": "İsim / Soy İsim",
+      "emailLabel": "E-mail Adresi",
+      "submit": "GÖNDER",
+      "submitting": "GÖNDERİLİYOR...",
+      "success": "Mesajınız başarıyla iletildi! En kısa sürede size dönüş yapacağız. 🎉",
+      "error": "Bir şeyler ters gitti. Lütfen tekrar deneyin veya bizimle doğrudan iletişime geçin.",
+      "validation": {
+        "nameRequired": "Lütfen isminizi giriniz",
+        "nameMin": "İsminiz en az 2 karakter olmalıdır",
+        "nameMax": "İsminiz en fazla 200 karakter olabilir",
+        "emailRequired": "Lütfen e-posta adresinizi giriniz",
+        "emailInvalid": "Geçerli bir e-posta adresi giriniz",
+        "messageRequired": "Lütfen mesajınızı yazınız",
+        "messageMin": "Mesajınız en az 2 karakter olmalıdır",
+        "messageMax": "Mesajınız en fazla 5000 karakter olabilir"
+      }
+    },
+    "content": {
+      "intro": "Her zaman yanınızdayız! Yüksi yardım hattına şu konularda bizimle iletişime geçebilirsiniz",
+      "topics": {
+        "shipping": {
+          "title": "Gönderi Takibi: ",
+          "description": "Paketinizin güncel durumunu öğrenmek ve teslimat süreci hakkında bilgi almak."
+        },
+        "request": {
+          "title": "Araç Talebi ve Rezervasyon: ",
+          "description": "Moto kuryeden kamyona kadar ihtiyacınıza uygun aracı çağırma ya da planlı rezervasyon desteği."
+        },
+        "deliveryIssues": {
+          "title": "Teslimat Sorunları: ",
+          "description": "Gecikme, adres değişikliği veya teslimatla ilgili yaşanan her türlü problem için çözüm."
+        },
+        "techSupport": {
+          "title": "Uygulama ve Web Desteği: ",
+          "description": "Mobil uygulama ya da web sitemiz üzerinden yaşadığınız teknik sorunlarda yardım."
+        },
+        "pricing": {
+          "title": "Fiyatlandırma ve Ödeme: ",
+          "description": "Ücretlendirme, fatura veya ödeme yöntemleri hakkında bilgi talebi."
+        },
+        "general": {
+          "title": "Genel Sorular ve Öneriler: ",
+          "description": "Hizmetlerimizle ilgili merak ettikleriniz veya bize iletmek istediğiniz öneriler."
+        }
+      }
+    }
+  },
+  "contact": {
+    "seo": {
+      "title": "İletişim - Yüksi",
+      "description": "Yüksi ile iletişime geçin. Sorularınız, önerileriniz veya destek talepleriniz için bizimle iletişime geçebilirsiniz. Bursa merkezli ofisimiz: Ahmet Vefik Paşa OSB Mah. Bursa caddesi No:73, Kestel/BURSA. Telefon: 0850 241 93 16 | Email: info@yuksi.tr"
+    },
+    "title": "İletişim",
+    "subtitle": "Bizimle İletişime Geçin",
+    "form": {
+      "title": "Bizimle iletişime geçin!",
+      "namePlaceholder": "İsim/Soy İsim",
+      "emailPlaceholder": "E-mail",
+      "phonePlaceholder": "Telefon Numarası",
+      "subjectPlaceholder": "Mesajınızın Konusu",
+      "messagePlaceholder": "Mesaj",
+      "send": "Gönder",
+      "sending": "Gönderiliyor...",
+      "success": "Mesajınız başarıyla iletildi! En kısa sürede size dönüş yapacağız. 🎉",
+      "error": "Bir şeyler ters gitti. Lütfen tekrar deneyin veya bizimle doğrudan iletişime geçin.",
+      "validation": {
+        "nameRequired": "Lütfen isminizi giriniz",
+        "nameMin": "İsminiz en az 2 karakter olmalıdır",
+        "nameMax": "İsminiz en fazla 200 karakter olabilir",
+        "emailRequired": "Lütfen e-posta adresinizi giriniz",
+        "emailInvalid": "Geçerli bir e-posta adresi giriniz",
+        "phoneRequired": "Lütfen telefon numaranızı giriniz",
+        "phoneMin": "Telefon numaranız en az 5 karakter olmalıdır",
+        "phoneMax": "Telefon numaranız en fazla 50 karakter olabilir",
+        "subjectRequired": "Lütfen konu başlığını giriniz",
+        "subjectMin": "Konu başlığı en az 2 karakter olmalıdır",
+        "subjectMax": "Konu başlığı en fazla 200 karakter olabilir",
+        "messageRequired": "Lütfen mesajınızı yazınız",
+        "messageMin": "Mesajınız en az 2 karakter olmalıdır",
+        "messageMax": "Mesajınız en fazla 5000 karakter olabilir"
+      },
+      "contactInfo": "Görüşlerinizi bizimle",
+      "contactInfo2": "üzerinden ya da iletişim formu ile görüşlerinizi bizimle paylaşabilirsiniz",
+      "phoneLabel": "İletişim Numarası"
+    },
+    "info": {
+      "address": "Adres",
+      "addressValue": "Ahmet Vefik Paşa OSB Mah. Bursa caddesi No:73, Kestel/BURSA",
+      "phone": "Telefon",
+      "phoneValue": "0850 241 93 16",
+      "email": "E-posta",
+      "emailValue": "info@yuksi.tr"
+    }
+  },
+  "carrier": {
+    "seo": {
+      "title": "Kurye ve Taşıyıcı Başvurusu - Yüksi",
+      "description": "Yüksi'ye kurye veya taşıyıcı olarak başvurun. Motorsiklet, minivan, panelvan, kamyonet veya kamyon ile çalışma fırsatı. Esnek çalışma saatleri ve rekabetçi ücretler."
+    },
+    "title": "Sürücü Başvurusu",
+    "subtitle": "Yüksi ailesine katılın",
+    "form": {
+      "title": "TAŞIYICI OL",
+      "title2": "SEN DE ARAMIZA KATIL!",
+      "subtitle": "Taşıyıcı olmak için formu doldur",
+      "firstName": "İsim",
+      "lastName": "Soy İsim",
+      "email": "E-mail",
+      "phone": "Telefon Numarası",
+      "city": "Şehir",
+      "vehicleType": "Araç Türü",
+      "vehicleYear": "Trafiğe Çıkış Yılı",
+      "vehicleDocument": "Araç Belgesi Yükle",
+      "vehicleDocumentHelper": "Ruhsat/Ticari belgesi",
+      "carrierDocument": "Taşıyıcı Belgelerini Yükle",
+      "carrierDocumentHelper": "Adli Sicil Belgesi/ Ehliyet",
+      "submit": "Gönder",
+      "submitting": "Gönderiliyor...",
+      "success": "Başvurunuz başarıyla gönderildi.",
+      "error": "Form gönderilirken bir hata oluştu. Lütfen tekrar deneyin.",
+      "validation": {
+        "required": "Zorunlu",
+        "yearNumber": "Yıl sayı olmalı"
+      },
+      "vehicles": {
+        "motorcycle": "Motosiklet",
+        "minivan": "Minivan",
+        "panelvan": "Panelvan",
+        "pickup": "Kamyonet",
+        "truck": "Kamyon"
+      }
+    }
+  },
+  "dealer": {
+    "seo": {
+      "title": "Bayi Başvurusu - Yüksi",
+      "description": "Yüksi bayi olmak için başvurun. Franchise fırsatları, bayi koşulları ve avantajları hakkında bilgi alın. Bursa merkezli, Türkiye genelinde bayi ağımıza katılın."
+    },
+    "title": "Bayi Başvurusu",
+    "subtitle": "Yüksi bayi ağına katılın",
+    "form": {
+      "title": "Bayi Olmak İçin Bizimle İletişime Geçin",
+      "namePlaceholder": "İsim/Soy İsim",
+      "investmentBudgetPlaceholder": "Yatırım Bütçeniz",
+      "emailPlaceholder": "E-mail",
+      "phonePlaceholder": "Telefon Numarası",
+      "subjectPlaceholder": "Mesajınızın Konusu",
+      "messagePlaceholder": "Mesaj",
+      "submit": "Gönder",
+      "submitting": "Gönderiliyor...",
+      "success": "Başvurunuz başarıyla iletildi! En kısa sürede size dönüş yapacağız. 🎉",
+      "error": "Bir şeyler ters gitti. Lütfen tekrar deneyin veya bizimle doğrudan iletişime geçin.",
+      "contactInfo": "Bayi olmak için bizimle",
+      "contactInfo2": "üzerinden ya da iletişim formu ile görüşlerinizi bizimle paylaşabilirsiniz",
+      "phoneLabel": "İletişim Numarası",
+      "validation": {
+        "nameRequired": "Lütfen isminizi giriniz",
+        "nameMin": "İsminiz en az 2 karakter olmalıdır",
+        "nameMax": "İsminiz en fazla 200 karakter olabilir",
+        "budgetRequired": "Lütfen yatırım bütçenizi seçiniz",
+        "emailRequired": "Lütfen e-posta adresinizi giriniz",
+        "emailInvalid": "Geçerli bir e-posta adresi giriniz",
+        "phoneRequired": "Lütfen telefon numaranızı giriniz",
+        "phoneMin": "Telefon numaranız en az 5 karakter olmalıdır",
+        "phoneMax": "Telefon numaranız en fazla 50 karakter olabilir",
+        "subjectRequired": "Lütfen konu başlığını giriniz",
+        "subjectMin": "Konu başlığı en az 2 karakter olmalıdır",
+        "subjectMax": "Konu başlığı en fazla 200 karakter olabilir",
+        "messageRequired": "Lütfen mesajınızı yazınız",
+        "messageMin": "Mesajınız en az 2 karakter olmalıdır",
+        "messageMax": "Mesajınız en fazla 5000 karakter olabilir"
+      },
+      "budgets": {
+        "0-100000": "0 - 100.000 ₺",
+        "100000-250000": "100.000 - 250.000 ₺",
+        "250000-500000": "250.000 - 500.000 ₺",
+        "500000-1000000": "500.000 - 1.000.000 ₺",
+        "1000000+": "1.000.000 ₺ ve üzeri"
+      }
+    }
+  },
+  "corporate": {
+    "seo": {
+      "title": "Kurumsal Üyelik - Yüksi",
+      "description": "Yüksi kurumsal üyelik başvurusu. Kurumsal müşteriler için özel fiyatlandırma ve avantajlar. Bursa merkezli, Türkiye genelinde kurumsal lojistik çözümleri."
+    },
+    "title": "Kurumsal Üyelik",
+    "subtitle": "İşletmeniz için özel çözümler",
+    "form": {
+      "title": "Kurumsal Üye Olmak İçin Bizimle İletişime Geçin",
+      "namePlaceholder": "İsim/Soy İsim",
+      "companyNamePlaceholder": "İşletme Ünvanı",
+      "emailPlaceholder": "E-mail",
+      "phonePlaceholder": "Telefon Numarası",
+      "subjectPlaceholder": "Mesajınızın Konusu",
+      "messagePlaceholder": "Mesaj",
+      "submit": "Gönder",
+      "submitting": "Gönderiliyor...",
+      "success": "Başvurunuz başarıyla iletildi! En kısa sürede size dönüş yapacağız. 🎉",
+      "error": "Bir şeyler ters gitti. Lütfen tekrar deneyin veya bizimle doğrudan iletişime geçin.",
+      "contactInfo": "Kurumsal üye olmak için bizimle",
+      "contactInfo2": "üzerinden ya da iletişim formu ile görüşlerinizi bizimle paylaşabilirsiniz",
+      "phoneLabel": "İletişim Numarası",
+      "validation": {
+        "nameRequired": "Lütfen isminizi giriniz",
+        "nameMin": "İsminiz en az 2 karakter olmalıdır",
+        "nameMax": "İsminiz en fazla 200 karakter olabilir",
+        "companyRequired": "Lütfen işletme ünvanını giriniz",
+        "companyMin": "İşletme ünvanı en az 2 karakter olmalıdır",
+        "companyMax": "İşletme ünvanı en fazla 200 karakter olabilir",
+        "emailRequired": "Lütfen e-posta adresinizi giriniz",
+        "emailInvalid": "Geçerli bir e-posta adresi giriniz",
+        "phoneRequired": "Lütfen telefon numaranızı giriniz",
+        "phoneMin": "Telefon numaranız en az 5 karakter olmalıdır",
+        "phoneMax": "Telefon numaranız en fazla 50 karakter olabilir",
+        "subjectRequired": "Lütfen konu başlığını giriniz",
+        "subjectMin": "Konu başlığı en az 2 karakter olmalıdır",
+        "subjectMax": "Konu başlığı en fazla 200 karakter olabilir",
+        "messageRequired": "Lütfen mesajınızı yazınız",
+        "messageMin": "Mesajınız en az 2 karakter olmalıdır",
+        "messageMax": "Mesajınız en fazla 5000 karakter olabilir"
+      }
+    }
+  },
+  "footer": {
+    "description": "Yüksi, modern lojistik ihtiyaçlarınıza hızlı ve esnek çözümler sunar.",
+    "quickLinks": "Hızlı Bağlantılar",
+    "contact": "İletişim",
+    "followUs": "Bizi Takip Edin",
+    "rights": "Tüm hakları saklıdır."
+  },
+  "common": {
+    "loading": "Yükleniyor...",
+    "error": "Bir hata oluştu",
+    "success": "Başarılı",
+    "submit": "Gönder",
+    "cancel": "İptal",
+    "save": "Kaydet",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "close": "Kapat",
+    "back": "Geri",
+    "next": "İleri",
+    "previous": "Önceki",
+    "search": "Ara",
+    "filter": "Filtrele",
+    "sort": "Sırala",
+    "all": "Tümü",
+    "none": "Hiçbiri",
+    "yes": "Evet",
+    "no": "Hayır",
+    "ok": "Tamam",
+    "confirm": "Onayla",
+    "learnMore": "Daha Fazla Bilgi",
+    "seeAll": "Tümünü Gör",
+    "downloadApp": "Uygulamayı İndir"
+  }
+}

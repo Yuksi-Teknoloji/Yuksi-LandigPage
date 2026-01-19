@@ -1,7 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Header } from '../components/organisms/Header';
 import { Footer } from '../components/organisms/Footer';
 import { SEOHead } from '../components/molecules/SEOHead';
+import { useLanguageFromUrl } from '../hooks/useLanguageFromUrl';
+import { getLocalizedPath } from '../i18n';
 import motorcycleImg from '../assets/services/motorcycle.png';
 import minivanImg from '../assets/services/minivan.png';
 import panelvanImg from '../assets/services/panelvan.png';
@@ -19,54 +22,6 @@ type VehicleConfig = {
     background: string;
 };
 
-const VEHICLES: VehicleConfig[] = [
-    {
-        id: 'motorcycle',
-        title: 'Motorsiklet',
-        heading: "LOJİSTİĞİN SÜPER APP'İ YÜKSİ",
-        description:
-            "Moto kuryeler genelde 40–50 kg’a kadar yük taşıyabilir. Ama ister sadece bir zarf olsun, ister market poşeti ya da paket yemek, hepsi güvenle teslim edilir.\n\nYemek siparişinden alışveriş ürünlerine, ilaçtan belgeye kadar pek çok şeyi hızlıca ulaştırmak için moto kuryeler şehirde en pratik çözümdür.",
-        image: motorcycleImg,
-        background: 'linear-gradient(90deg, #FF5B04 0%, #FFEDE0 55%, #FFF7F2 100%)',
-    },
-    {
-        id: 'minivan',
-        title: 'Minivan',
-        heading: "LOJİSTİĞİN SÜPER APP'İ YÜKSİ",
-        description:
-            'Minivanlar genelde 500–800 kg’a kadar yük taşıyabilir. İster birkaç koli, ister küçük ev eşyaları ya da toplu alışveriş ürünleri olsun, hepsi rahatlıkla sığar.\n\nTaşınmadan ofis ihtiyaçlarına, market teslimatından küçük nakliyeye kadar minivanlar şehir içi pratik ve güvenli çözümler sunar.',
-        image: minivanImg,
-        background: 'linear-gradient(90deg, #FF5B04 0%, #FFE7D5 55%, #FFF6F1 100%)',
-    },
-    {
-        id: 'panelvan',
-        title: 'Panelvan',
-        heading: "LOJİSTİĞİN SÜPER APP'İ YÜKSİ",
-        description:
-            'Panelvanlar genelde 1.000–1.500 kg’a kadar yük taşıyabilir. İster büyük koliler, ister mobilya ya da toplu sipariş ürünleri olsun, geniş hacimleriyle hepsi kolayca taşınır.\n\nEv taşımadan mağaza sevkiyatına, e-ticaret teslimatından profesyonel nakliyeye kadar panelvanlar güvenli ve güçlü bir çözümdür.',
-        image: panelvanImg,
-        background: 'linear-gradient(90deg, #FF5B04 0%, #FFE4D2 55%, #FFF4EF 100%)',
-    },
-    {
-        id: 'kamyonet',
-        title: 'Kamyonet',
-        heading: "LOJİSTİĞİN SÜPER APP'İ YÜKSİ",
-        description:
-            'Kamyonetler genelde 1.500–3.500 kg’a kadar yük taşıyabilir. İster inşaat malzemesi, ister büyük mobilyalar ya da toplu ticari ürünler olsun, güçlü yapıları sayesinde kolayca taşınır.\n\nNakliyeden ticari sevkiyata, pazar ve mağaza teslimatından tarım ürünlerine kadar kamyonetler hem şehir içi hem de şehirler arası güvenilir çözümler sunar.',
-        image: kamyonetImg,
-        background: 'linear-gradient(90deg, #FF5B04 0%, #FFE0CC 55%, #FFF2ED 100%)',
-    },
-    {
-        id: 'kamyon',
-        title: 'Kamyon',
-        heading: "LOJİSTİĞİN SÜPER APP'İ YÜKSİ",
-        description:
-            "Kamyonlar genelde 3.500 kg'dan başlayıp 20.000 kg'a kadar yük taşıyabilir. İster ağır makineler, ister büyük hacimli eşyalar ya da toplu ticari ürünler olsun, geniş kasa ve güçlü motorları sayesinde rahatça taşınır.\n\nŞehirler arası taşımacılıktan lojistik sevkiyata, inşaat malzemelerinden endüstriyel ürünlere kadar kamyonlar güvenli ve yüksek kapasiteli çözümler sunar.",
-        image: kamyonImg,
-        background: 'linear-gradient(90deg, #FF5B04 0%, #FFD9C4 55%, #FFF0E8 100%)',
-    },
-];
-
 type VehicleStage = 'active' | 'next' | 'prev' | 'hidden';
 
 function getStageForIndex(index: number, activeIndex: number, total: number): VehicleStage {
@@ -79,13 +34,58 @@ function getStageForIndex(index: number, activeIndex: number, total: number): Ve
 }
 
 export default function Vehiclese() {
+    const { t } = useTranslation();
+    const currentLang = useLanguageFromUrl();
     const [activeIndex, setActiveIndex] = useState(0);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+    const VEHICLES: VehicleConfig[] = [
+        {
+            id: 'motorcycle',
+            title: t('services.motorcycle.title'),
+            heading: t('home.vehicleShowcase.title'),
+            description: t('services.motorcycle.description'),
+            image: motorcycleImg,
+            background: 'linear-gradient(90deg, #FF5B04 0%, #FFEDE0 55%, #FFF7F2 100%)',
+        },
+        {
+            id: 'minivan',
+            title: t('services.minivan.title'),
+            heading: t('home.vehicleShowcase.title'),
+            description: t('services.minivan.description'),
+            image: minivanImg,
+            background: 'linear-gradient(90deg, #FF5B04 0%, #FFE7D5 55%, #FFF6F1 100%)',
+        },
+        {
+            id: 'panelvan',
+            title: t('services.panelvan.title'),
+            heading: t('home.vehicleShowcase.title'),
+            description: t('services.panelvan.description'),
+            image: panelvanImg,
+            background: 'linear-gradient(90deg, #FF5B04 0%, #FFE4D2 55%, #FFF4EF 100%)',
+        },
+        {
+            id: 'kamyonet',
+            title: t('services.pickup.title'),
+            heading: t('home.vehicleShowcase.title'),
+            description: t('services.pickup.description'),
+            image: kamyonetImg,
+            background: 'linear-gradient(90deg, #FF5B04 0%, #FFE0CC 55%, #FFF2ED 100%)',
+        },
+        {
+            id: 'kamyon',
+            title: t('services.truck.title'),
+            heading: t('home.vehicleShowcase.title'),
+            description: t('services.truck.description'),
+            image: kamyonImg,
+            background: 'linear-gradient(90deg, #FF5B04 0%, #FFD9C4 55%, #FFF0E8 100%)',
+        },
+    ];
 
     const activeVehicle = VEHICLES[activeIndex];
 
     const handleNext = () => {
-        setActiveIndex((prev) => (prev + 1) % VEHICLES.length);
+        setActiveIndex((prev: number) => (prev + 1) % VEHICLES.length);
     };
 
     // Mobile scroll handler with infinite loop
@@ -94,22 +94,22 @@ export default function Vehiclese() {
         if (!container) return;
 
         let scrollTimeout: ReturnType<typeof setTimeout>;
-        
+
         const handleScroll = () => {
             if (window.innerWidth >= 1024) return;
-            
+
             clearTimeout(scrollTimeout);
-            
+
             scrollTimeout = setTimeout(() => {
                 const scrollLeft = container.scrollLeft;
                 const containerWidth = container.clientWidth;
                 const itemWidth = containerWidth * 0.85;
                 const gap = containerWidth * 0.05;
                 const totalItemWidth = itemWidth + gap;
-                
+
                 // Account for the duplicate first item at the beginning
                 const calculatedIndex = Math.round(scrollLeft / totalItemWidth) - 1;
-                
+
                 // Infinite loop: if at the end clone, jump to beginning
                 if (calculatedIndex >= VEHICLES.length) {
                     setActiveIndex(0);
@@ -134,7 +134,7 @@ export default function Vehiclese() {
                     });
                     return;
                 }
-                
+
                 // Update active index when scrolling normally
                 if (calculatedIndex !== activeIndex && calculatedIndex >= 0 && calculatedIndex < VEHICLES.length) {
                     setActiveIndex(calculatedIndex);
@@ -147,7 +147,7 @@ export default function Vehiclese() {
             container.removeEventListener('scroll', handleScroll);
             clearTimeout(scrollTimeout);
         };
-    }, [activeIndex]);
+    }, [activeIndex, VEHICLES.length]);
 
     // Scroll to active item on mobile when activeIndex changes (accounting for clone)
     useEffect(() => {
@@ -199,7 +199,8 @@ export default function Vehiclese() {
                 title={`${activeVehicle.title} - Yüksi`}
                 description={activeVehicle.description}
                 keywords={`${activeVehicle.title.toLowerCase()}, yüksi ${activeVehicle.title.toLowerCase()}, lojistik, taşımacılık, ${activeVehicle.title.toLowerCase()} hizmeti`}
-                canonical="/vehiclese"
+                canonical={getLocalizedPath('vehiclese', currentLang)}
+                lang={currentLang}
                 geoData={{
                     address: 'Ahmet Vefik Paşa OSB Mah. Bursa caddesi No:73',
                     city: 'Kestel',
@@ -207,177 +208,177 @@ export default function Vehiclese() {
                     country: 'TR',
                 }}
             />
-        <div className="w-full min-h-screen" style={{ background: activeVehicle.background }}>
-            <div className="relative z-10">
-            <Header activeItem="/services" />
+            <div className="w-full min-h-screen" style={{ background: activeVehicle.background }}>
+                <div className="relative z-10">
+                    <Header activeItem={getLocalizedPath('services', currentLang)} />
 
-            {/* Mobile View */}
-            <div className="lg:hidden w-full">
-                <div className="w-full px-4 pt-6 pb-4">
-                    <div className="text-black">
-                        <p
-                            className="text-[20px] font-bold mb-3 transition-opacity duration-300"
-                            style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
-                        >
-                            {activeVehicle.heading}
-                        </p>
-                        <h1
-                            className="text-[36px] font-bold leading-[1.1] mb-4 transition-opacity duration-300"
-                            style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
-                        >
-                            {activeVehicle.title}
-                        </h1>
-                        <p className="text-[16px] leading-relaxed whitespace-pre-line text-black/80 transition-opacity duration-300">
-                            {activeVehicle.description}
-                        </p>
-                    </div>
-                </div>
+                    {/* Mobile View */}
+                    <div className="lg:hidden w-full">
+                        <div className="w-full px-4 pt-6 pb-4">
+                            <div className="text-black">
+                                <p
+                                    className="text-[20px] font-bold mb-3 transition-opacity duration-300"
+                                    style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
+                                >
+                                    {activeVehicle.heading}
+                                </p>
+                                <h1
+                                    className="text-[36px] font-bold leading-[1.1] mb-4 transition-opacity duration-300"
+                                    style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
+                                >
+                                    {activeVehicle.title}
+                                </h1>
+                                <p className="text-[16px] leading-relaxed whitespace-pre-line text-black/80 transition-opacity duration-300">
+                                    {activeVehicle.description}
+                                </p>
+                            </div>
+                        </div>
 
-                {/* Horizontal Scroll Container - Infinite Loop */}
-                <div 
-                    ref={scrollContainerRef}
-                    className="flex gap-4 overflow-x-auto snap-x snap-mandatory px-4 pb-8 -mx-4"
-                    style={{
-                        scrollbarWidth: 'none',
-                        msOverflowStyle: 'none',
-                        scrollSnapType: 'x mandatory',
-                        paddingLeft: 'calc(50% - 42.5vw)',
-                        paddingRight: 'calc(50% - 42.5vw)',
-                    }}
-                >
-                    <style>{`
+                        {/* Horizontal Scroll Container - Infinite Loop */}
+                        <div
+                            ref={scrollContainerRef}
+                            className="flex gap-4 overflow-x-auto snap-x snap-mandatory px-4 pb-8 -mx-4"
+                            style={{
+                                scrollbarWidth: 'none',
+                                msOverflowStyle: 'none',
+                                scrollSnapType: 'x mandatory',
+                                paddingLeft: 'calc(50% - 42.5vw)',
+                                paddingRight: 'calc(50% - 42.5vw)',
+                            }}
+                        >
+                            <style>{`
                         div::-webkit-scrollbar {
                             display: none;
                         }
                     `}</style>
-                    {/* Duplicate last item at the beginning for infinite scroll */}
-                    <div
-                        key={`${VEHICLES[VEHICLES.length - 1].id}-clone-start`}
-                        className="flex-shrink-0 w-[85vw] snap-center flex items-center justify-center"
-                    >
-                        <img
-                            src={VEHICLES[VEHICLES.length - 1].image}
-                            alt={VEHICLES[VEHICLES.length - 1].title}
-                            className="w-full max-w-[400px] h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.2)]"
-                        />
-                    </div>
-                    {VEHICLES.map((vehicle) => (
-                        <div
-                            key={vehicle.id}
-                            className="flex-shrink-0 w-[85vw] snap-center flex items-center justify-center"
-                        >
-                            <img
-                                src={vehicle.image}
-                                alt={vehicle.title}
-                                className="w-full max-w-[400px] h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.2)]"
-                            />
+                            {/* Duplicate last item at the beginning for infinite scroll */}
+                            <div
+                                key={`${VEHICLES[VEHICLES.length - 1].id}-clone-start`}
+                                className="flex-shrink-0 w-[85vw] snap-center flex items-center justify-center"
+                            >
+                                <img
+                                    src={VEHICLES[VEHICLES.length - 1].image}
+                                    alt={VEHICLES[VEHICLES.length - 1].title}
+                                    className="w-full max-w-[400px] h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.2)]"
+                                />
+                            </div>
+                            {VEHICLES.map((vehicle) => (
+                                <div
+                                    key={vehicle.id}
+                                    className="flex-shrink-0 w-[85vw] snap-center flex items-center justify-center"
+                                >
+                                    <img
+                                        src={vehicle.image}
+                                        alt={vehicle.title}
+                                        className="w-full max-w-[400px] h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.2)]"
+                                    />
+                                </div>
+                            ))}
+                            {/* Duplicate first item at the end for infinite scroll */}
+                            <div
+                                key={`${VEHICLES[0].id}-clone-end`}
+                                className="flex-shrink-0 w-[85vw] snap-center flex items-center justify-center"
+                            >
+                                <img
+                                    src={VEHICLES[0].image}
+                                    alt={VEHICLES[0].title}
+                                    className="w-full max-w-[400px] h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.2)]"
+                                />
+                            </div>
                         </div>
-                    ))}
-                    {/* Duplicate first item at the end for infinite scroll */}
-                    <div
-                        key={`${VEHICLES[0].id}-clone-end`}
-                        className="flex-shrink-0 w-[85vw] snap-center flex items-center justify-center"
-                    >
-                        <img
-                            src={VEHICLES[0].image}
-                            alt={VEHICLES[0].title}
-                            className="w-full max-w-[400px] h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.2)]"
-                        />
+                    </div>
+
+                    {/* Desktop View */}
+                    <main className="hidden lg:block w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-16 pt-10 pb-20 relative overflow-hidden" style={{ background: activeVehicle.background, minHeight: 'calc(100vh - 200px)' }}>
+                        <section className="relative flex flex-col lg:flex-row items-center lg:items-start justify-between gap-10 lg:gap-16">
+                            <div className="mt-10 lg:mt-24 max-w-xl text-white w-full lg:w-1/2">
+                                <p
+                                    className="text-[24px] sm:text-[26px] md:text-[28px] font-bold mb-4"
+                                    style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
+                                >
+                                    {activeVehicle.heading}
+                                </p>
+                                <h1
+                                    className="text-[48px] sm:text-[64px] md:text-[72px] lg:text-[80px] font-bold leading-[1] mb-8 transition-opacity duration-500"
+                                    style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
+                                >
+                                    {activeVehicle.title}
+                                </h1>
+                                <p className="text-[18px] sm:text-[20px] md:text-[22px] leading-relaxed whitespace-pre-line transition-opacity duration-500">
+                                    {activeVehicle.description}
+                                </p>
+                            </div>
+
+                            <div
+                                className="relative w-full lg:w-1/2 flex items-center justify-center lg:justify-end mt-12 lg:mt-4 cursor-pointer pl-4 sm:pl-8 lg:pl-6 xl:pl-10 2xl:pl-12"
+                                onClick={handleNext}
+                            >
+                                <div className="relative w-full max-w-[720px] h-[420px] lg:h-[520px]">
+                                    {VEHICLES.map((vehicle, index) => {
+                                        const stage = getStageForIndex(index, activeIndex, VEHICLES.length);
+
+                                        let translateX = 0;
+                                        let translateY = 0;
+                                        let scale = 1;
+                                        let opacity = 1;
+                                        let blur = 0;
+                                        let zIndex = 30;
+
+                                        if (stage === 'active') {
+                                            translateX = 0;
+                                            translateY = 260;
+                                            scale = 0.9;
+                                            opacity = 1;
+                                            blur = 0;
+                                            zIndex = 40;
+                                        } else if (stage === 'next') {
+                                            translateX = 548.5;
+                                            translateY = 1.5;
+                                            scale = 200 / 719;
+                                            opacity = 1;
+                                            blur = 5;
+                                            zIndex = 25;
+                                        } else if (stage === 'prev') {
+                                            translateX = 534.5;
+                                            translateY = 480;
+                                            scale = 200 / 719;
+                                            opacity = 1;
+                                            blur = 5;
+                                            zIndex = 15;
+                                        } else {
+                                            translateX = 534.5;
+                                            translateY = 480;
+                                            scale = 0.2;
+                                            opacity = 0;
+                                            blur = 4;
+                                            zIndex = 5;
+                                        }
+
+                                        return (
+                                            <img
+                                                key={vehicle.id}
+                                                src={vehicle.image}
+                                                alt={vehicle.title}
+                                                className="absolute left-1/2 top-1/2 max-w-[520px] w-[70vw] sm:w-[420px] lg:w-[520px] -translate-x-1/2 -translate-y-1/2 object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.45)] transition-all duration-500 ease-out"
+                                                style={{
+                                                    transform: `translate(-50%, -50%) translateX(${translateX}px) translateY(${translateY}px) scale(${scale})`,
+                                                    opacity,
+                                                    filter: `blur(${blur}px)`,
+                                                    zIndex,
+                                                }}
+                                            />
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        </section>
+                    </main>
+
+                    <div className="mt-12 lg:mt-24">
+                        <Footer />
                     </div>
                 </div>
             </div>
-
-            {/* Desktop View */}
-            <main className="hidden lg:block w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-16 pt-10 pb-20 relative overflow-hidden" style={{ background: activeVehicle.background, minHeight: 'calc(100vh - 200px)' }}>
-                <section className="relative flex flex-col lg:flex-row items-center lg:items-start justify-between gap-10 lg:gap-16">
-                    <div className="mt-10 lg:mt-24 max-w-xl text-white w-full lg:w-1/2">
-                        <p
-                            className="text-[24px] sm:text-[26px] md:text-[28px] font-bold mb-4"
-                            style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
-                        >
-                            {activeVehicle.heading}
-                        </p>
-                        <h1
-                            className="text-[48px] sm:text-[64px] md:text-[72px] lg:text-[80px] font-bold leading-[1] mb-8 transition-opacity duration-500"
-                            style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
-                        >
-                            {activeVehicle.title}
-                        </h1>
-                        <p className="text-[18px] sm:text-[20px] md:text-[22px] leading-relaxed whitespace-pre-line transition-opacity duration-500">
-                            {activeVehicle.description}
-                        </p>
-                    </div>
-
-                    <div
-                        className="relative w-full lg:w-1/2 flex items-center justify-center lg:justify-end mt-12 lg:mt-4 cursor-pointer pl-4 sm:pl-8 lg:pl-6 xl:pl-10 2xl:pl-12"
-                        onClick={handleNext}
-                    >
-                        <div className="relative w-full max-w-[720px] h-[420px] lg:h-[520px]">
-                            {VEHICLES.map((vehicle, index) => {
-                                const stage = getStageForIndex(index, activeIndex, VEHICLES.length);
-
-                                let translateX = 0;
-                                let translateY = 0;
-                                let scale = 1;
-                                let opacity = 1;
-                                let blur = 0;
-                                let zIndex = 30;
-
-                                if (stage === 'active') {
-                                    translateX = 0;
-                                    translateY = 260;
-                                    scale = 0.9;
-                                    opacity = 1;
-                                    blur = 0;
-                                    zIndex = 40;
-                                } else if (stage === 'next') {
-                                    translateX = 548.5;
-                                    translateY = 1.5;
-                                    scale = 200 / 719;
-                                    opacity = 1;
-                                    blur = 5;
-                                    zIndex = 25;
-                                } else if (stage === 'prev') {
-                                    translateX = 534.5;
-                                    translateY = 480;
-                                    scale = 200 / 719;
-                                    opacity = 1;
-                                    blur = 5;
-                                    zIndex = 15;
-                                } else {
-                                    translateX = 534.5;
-                                    translateY = 480;
-                                    scale = 0.2;
-                                    opacity = 0;
-                                    blur = 4;
-                                    zIndex = 5;
-                                }
-
-                                return (
-                                    <img
-                                        key={vehicle.id}
-                                        src={vehicle.image}
-                                        alt={vehicle.title}
-                                        className="absolute left-1/2 top-1/2 max-w-[520px] w-[70vw] sm:w-[420px] lg:w-[520px] -translate-x-1/2 -translate-y-1/2 object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.45)] transition-all duration-500 ease-out"
-                                        style={{
-                                            transform: `translate(-50%, -50%) translateX(${translateX}px) translateY(${translateY}px) scale(${scale})`,
-                                            opacity,
-                                            filter: `blur(${blur}px)`,
-                                            zIndex,
-                                        }}
-                                    />
-                                );
-                            })}
-                        </div>
-                    </div>
-                </section>
-            </main>
-
-            <div className="mt-12 lg:mt-24">
-                <Footer />
-            </div>
-            </div>
-        </div>
         </>
     );
 }

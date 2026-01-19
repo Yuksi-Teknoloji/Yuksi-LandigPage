@@ -1,4 +1,5 @@
 import { useFormik } from 'formik';
+import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 import { Input } from '../atoms/Input';
 import { Textarea } from '../atoms/Textarea';
@@ -8,6 +9,7 @@ import { submitSiteContact } from '../../services/siteContactService';
 
 interface DealerFormValues {
     name: string;
+    investmentBudget: string;
     email: string;
     phone: string;
     subject: string;
@@ -15,9 +17,12 @@ interface DealerFormValues {
 }
 
 export function DealerForm() {
+    const { t } = useTranslation();
+
     const formik = useFormik<DealerFormValues>({
         initialValues: {
             name: '',
+            investmentBudget: '',
             email: '',
             phone: '',
             subject: '',
@@ -26,48 +31,53 @@ export function DealerForm() {
         validate: (values) => {
             const errors: Partial<Record<keyof DealerFormValues, string>> = {};
 
-            // Name validation: min 2, max 200
+            // Name validation
             if (!values.name) {
-                errors.name = 'Lütfen isminizi giriniz';
+                errors.name = t('dealer.form.validation.nameRequired');
             } else if (values.name.length < 2) {
-                errors.name = 'İsminiz en az 2 karakter olmalıdır';
+                errors.name = t('dealer.form.validation.nameMin');
             } else if (values.name.length > 200) {
-                errors.name = 'İsminiz en fazla 200 karakter olabilir';
+                errors.name = t('dealer.form.validation.nameMax');
             }
 
-            // Email validation: required and valid format
+            // Investment budget validation
+            if (!values.investmentBudget) {
+                errors.investmentBudget = t('dealer.form.validation.budgetRequired');
+            }
+
+            // Email validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!values.email) {
-                errors.email = 'Lütfen e-posta adresinizi giriniz';
+                errors.email = t('dealer.form.validation.emailRequired');
             } else if (!emailRegex.test(values.email)) {
-                errors.email = 'Geçerli bir e-posta adresi giriniz';
+                errors.email = t('dealer.form.validation.emailInvalid');
             }
 
-            // Phone validation: min 5, max 50
+            // Phone validation
             if (!values.phone) {
-                errors.phone = 'Lütfen telefon numaranızı giriniz';
+                errors.phone = t('dealer.form.validation.phoneRequired');
             } else if (values.phone.length < 5) {
-                errors.phone = 'Telefon numaranız en az 5 karakter olmalıdır';
+                errors.phone = t('dealer.form.validation.phoneMin');
             } else if (values.phone.length > 50) {
-                errors.phone = 'Telefon numaranız en fazla 50 karakter olabilir';
+                errors.phone = t('dealer.form.validation.phoneMax');
             }
 
-            // Subject validation: min 2, max 200
+            // Subject validation
             if (!values.subject) {
-                errors.subject = 'Lütfen konu başlığını giriniz';
+                errors.subject = t('dealer.form.validation.subjectRequired');
             } else if (values.subject.length < 2) {
-                errors.subject = 'Konu başlığı en az 2 karakter olmalıdır';
+                errors.subject = t('dealer.form.validation.subjectMin');
             } else if (values.subject.length > 200) {
-                errors.subject = 'Konu başlığı en fazla 200 karakter olabilir';
+                errors.subject = t('dealer.form.validation.subjectMax');
             }
 
-            // Message validation: min 2, max 5000
+            // Message validation
             if (!values.message) {
-                errors.message = 'Lütfen mesajınızı yazınız';
+                errors.message = t('dealer.form.validation.messageRequired');
             } else if (values.message.length < 2) {
-                errors.message = 'Mesajınız en az 2 karakter olmalıdır';
+                errors.message = t('dealer.form.validation.messageMin');
             } else if (values.message.length > 5000) {
-                errors.message = 'Mesajınız en fazla 5000 karakter olabilir';
+                errors.message = t('dealer.form.validation.messageMax');
             }
 
             return errors;
@@ -79,19 +89,19 @@ export function DealerForm() {
                     email: values.email,
                     phone: values.phone,
                     subject: values.subject,
-                    message: values.message,
+                    message: `${t('dealer.form.investmentBudgetPlaceholder')}: ${values.investmentBudget}\n\n${values.message}`,
                     terms_accepted: true,
                 });
 
                 if (response.success) {
-                    toast.success('Başvurunuz başarıyla iletildi! En kısa sürede size dönüş yapacağız. 🎉');
+                    toast.success(t('dealer.form.success'));
                     helpers.resetForm();
                 } else {
-                    toast.error('Bir şeyler ters gitti. Lütfen tekrar deneyin veya bizimle doğrudan iletişime geçin.');
+                    toast.error(t('dealer.form.error'));
                 }
             } catch (error: unknown) {
                 console.error('Dealer form error:', error);
-                toast.error('Mesajınız gönderilirken bir sorun oluştu. Lütfen tekrar deneyin veya bizimle doğrudan iletişime geçin.');
+                toast.error(t('dealer.form.error'));
             }
         },
     });
@@ -118,7 +128,7 @@ export function DealerForm() {
                                 className="text-[32px] sm:text-[40px] lg:text-[48px] font-bold text-[#FF5B04] leading-tight mb-6"
                                 style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
                             >
-                                Bayi Olmak İçin Bizimle İletişime Geçin
+                                {t('dealer.form.title')}
                             </h1>
 
                             <form
@@ -133,11 +143,36 @@ export function DealerForm() {
                                         value={formik.values.name}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
-                                        placeholder="İsim/Soy İsim"
+                                        placeholder={t('dealer.form.namePlaceholder')}
                                         error={!!(formik.touched.name && formik.errors.name)}
                                     />
                                     {formik.touched.name && formik.errors.name && (
                                         <p className="mt-1 text-sm text-red-500">{formik.errors.name}</p>
+                                    )}
+                                </div>
+
+                                {/* Yatırım Bütçesi */}
+                                <div>
+                                    <select
+                                        name="investmentBudget"
+                                        value={formik.values.investmentBudget}
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        className={`w-full h-14 px-4 bg-[#F5F5F5] border ${formik.touched.investmentBudget && formik.errors.investmentBudget
+                                                ? 'border-red-500'
+                                                : 'border-transparent'
+                                            } rounded-lg text-[#333333] text-base focus:outline-none focus:ring-2 focus:ring-[#FF5B04] focus:border-transparent appearance-none cursor-pointer`}
+                                        style={{ fontFamily: 'Roboto, sans-serif' }}
+                                    >
+                                        <option value="" disabled>{t('dealer.form.investmentBudgetPlaceholder')}</option>
+                                        <option value="0-100000">{t('dealer.form.budgets.0-100000')}</option>
+                                        <option value="100000-250000">{t('dealer.form.budgets.100000-250000')}</option>
+                                        <option value="250000-500000">{t('dealer.form.budgets.250000-500000')}</option>
+                                        <option value="500000-1000000">{t('dealer.form.budgets.500000-1000000')}</option>
+                                        <option value="1000000+">{t('dealer.form.budgets.1000000+')}</option>
+                                    </select>
+                                    {formik.touched.investmentBudget && formik.errors.investmentBudget && (
+                                        <p className="mt-1 text-sm text-red-500">{formik.errors.investmentBudget}</p>
                                     )}
                                 </div>
 
@@ -149,7 +184,7 @@ export function DealerForm() {
                                         value={formik.values.email}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
-                                        placeholder="E-mail"
+                                        placeholder={t('dealer.form.emailPlaceholder')}
                                         error={!!(formik.touched.email && formik.errors.email)}
                                     />
                                     {formik.touched.email && formik.errors.email && (
@@ -165,7 +200,7 @@ export function DealerForm() {
                                         value={formik.values.phone}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
-                                        placeholder="Telefon Numarası"
+                                        placeholder={t('dealer.form.phonePlaceholder')}
                                         error={!!(formik.touched.phone && formik.errors.phone)}
                                     />
                                     {formik.touched.phone && formik.errors.phone && (
@@ -181,7 +216,7 @@ export function DealerForm() {
                                         value={formik.values.subject}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
-                                        placeholder="Mesajınızın Konusu"
+                                        placeholder={t('dealer.form.subjectPlaceholder')}
                                         error={!!(formik.touched.subject && formik.errors.subject)}
                                     />
                                     {formik.touched.subject && formik.errors.subject && (
@@ -196,7 +231,7 @@ export function DealerForm() {
                                         value={formik.values.message}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
-                                        placeholder="Mesaj"
+                                        placeholder={t('dealer.form.messagePlaceholder')}
                                         className="h-[182px]"
                                         error={!!(formik.touched.message && formik.errors.message)}
                                     />
@@ -212,7 +247,7 @@ export function DealerForm() {
                                         disabled={formik.isSubmitting}
                                         className="w-full h-16 bg-[#333333] hover:bg-[#2a2a2a] text-white font-bold text-xl sm:text-2xl shadow-[0px_4px_15px_0px_rgba(0,0,0,0.09)] disabled:opacity-60 disabled:cursor-not-allowed"
                                     >
-                                        {formik.isSubmitting ? 'Gönderiliyor...' : 'Gönder'}
+                                        {formik.isSubmitting ? t('dealer.form.submitting') : t('dealer.form.submit')}
                                     </Button>
                                 </div>
                             </form>
@@ -224,17 +259,17 @@ export function DealerForm() {
                                 className="font-semibold"
                                 style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
                             >
-                                Bayi olmak için bizimle{' '}
+                                {t('dealer.form.contactInfo')}{' '}
                                 <a
                                     href="mailto:info@yuksi.tr"
                                     className="text-[#FF5B04] underline"
                                 >
                                     info@yuksi.tr
                                 </a>{' '}
-                                üzerinden ya da iletişim formu ile görüşlerinizi bizimle paylaşabilirsiniz
+                                {t('dealer.form.contactInfo2')}
                             </p>
                             <p style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}>
-                                İletişim Numarası:
+                                {t('dealer.form.phoneLabel')}:
                                 <span className="font-medium"> 0850 241 93 16</span>
                             </p>
                             <p

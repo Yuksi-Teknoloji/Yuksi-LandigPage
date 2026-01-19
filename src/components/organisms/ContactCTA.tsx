@@ -1,17 +1,22 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import contactBg from '../../assets/contact/contact-mask.png'
 import contactPerson from '../../assets/contact/contact-person.png'
 import arrowRightIcon from '../../assets/icons/arrow-right.svg'
 import { Button } from '../atoms/Button'
+import { getLocalizedPath } from '../../i18n'
 
 export function ContactCTA() {
+    const { t, i18n } = useTranslation()
+    const currentLang = i18n.language as 'tr' | 'en' | 'de'
+
     return (
         <section className="relative w-full bg-white overflow-hidden">
             <div className="relative w-full min-h-[420px] sm:min-h-[440px] md:h-[480px] lg:h-[520px]">
                 {/* Background */}
                 <img
                     src={contactBg}
-                    alt="Taşıyıcı olmak ister misin?"
+                    alt={t('home.contactCta.title')}
                     className="absolute inset-0 w-full h-full object-cover"
                 />
 
@@ -26,30 +31,30 @@ export function ContactCTA() {
                                 className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[26px] font-medium text-[#FF5B04]"
                                 style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
                             >
-                                Bizimle İletişime Geçin
+                                {t('home.contactCta.subtitle')}
                             </p>
 
                             <h2
                                 className="text-[30px] sm:text-[34px] md:text-[40px] lg:text-[50px] font-medium text-white leading-tight"
                                 style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
                             >
-                                Taşıyıcı olmak ister misin?
+                                {t('home.contactCta.title')}
                             </h2>
 
                             <p
                                 className="text-[13px] sm:text-[14px] md:text-[15px] lg:text-[16px] font-normal text-white leading-relaxed max-w-[591px]"
                                 style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
                             >
-                                Yüksi’nin genişleyen lojistik ağında yerinizi alın, aracınızı sadece bir ulaşım aracı olmaktan çıkarıp düzenli gelir getiren bir yatırıma dönüştürün. Sektörün en gelişmiş teknolojik altyapısı sayesinde operasyonel süreçlerinizi kolaylaştırıyor, rotanızı optimize ediyor ve verimliliğinizi artırıyoruz. Şeffaf hakediş sistemi, zamanında ödeme garantisi ve Yüksi’nin kurumsal güvencesiyle sürdürülebilir bir kazanç modeli sizi bekliyor. Hemen başvurunuzu yapın, profesyonel ekibimize katılın.
+                                {t('home.contactCta.description')}
                             </p>
 
-                            <Link to="/contact" className="mt-3 sm:mt-4 lg:mt-6 self-start">
+                            <Link to={getLocalizedPath('contact', currentLang)} className="mt-3 sm:mt-4 lg:mt-6 self-start">
                                 <Button
                                     variant="primary"
                                     size="md"
                                     className="inline-flex items-center gap-3 !bg-[#FF5B04] hover:!bg-[#E55103] text-white font-medium text-[15px] sm:text-[16px] lg:text-[20px] px-5 sm:px-7 lg:px-[27px] py-2.5 sm:py-3 lg:py-[14px] !rounded-[26px] transition-colors"
                                 >
-                                    <span>Form Doldur</span>
+                                    <span>{t('home.contactCta.button')}</span>
                                     <img
                                         src={arrowRightIcon}
                                         alt=""

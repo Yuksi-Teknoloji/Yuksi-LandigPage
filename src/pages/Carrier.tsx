@@ -1,26 +1,37 @@
-import { Header } from '../components/organisms/Header';
-import { Footer } from '../components/organisms/Footer';
-import { CarrierForm } from '../components/organisms/CarrierForm';
-import { SEOHead } from '../components/molecules/SEOHead';
+import { useTranslation } from 'react-i18next'
+import { Header } from '../components/organisms/Header'
+import { Footer } from '../components/organisms/Footer'
+import { CarrierForm } from '../components/organisms/CarrierForm'
+import { SEOHead } from '../components/molecules/SEOHead'
+import { getLocalizedPath, getAlternateUrls } from '../i18n'
+import { useLanguageFromUrl } from '../hooks/useLanguageFromUrl'
 
 export default function Carrier() {
+    const { t } = useTranslation()
+    const currentLang = useLanguageFromUrl()
+
+    const currentPath = getLocalizedPath('carrier', currentLang)
+    const alternateUrls = getAlternateUrls('carrier')
+
     return (
         <>
             <SEOHead
-                title="Kurye ve Taşıyıcı Başvurusu - Yüksi"
-                description="Yüksi'ye kurye veya taşıyıcı olarak başvurun. Motorsiklet, minivan, panelvan, kamyonet veya kamyon ile çalışma fırsatı. Esnek çalışma saatleri ve rekabetçi ücretler."
+                title={t('carrier.seo.title')}
+                description={t('carrier.seo.description')}
                 keywords="kurye iş ilanları, taşıyıcı başvurusu, lojistik iş fırsatları, kurye olmak, taşımacılık işi, Bursa kurye işi"
-                canonical="/carrier"
+                canonical={currentPath}
+                lang={currentLang}
                 geoData={{
                     address: 'Ahmet Vefik Paşa OSB Mah. Bursa caddesi No:73',
                     city: 'Kestel',
                     region: 'Bursa',
                     country: 'TR',
                 }}
+                alternateLanguages={alternateUrls}
             />
-            <Header activeItem="/carrier" />
+            <Header activeItem={currentPath} />
             <CarrierForm />
             <Footer />
         </>
-    );
+    )
 }

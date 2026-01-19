@@ -1,14 +1,17 @@
+import { useTranslation } from 'react-i18next';
 import servicesHeroBg from '../../assets/services/hero-bg.png';
 import kangarooServices from '../../assets/services/kangaroo-services.png';
 
 export function ServicesHero() {
+    const { t } = useTranslation();
+
     return (
         <section className="relative w-full min-h-[300px] sm:min-h-[400px] md:min-h-[500px] lg:min-h-[600px] xl:min-h-[822px] overflow-hidden">
             {/* Background Image */}
             <div className="absolute inset-0 w-full h-full overflow-hidden">
                 <img
                     src={servicesHeroBg}
-                    alt="Yüksi lojistik hizmet"
+                    alt={t('services.hero.backgroundAlt')}
                     className="absolute h-[155.84%] left-0 top-[-56.81%] w-[100.09%] max-w-none object-cover"
                     style={{ transform: 'scaleX(-1)' }}
                 />
@@ -23,9 +26,9 @@ export function ServicesHero() {
                     <div className="hidden md:flex w-full lg:max-w-[60%] pl-4 sm:pl-6 md:pl-8 xl:pl-12 flex-col gap-3 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-8">
                         {/* Main Title */}
                         <h1 className="text-white text-[20px] sm:text-[28px] md:text-[36px] lg:text-[44px] xl:text-[60px] font-bold leading-tight sm:leading-tight md:leading-normal whitespace-pre-wrap" style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}>
-                            SİZE YÜKSE BİZE YÜKSİ
+                            {t('services.hero.title')}
                         </h1>
-                        
+
                         {/* Description Text */}
                         <p
                             className="text-white text-[16px] sm:text-base md:text-lg lg:text-xl xl:text-[28px] font-semibold leading-normal whitespace-pre-wrap"
@@ -34,7 +37,7 @@ export function ServicesHero() {
                                 fontWeight: 600,
                             }}
                         >
-                            Yüksi, modern lojistik ihtiyaçlarınıza hızlı ve esnek çözümler sunar. İster mobil uygulamamızdan ister web sitemizden kolayca araç çağırabilir, motokuryeden minivan, panelvan, kamyonet ve kamyona kadar geniş araç filomuzla gönderilerinizi güvenle taşıtabilirsiniz. Hızlı, pratik ve güvenilir hizmet için Yüksi her zaman yanınızda.
+                            {t('services.hero.description')}
                         </p>
                     </div>
 
@@ -43,7 +46,7 @@ export function ServicesHero() {
                         <div className="relative w-[563px] h-[747px]" style={{ transform: 'rotate(180deg) scaleY(-1)' }}>
                             <img
                                 src={kangarooServices}
-                                alt="Yüksi kanguru"
+                                alt={t('services.hero.kangarooAlt')}
                                 className="w-full h-full object-contain"
                             />
                         </div>

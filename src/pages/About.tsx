@@ -1,26 +1,37 @@
+import { useTranslation } from 'react-i18next'
 import { Header } from '../components/organisms/Header'
 import { AboutUs } from '../components/organisms/AboutUs'
 import { AboutContent } from '../components/organisms/AboutContent'
 import { Footer } from '../components/organisms/Footer'
 import { SEOHead } from '../components/molecules/SEOHead'
+import { getLocalizedPath, getAlternateUrls } from '../i18n'
+import { useLanguageFromUrl } from '../hooks/useLanguageFromUrl'
 
 export default function About() {
+    const { t } = useTranslation()
+    const currentLang = useLanguageFromUrl()
+
+    const currentPath = getLocalizedPath('about', currentLang)
+    const alternateUrls = getAlternateUrls('about')
+
     return (
         <>
             <SEOHead
-                title="Hakkımızda - Yüksi"
-                description="Yüksi hakkında bilgi edinin. Lojistik Kargo Kurye sunan, müşteri memnuniyetini ön planda tutan güvenilir taşımacılık firması. Bursa merkezli, Türkiye genelinde hizmet veriyoruz."
+                title={t('about.seo.title')}
+                description={t('about.seo.description')}
                 keywords="yüksi hakkında, lojistik firması, taşımacılık şirketi, Bursa lojistik, güvenilir nakliye, müşteri odaklı lojistik"
-                canonical="/about"
+                canonical={currentPath}
+                lang={currentLang}
                 geoData={{
                     address: 'Ahmet Vefik Paşa OSB Mah. Bursa caddesi No:73',
                     city: 'Kestel',
                     region: 'Bursa',
                     country: 'TR',
                 }}
+                alternateLanguages={alternateUrls}
             />
             <div className="w-full min-h-screen relative bg-white">
-                <Header activeItem="/about" />
+                <Header activeItem={currentPath} />
                 <AboutUs />
                 <AboutContent />
                 <Footer />

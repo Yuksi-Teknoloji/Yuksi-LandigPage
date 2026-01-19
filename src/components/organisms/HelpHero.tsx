@@ -1,4 +1,5 @@
 import { useFormik } from 'formik';
+import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 import kangarooHelp from '../../assets/help/kangaroo-help.png';
 import arrowRightIcon from '../../assets/icons/arrow-right.svg';
@@ -11,6 +12,8 @@ interface HelpFormValues {
 }
 
 export function HelpHero() {
+    const { t } = useTranslation();
+
     const formik = useFormik<HelpFormValues>({
         initialValues: {
             name: '',
@@ -20,30 +23,30 @@ export function HelpHero() {
         validate: (values) => {
             const errors: Partial<Record<keyof HelpFormValues, string>> = {};
 
-            // Name validation: min 2, max 200
+            // Name validation
             if (!values.name) {
-                errors.name = 'Lütfen isminizi giriniz';
+                errors.name = t('help.hero.validation.nameRequired');
             } else if (values.name.length < 2) {
-                errors.name = 'İsminiz en az 2 karakter olmalıdır';
+                errors.name = t('help.hero.validation.nameMin');
             } else if (values.name.length > 200) {
-                errors.name = 'İsminiz en fazla 200 karakter olabilir';
+                errors.name = t('help.hero.validation.nameMax');
             }
 
-            // Email validation: required and valid format
+            // Email validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!values.email) {
-                errors.email = 'Lütfen e-posta adresinizi giriniz';
+                errors.email = t('help.hero.validation.emailRequired');
             } else if (!emailRegex.test(values.email)) {
-                errors.email = 'Geçerli bir e-posta adresi giriniz';
+                errors.email = t('help.hero.validation.emailInvalid');
             }
 
-            // Message validation: min 2, max 5000
+            // Message validation
             if (!values.message) {
-                errors.message = 'Lütfen mesajınızı yazınız';
+                errors.message = t('help.hero.validation.messageRequired');
             } else if (values.message.length < 2) {
-                errors.message = 'Mesajınız en az 2 karakter olmalıdır';
+                errors.message = t('help.hero.validation.messageMin');
             } else if (values.message.length > 5000) {
-                errors.message = 'Mesajınız en fazla 5000 karakter olabilir';
+                errors.message = t('help.hero.validation.messageMax');
             }
 
             return errors;
@@ -57,24 +60,25 @@ export function HelpHero() {
                 });
 
                 if (response.success) {
-                    toast.success('Mesajınız başarıyla iletildi! En kısa sürede size dönüş yapacağız. 🎉');
+                    toast.success(t('help.hero.success'));
                     helpers.resetForm();
                 } else {
-                    toast.error('Bir şeyler ters gitti. Lütfen tekrar deneyin veya bizimle doğrudan iletişime geçin.');
+                    toast.error(t('help.hero.error'));
                 }
             } catch (error: unknown) {
                 console.error('Help form error:', error);
-                toast.error('Mesajınız gönderilirken bir sorun oluştu. Lütfen tekrar deneyin veya bizimle doğrudan iletişime geçin.');
+                toast.error(t('help.hero.error'));
             }
         },
     });
+
     return (
         <section className="relative w-full min-h-[400px] sm:min-h-[500px] md:min-h-[600px] lg:min-h-[700px] xl:min-h-[822px] overflow-hidden">
             {/* Background Image */}
             <div className="absolute inset-0 w-full h-full overflow-hidden">
                 <img
                     src={kangarooHelp}
-                    alt="Yüksi lojistik hizmet"
+                    alt={t('help.seo.backgroundAlt')}
                     className="absolute h-[155.84%] left-0 top-[-56.81%] w-[100.09%] max-w-none object-cover"
                     style={{ transform: 'scaleX(-1)' }}
                 />
@@ -92,8 +96,8 @@ export function HelpHero() {
                             className="text-white text-[28px] sm:text-[36px] md:text-[45px] lg:text-[52px] xl:text-[65px] 2xl:text-[70px] font-bold leading-tight sm:leading-normal whitespace-pre-wrap mt-4 sm:mt-6 lg:mt-0"
                             style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
                         >
-                            <p className="mb-0">SANA NASIL</p>
-                            <p>YADIMCI OLABİLİRİZ</p>
+                            <p className="mb-0">{t('help.hero.titleLine1')}</p>
+                            <p>{t('help.hero.titleLine2')}</p>
                         </h1>
 
                         {/* Contact Form */}
@@ -103,7 +107,7 @@ export function HelpHero() {
                                 className="text-white text-[20px] sm:text-[24px] lg:text-[28px] font-medium"
                                 style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
                             >
-                                Bize Ulaş
+                                {t('help.hero.formTitle')}
                             </p>
 
                             {/* Message Input */}
@@ -114,7 +118,7 @@ export function HelpHero() {
                                         value={formik.values.message}
                                         onChange={formik.handleChange}
                                         onBlur={formik.handleBlur}
-                                        placeholder="Mesajınızı buraya yazın..."
+                                        placeholder={t('help.hero.messagePlaceholder')}
                                         className="w-full h-[120px] sm:h-[140px] lg:h-[168px] bg-transparent border-none outline-none text-white placeholder-white/70 text-sm sm:text-base resize-none"
                                         style={{ fontFamily: 'Roboto, sans-serif' }}
                                     />
@@ -131,7 +135,7 @@ export function HelpHero() {
                                         className="text-white text-[16px] sm:text-[20px] lg:text-[24px] xl:text-[28px] font-medium mb-2"
                                         style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
                                     >
-                                        İsim / Soy İsim
+                                        {t('help.hero.nameLabel')}
                                     </p>
                                     <div className={`backdrop-blur-[10px] backdrop-filter bg-[rgba(255,255,255,0.5)] rounded-[10px] shadow-[0px_4px_18.3px_0px_rgba(0,0,0,0.25)] p-3 sm:p-4 h-[51px] flex items-center ${formik.touched.name && formik.errors.name ? 'ring-2 ring-red-400' : ''}`}>
                                         <input
@@ -154,7 +158,7 @@ export function HelpHero() {
                                         className="text-white text-[16px] sm:text-[20px] lg:text-[24px] xl:text-[28px] font-medium mb-2"
                                         style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
                                     >
-                                        E-mail Adresi
+                                        {t('help.hero.emailLabel')}
                                     </p>
                                     <div className={`backdrop-blur-[10px] backdrop-filter bg-[rgba(255,255,255,0.5)] rounded-[10px] shadow-[0px_4px_18.3px_0px_rgba(0,0,0,0.25)] p-3 sm:p-4 h-[51px] flex items-center ${formik.touched.email && formik.errors.email ? 'ring-2 ring-red-400' : ''}`}>
                                         <input
@@ -181,15 +185,13 @@ export function HelpHero() {
                                 className="bg-[#FF5B04] hover:bg-[#E55103] disabled:opacity-60 disabled:cursor-not-allowed text-white font-medium text-[18px] sm:text-[20px] lg:text-[24px] py-3 sm:py-4 px-6 sm:px-8 rounded-[35px] flex items-center justify-center gap-2 transition-colors self-center mt-4 sm:mt-5"
                                 style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
                             >
-                                <span>{formik.isSubmitting ? 'GÖNDERİLİYOR...' : 'GÖNDER'}</span>
+                                <span>{formik.isSubmitting ? t('help.hero.submitting') : t('help.hero.submit')}</span>
                                 {!formik.isSubmitting && (
                                     <img src={arrowRightIcon} alt="" className="w-5 h-5" style={{ filter: 'brightness(0) invert(1)' }} />
                                 )}
                             </button>
                         </form>
                     </div>
-
-                    
                 </div>
             </div>
         </section>

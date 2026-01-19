@@ -1,6 +1,8 @@
+import { useTranslation } from 'react-i18next';
 import { ImageGallery } from '../molecules/ImageGallery';
 
 export function AboutContent() {
+    const { t } = useTranslation();
     const aboutImages: string[] | undefined = undefined;
 
     return (
@@ -10,9 +12,9 @@ export function AboutContent() {
                     className="text-[#FF5B04] text-[28px] sm:text-[36px] md:text-[45px] xl:text-[65px] font-bold leading-tight sm:leading-normal whitespace-pre-wrap mb-4 sm:mb-6 lg:mb-8"
                     style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
                 >
-                    <p className="mb-0">TÜRKİYE'NİN LOJİSTİK ALT YAPISI</p>
+                    <p className="mb-0">{t('about.hero.title')}</p>
                 </div>
-                
+
                 <p
                     className="text-[#333] text-sm sm:text-base md:text-lg xl:text-[32px] font-semibold leading-relaxed sm:leading-[1.15] whitespace-pre-wrap mb-6 sm:mb-8 lg:mb-12"
                     style={{
@@ -20,59 +22,59 @@ export function AboutContent() {
                         fontWeight: 600,
                     }}
                 >
-                    Yüksi olarak vizyonumuz, lojistik sektöründe yenilikçi ve güvenilir hizmet anlayışımızla hem bireylerin hem de işletmelerin hayatını kolaylaştıran, dijital çözümlerle hız ve verimliliği en üst düzeye taşıyan öncü bir marka olmaktır. Teknolojiyi odağımıza alarak müşterilerimizin ihtiyaç duyduğu her ölçekte teslimatı güvenle gerçekleştirmek, sürdürülebilirlik ilkeleriyle büyüyerek hem Türkiye'de hem de uluslararası pazarda tercih edilen lojistik çözüm ortağı olmak istiyoruz.
+                    {t('about.hero.description')}
                 </p>
-                
-                <h2 
+
+                <h2
                     className="text-[32px] sm:text-[40px] lg:text-[65px] font-bold text-[#FF5B04] mb-4 sm:mb-6 lg:mb-8"
                     style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
                 >
-                    Hakkımızda
+                    {t('about.aboutUs.title')}
                 </h2>
-                <p 
+                <p
                     className="text-sm sm:text-base lg:text-[22px] font-medium text-[#333] leading-relaxed mb-6 sm:mb-8 lg:mb-12"
                     style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
                 >
-                    Yüksi, lojistik ve taşımacılık sektörüne yenilikçi çözümler sunmak amacıyla geliştirilmiş dijital bir platformdur. Yüksi mobil uygulaması sayesinde, yük verenlerle taşıyıcıları güvenli, hızlı ve verimli bir şekilde bir araya getiriyoruz.
+                    {t('about.aboutUs.description')}
                 </p>
-                
+
                 <ImageGallery images={aboutImages} />
             </section>
 
             <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16 lg:py-24">
-                <h2 
+                <h2
                     className="text-[32px] sm:text-[40px] lg:text-[50px] font-bold text-[#FF5B04] mb-6 sm:mb-8 lg:mb-12"
                     style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
                 >
-                    Hizmet Özellikleri
+                    {t('about.serviceFeatures.title')}
                 </h2>
-                
+
                 <div className="space-y-4 sm:space-y-6 lg:space-y-8 mb-6 sm:mb-8 lg:mb-12">
                     <div>
                         <p className="text-[#333] leading-normal whitespace-pre-wrap mb-0 text-sm sm:text-base lg:text-[22px]" style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}>
-                            <span className="text-[18px] sm:text-[22px] lg:text-[28px] font-semibold">Akıllı Eşleştirme:</span>
-                            <span className="text-sm sm:text-base lg:text-[22px] font-normal">{` Gelişmiş algoritmalarımız sayesinde yükler, en uygun taşıyıcılarla saniyeler içinde eşleştirilir.`}</span>
+                            <span className="text-[18px] sm:text-[22px] lg:text-[28px] font-semibold">{t('about.serviceFeatures.smartMatching.title')}</span>
+                            <span className="text-sm sm:text-base lg:text-[22px] font-normal">{` ${t('about.serviceFeatures.smartMatching.description')}`}</span>
                         </p>
                     </div>
-                    
+
                     <div>
                         <p className="text-[#333] leading-normal whitespace-pre-wrap mb-0 text-sm sm:text-base lg:text-[22px]" style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}>
-                            <span className="text-[18px] sm:text-[22px] lg:text-[28px] font-semibold">Gerçek Zamanlı Takip:</span>
-                            <span className="text-sm sm:text-base lg:text-[22px] font-normal">{` Sevkiyat süreci boyunca araçların konumunu anlık olarak izleyebilirsiniz.`}</span>
+                            <span className="text-[18px] sm:text-[22px] lg:text-[28px] font-semibold">{t('about.serviceFeatures.realTimeTracking.title')}</span>
+                            <span className="text-sm sm:text-base lg:text-[22px] font-normal">{` ${t('about.serviceFeatures.realTimeTracking.description')}`}</span>
                         </p>
                     </div>
-                    
+
                     <div>
                         <p className="text-[#333] leading-normal whitespace-pre-wrap mb-0 text-sm sm:text-base lg:text-[22px]" style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}>
-                            <span className="text-[18px] sm:text-[22px] lg:text-[28px] font-semibold">Belgeli Taşıyıcı Ağı:</span>
-                            <span className="text-sm sm:text-base lg:text-[22px] font-normal">{` Tüm taşıyıcılarımız, gerekli belgeleri ve yeterlilikleri sağladığı onaylı bir ağa dahildir.`}</span>
+                            <span className="text-[18px] sm:text-[22px] lg:text-[28px] font-semibold">{t('about.serviceFeatures.certifiedNetwork.title')}</span>
+                            <span className="text-sm sm:text-base lg:text-[22px] font-normal">{` ${t('about.serviceFeatures.certifiedNetwork.description')}`}</span>
                         </p>
                     </div>
-                    
+
                     <div>
                         <p className="text-[#333] leading-normal whitespace-pre-wrap mb-0 text-sm sm:text-base lg:text-[22px]" style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}>
-                            <span className="text-[18px] sm:text-[22px] lg:text-[28px] font-semibold">Esnek Ödeme Çözümleri:</span>
-                            <span className="text-sm sm:text-base lg:text-[22px] font-normal">{` Güvenli ödeme altyapısı ile ödemeler hızlı ve sorunsuz gerçekleşir.`}</span>
+                            <span className="text-[18px] sm:text-[22px] lg:text-[28px] font-semibold">{t('about.serviceFeatures.flexiblePayment.title')}</span>
+                            <span className="text-sm sm:text-base lg:text-[22px] font-normal">{` ${t('about.serviceFeatures.flexiblePayment.description')}`}</span>
                         </p>
                     </div>
                 </div>
@@ -81,32 +83,32 @@ export function AboutContent() {
             </section>
 
             <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16 lg:py-24">
-                <h2 
+                <h2
                     className="text-[32px] sm:text-[40px] lg:text-[50px] font-bold text-[#FF5B04] mb-6 sm:mb-8 lg:mb-12"
                     style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
                 >
-                    Müşteri Avantajları
+                    {t('about.customerAdvantages.title')}
                 </h2>
-                
+
                 <div className="space-y-4 sm:space-y-6 lg:space-y-8 mb-6 sm:mb-8 lg:mb-12">
                     <div>
                         <p className="text-[#333] leading-normal whitespace-pre-wrap mb-0 text-sm sm:text-base lg:text-[22px]" style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}>
-                            <span className="text-[18px] sm:text-[22px] lg:text-[28px] font-semibold">Zaman ve Maliyet Tasarrufu:</span>
-                            <span className="text-sm sm:text-base lg:text-[22px] font-normal">{` Doğru eşleşme, gereksiz beklemeleri ve boş taşımaları ortadan kaldırır.`}</span>
+                            <span className="text-[18px] sm:text-[22px] lg:text-[28px] font-semibold">{t('about.customerAdvantages.timeCost.title')}</span>
+                            <span className="text-sm sm:text-base lg:text-[22px] font-normal">{` ${t('about.customerAdvantages.timeCost.description')}`}</span>
                         </p>
                     </div>
-                    
+
                     <div>
                         <p className="text-[#333] leading-normal whitespace-pre-wrap mb-0 text-sm sm:text-base lg:text-[22px]" style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}>
-                            <span className="text-[18px] sm:text-[22px] lg:text-[28px] font-semibold">Şeffaflık ve Güven:</span>
-                            <span className="text-sm sm:text-base lg:text-[22px] font-normal">{` Her işlem dijital olarak kayıt altına alınır, taraflar arası güven artırılır.`}</span>
+                            <span className="text-[18px] sm:text-[22px] lg:text-[28px] font-semibold">{t('about.customerAdvantages.transparency.title')}</span>
+                            <span className="text-sm sm:text-base lg:text-[22px] font-normal">{` ${t('about.customerAdvantages.transparency.description')}`}</span>
                         </p>
                     </div>
-                    
+
                     <div>
                         <p className="text-[#333] leading-normal whitespace-pre-wrap mb-0 text-sm sm:text-base lg:text-[22px]" style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}>
-                            <span className="text-[18px] sm:text-[22px] lg:text-[28px] font-semibold">7/24 Destek:</span>
-                            <span className="text-sm sm:text-base lg:text-[22px] font-normal">{` Operasyonel sorunlarınızda her zaman yanınızda olan destek ekibimiz mevcuttur.`}</span>
+                            <span className="text-[18px] sm:text-[22px] lg:text-[28px] font-semibold">{t('about.customerAdvantages.support.title')}</span>
+                            <span className="text-sm sm:text-base lg:text-[22px] font-normal">{` ${t('about.customerAdvantages.support.description')}`}</span>
                         </p>
                     </div>
                 </div>
@@ -115,32 +117,32 @@ export function AboutContent() {
             </section>
 
             <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16 lg:py-24">
-                <h2 
+                <h2
                     className="text-[32px] sm:text-[40px] lg:text-[50px] font-bold text-[#FF5B04] mb-6 sm:mb-8 lg:mb-12"
                     style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
                 >
-                    Teknolojik Altyapı
+                    {t('about.technology.title')}
                 </h2>
-                
+
                 <div className="space-y-4 sm:space-y-6 lg:space-y-8 mb-6 sm:mb-8 lg:mb-12">
                     <div>
                         <p className="text-[#333] leading-normal whitespace-pre-wrap mb-0 text-sm sm:text-base lg:text-[22px]" style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}>
-                            <span className="text-[18px] sm:text-[22px] lg:text-[28px] font-semibold">Konum Tabanlı Akıllı Sistem:</span>
-                            <span className="text-sm sm:text-base lg:text-[22px] font-normal">{` En yakın ve en uygun taşıyıcıları anında tespit eder.`}</span>
+                            <span className="text-[18px] sm:text-[22px] lg:text-[28px] font-semibold">{t('about.technology.locationBased.title')}</span>
+                            <span className="text-sm sm:text-base lg:text-[22px] font-normal">{` ${t('about.technology.locationBased.description')}`}</span>
                         </p>
                     </div>
-                    
+
                     <div>
                         <p className="text-[#333] leading-normal whitespace-pre-wrap mb-0 text-sm sm:text-base lg:text-[22px]" style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}>
-                            <span className="text-[18px] sm:text-[22px] lg:text-[28px] font-semibold">Yapay Zeka Destekli Planlama:</span>
-                            <span className="text-sm sm:text-base lg:text-[22px] font-normal">{` Trafik, hava durumu ve rota verilerine göre optimum taşıma planları oluşturulur.`}</span>
+                            <span className="text-[18px] sm:text-[22px] lg:text-[28px] font-semibold">{t('about.technology.aiPlanning.title')}</span>
+                            <span className="text-sm sm:text-base lg:text-[22px] font-normal">{` ${t('about.technology.aiPlanning.description')}`}</span>
                         </p>
                     </div>
-                    
+
                     <div>
                         <p className="text-[#333] leading-normal whitespace-pre-wrap mb-0 text-sm sm:text-base lg:text-[22px]" style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}>
-                            <span className="text-[18px] sm:text-[22px] lg:text-[28px] font-semibold">Bulut Tabanlı Mimari:</span>
-                            <span className="text-sm sm:text-base lg:text-[22px] font-normal">{` Güvenli, hızlı ve ölçeklenebilir altyapımız ile tüm işlemler sorunsuz yürütülür.`}</span>
+                            <span className="text-[18px] sm:text-[22px] lg:text-[28px] font-semibold">{t('about.technology.cloudBased.title')}</span>
+                            <span className="text-sm sm:text-base lg:text-[22px] font-normal">{` ${t('about.technology.cloudBased.description')}`}</span>
                         </p>
                     </div>
                 </div>
