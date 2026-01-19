@@ -39,6 +39,7 @@ export const Header: React.FC<HeaderProps> = ({
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isApplicationMenuOpen, setIsApplicationMenuOpen] = useState(false);
+  const [isLoginMenuOpen, setIsLoginMenuOpen] = useState(false);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -159,13 +160,77 @@ export const Header: React.FC<HeaderProps> = ({
                 </div>
               </div>
 
-              <Button
-                variant="primary"
-                size="md"
-                className="w-[188px] h-[42px] !rounded-[5px] flex items-center justify-center"
-              >
-                Giriş Yap
-              </Button>
+              <div className="relative group">
+                <Button
+                  variant="primary"
+                  size="md"
+                  className="w-[188px] h-[42px] !rounded-[5px] flex items-center justify-center gap-2"
+                >
+                  Giriş Yap
+                  <svg
+                    className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </Button>
+
+                <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 absolute right-0 mt-2 w-[220px] bg-white rounded-[12px] shadow-[0_10px_40px_rgba(0,0,0,0.15)] border border-gray-100 overflow-hidden z-50">
+                  <div className="py-2">
+                    <a
+                      href="https://kurumsal.yuksi.dev/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-orange-50 transition-colors duration-200"
+                    >
+                      <div className="w-10 h-10 bg-gradient-to-br from-[#FF5B04] to-[#FF8A50] rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="text-[14px] font-semibold text-[#3A3A3A]" style={{ fontFamily: 'Roboto, sans-serif' }}>Kurumsal Giriş</p>
+                        <p className="text-[12px] text-gray-500">İşletme hesabınıza erişin</p>
+                      </div>
+                    </a>
+                    <a
+                      href="https://bayi.yuksi.dev/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-orange-50 transition-colors duration-200"
+                    >
+                      <div className="w-10 h-10 bg-gradient-to-br from-[#FF5B04] to-[#FF8A50] rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="text-[14px] font-semibold text-[#3A3A3A]" style={{ fontFamily: 'Roboto, sans-serif' }}>Bayi Giriş</p>
+                        <p className="text-[12px] text-gray-500">Bayi panelinize erişin</p>
+                      </div>
+                    </a>
+                    <a
+                      href="https://restoran.yuksi.dev/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-orange-50 transition-colors duration-200"
+                    >
+                      <div className="w-10 h-10 bg-gradient-to-br from-[#FF5B04] to-[#FF8A50] rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="text-[14px] font-semibold text-[#3A3A3A]" style={{ fontFamily: 'Roboto, sans-serif' }}>Restoran Giriş</p>
+                        <p className="text-[12px] text-gray-500">Restoran panelinize erişin</p>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="lg:hidden order-1 lg:order-2">
@@ -303,17 +368,79 @@ export const Header: React.FC<HeaderProps> = ({
                 )}
               </div>
 
-              {/* Giriş Yap Butonu */}
+              {/* Giriş Yap Dropdown */}
               <div className="mt-[41px]">
-                <Button
-                  variant="primary"
-                  size="md"
-                  className="w-[142px] h-[42px] !rounded-[5px] flex items-center justify-center"
+                <button
+                  type="button"
+                  onClick={() => setIsLoginMenuOpen(!isLoginMenuOpen)}
+                  className="w-[180px] h-[42px] !rounded-[5px] bg-[#FF5B04] text-white flex items-center justify-center gap-2"
                 >
-                  <span className="text-[20px] font-medium" style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}>
+                  <span className="text-[18px] font-medium" style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}>
                     Giriş Yap
                   </span>
-                </Button>
+                  <svg
+                    className={`w-4 h-4 transition-transform duration-200 ${isLoginMenuOpen ? 'rotate-180' : ''}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+
+                {isLoginMenuOpen && (
+                  <div className="mt-3 flex flex-col gap-2">
+                    <a
+                      href="https://kurumsal.yuksi.dev/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 px-3 py-3 bg-gray-50 rounded-[10px] hover:bg-orange-50 transition-colors duration-200"
+                    >
+                      <div className="w-9 h-9 bg-gradient-to-br from-[#FF5B04] to-[#FF8A50] rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="text-[14px] font-semibold text-[#3A3A3A]" style={{ fontFamily: 'Roboto, sans-serif' }}>Kurumsal Giriş</p>
+                        <p className="text-[11px] text-gray-500">İşletme hesabınıza erişin</p>
+                      </div>
+                    </a>
+                    <a
+                      href="https://bayi.yuksi.dev/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 px-3 py-3 bg-gray-50 rounded-[10px] hover:bg-orange-50 transition-colors duration-200"
+                    >
+                      <div className="w-9 h-9 bg-gradient-to-br from-[#FF5B04] to-[#FF8A50] rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="text-[14px] font-semibold text-[#3A3A3A]" style={{ fontFamily: 'Roboto, sans-serif' }}>Bayi Giriş</p>
+                        <p className="text-[11px] text-gray-500">Bayi panelinize erişin</p>
+                      </div>
+                    </a>
+                    <a
+                      href="https://restoran.yuksi.dev/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 px-3 py-3 bg-gray-50 rounded-[10px] hover:bg-orange-50 transition-colors duration-200"
+                    >
+                      <div className="w-9 h-9 bg-gradient-to-br from-[#FF5B04] to-[#FF8A50] rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="text-[14px] font-semibold text-[#3A3A3A]" style={{ fontFamily: 'Roboto, sans-serif' }}>Restoran Giriş</p>
+                        <p className="text-[11px] text-gray-500">Restoran panelinize erişin</p>
+                      </div>
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
           </div>
