@@ -70,9 +70,18 @@ export function CarrierForm() {
 
                 toast.success(t('carrier.form.success'));
                 helpers.resetForm();
-            } catch (error) {
+            } catch (error: unknown) {
                 console.error('Carrier application error:', error);
-                toast.error(t('carrier.form.error'));
+                
+                // Check if it's a CORS error
+                if (error instanceof Error && 'isCorsError' in error && (error as Error & { isCorsError: boolean }).isCorsError) {
+                    toast.error(
+                        t('carrier.form.error') + ' ' + 
+                        'CORS Error: Please contact support or check your network connection.'
+                    );
+                } else {
+                    toast.error(t('carrier.form.error'));
+                }
             }
         },
     });

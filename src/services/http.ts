@@ -8,8 +8,6 @@ interface RequestOptions extends RequestInit {
 }
 
 async function request<T>(path: string, method: HttpMethod, options: RequestOptions = {}): Promise<T> {
-    
-
     const { asJson = true, headers, body, ...rest } = options;
 
     const finalHeaders: HeadersInit = {
@@ -17,12 +15,28 @@ async function request<T>(path: string, method: HttpMethod, options: RequestOpti
         ...headers,
     };
 
-    const response = await fetch(`${API_BASE_URL}${path}`, {
-        method,
-        headers: finalHeaders,
-        body,
-        ...rest,
-    });
+    let response: Response;
+    
+    try {
+        response = await fetch(`${API_BASE_URL}${path}`, {
+            method,
+            headers: finalHeaders,
+            body,
+            ...rest,
+        });
+    } catch (fetchError: unknown) {
+        // Handle CORS and network errors
+        if (fetchError instanceof TypeError && fetchError.message.includes('fetch')) {
+            const corsError = new Error(
+                'CORS Error: The API server does not allow requests from this origin. ' +
+                'Please configure CORS headers on the backend server to allow requests from your frontend domain.'
+            ) as Error & { isCorsError: boolean; originalError: unknown };
+            corsError.isCorsError = true;
+            corsError.originalError = fetchError;
+            throw corsError;
+        }
+        throw fetchError;
+    }
 
     const contentType = response.headers.get('Content-Type') || '';
     const isJson = contentType.includes('application/json');
@@ -32,10 +46,10 @@ async function request<T>(path: string, method: HttpMethod, options: RequestOpti
             try {
                 const errorData = await response.json() as { message?: string; success?: boolean };
                 const errorMessage = errorData.message || `HTTP error ${response.status}`;
-                const error = new Error(errorMessage);
-                (error as any).response = errorData;
+                const error = new Error(errorMessage) as Error & { response?: { message?: string; success?: boolean } };
+                error.response = errorData;
                 throw error;
-            } catch (parseError) {
+            } catch {
                 // If JSON parsing fails, fall back to text
                 const errorText = await response.text().catch(() => '');
                 throw new Error(`HTTP error ${response.status}: ${errorText}`);

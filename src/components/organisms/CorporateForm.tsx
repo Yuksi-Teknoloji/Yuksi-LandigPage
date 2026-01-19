@@ -105,7 +105,16 @@ export function CorporateForm() {
                 }
             } catch (error: unknown) {
                 console.error('Corporate form error:', error);
-                toast.error(t('corporate.form.error'));
+                
+                // Check if it's a CORS error
+                if (error instanceof Error && 'isCorsError' in error && (error as Error & { isCorsError: boolean }).isCorsError) {
+                    toast.error(
+                        t('corporate.form.error') + ' ' + 
+                        'CORS Error: Please contact support or check your network connection.'
+                    );
+                } else {
+                    toast.error(t('corporate.form.error'));
+                }
             }
         },
     });

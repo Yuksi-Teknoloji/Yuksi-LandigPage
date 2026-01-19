@@ -97,7 +97,16 @@ export function ContactFormSection() {
                 }
             } catch (error: unknown) {
                 console.error('Contact form error:', error);
-                toast.error(t('contact.form.error'));
+                
+                // Check if it's a CORS error
+                if (error instanceof Error && 'isCorsError' in error && (error as Error & { isCorsError: boolean }).isCorsError) {
+                    toast.error(
+                        t('contact.form.error') + ' ' + 
+                        'CORS Error: Please contact support or check your network connection.'
+                    );
+                } else {
+                    toast.error(t('contact.form.error'));
+                }
             }
         },
     });

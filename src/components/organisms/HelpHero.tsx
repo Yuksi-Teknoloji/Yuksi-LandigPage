@@ -67,7 +67,16 @@ export function HelpHero() {
                 }
             } catch (error: unknown) {
                 console.error('Help form error:', error);
-                toast.error(t('help.hero.error'));
+                
+                // Check if it's a CORS error
+                if (error instanceof Error && 'isCorsError' in error && (error as Error & { isCorsError: boolean }).isCorsError) {
+                    toast.error(
+                        t('help.hero.error') + ' ' + 
+                        'CORS Error: Please contact support or check your network connection.'
+                    );
+                } else {
+                    toast.error(t('help.hero.error'));
+                }
             }
         },
     });
