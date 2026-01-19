@@ -5,11 +5,10 @@ import { Input } from '../atoms/Input';
 import { Textarea } from '../atoms/Textarea';
 import { Button } from '../atoms/Button';
 import bayiImage from '../../assets/basvuru/bayi.png';
-import { submitSiteContact } from '../../services/siteContactService';
+import { submitDealerForm } from '../../services/dealerFormService';
 
 interface DealerFormValues {
     name: string;
-    investmentBudget: string;
     email: string;
     phone: string;
     subject: string;
@@ -22,7 +21,6 @@ export function DealerForm() {
     const formik = useFormik<DealerFormValues>({
         initialValues: {
             name: '',
-            investmentBudget: '',
             email: '',
             phone: '',
             subject: '',
@@ -38,11 +36,6 @@ export function DealerForm() {
                 errors.name = t('dealer.form.validation.nameMin');
             } else if (values.name.length > 200) {
                 errors.name = t('dealer.form.validation.nameMax');
-            }
-
-            // Investment budget validation
-            if (!values.investmentBudget) {
-                errors.investmentBudget = t('dealer.form.validation.budgetRequired');
             }
 
             // Email validation
@@ -84,13 +77,12 @@ export function DealerForm() {
         },
         onSubmit: async (values, helpers) => {
             try {
-                const response = await submitSiteContact({
+                const response = await submitDealerForm({
                     name: values.name,
                     email: values.email,
                     phone: values.phone,
                     subject: values.subject,
-                    message: `${t('dealer.form.investmentBudgetPlaceholder')}: ${values.investmentBudget}\n\n${values.message}`,
-                    terms_accepted: true,
+                    message: values.message,
                 });
 
                 if (response.success) {
@@ -148,31 +140,6 @@ export function DealerForm() {
                                     />
                                     {formik.touched.name && formik.errors.name && (
                                         <p className="mt-1 text-sm text-red-500">{formik.errors.name}</p>
-                                    )}
-                                </div>
-
-                                {/* Yatırım Bütçesi */}
-                                <div>
-                                    <select
-                                        name="investmentBudget"
-                                        value={formik.values.investmentBudget}
-                                        onChange={formik.handleChange}
-                                        onBlur={formik.handleBlur}
-                                        className={`w-full h-14 px-4 bg-[#F5F5F5] border ${formik.touched.investmentBudget && formik.errors.investmentBudget
-                                                ? 'border-red-500'
-                                                : 'border-transparent'
-                                            } rounded-lg text-[#333333] text-base focus:outline-none focus:ring-2 focus:ring-[#FF5B04] focus:border-transparent appearance-none cursor-pointer`}
-                                        style={{ fontFamily: 'Roboto, sans-serif' }}
-                                    >
-                                        <option value="" disabled>{t('dealer.form.investmentBudgetPlaceholder')}</option>
-                                        <option value="0-100000">{t('dealer.form.budgets.0-100000')}</option>
-                                        <option value="100000-250000">{t('dealer.form.budgets.100000-250000')}</option>
-                                        <option value="250000-500000">{t('dealer.form.budgets.250000-500000')}</option>
-                                        <option value="500000-1000000">{t('dealer.form.budgets.500000-1000000')}</option>
-                                        <option value="1000000+">{t('dealer.form.budgets.1000000+')}</option>
-                                    </select>
-                                    {formik.touched.investmentBudget && formik.errors.investmentBudget && (
-                                        <p className="mt-1 text-sm text-red-500">{formik.errors.investmentBudget}</p>
                                     )}
                                 </div>
 

@@ -5,7 +5,7 @@ import { Input } from '../atoms/Input';
 import { Textarea } from '../atoms/Textarea';
 import { Button } from '../atoms/Button';
 import kurumsalImage from '../../assets/basvuru/kurumsal.png';
-import { submitSiteContact } from '../../services/siteContactService';
+import { submitCorporateContact } from '../../services/corporateContactService';
 
 interface CorporateFormValues {
     name: string;
@@ -88,13 +88,13 @@ export function CorporateForm() {
         },
         onSubmit: async (values, helpers) => {
             try {
-                const response = await submitSiteContact({
+                const response = await submitCorporateContact({
                     name: values.name,
+                    business_name: values.companyName,
                     email: values.email,
                     phone: values.phone,
                     subject: values.subject,
-                    message: `${t('corporate.form.companyNamePlaceholder')}: ${values.companyName}\n\n${values.message}`,
-                    terms_accepted: true,
+                    message: values.message,
                 });
 
                 if (response.success) {

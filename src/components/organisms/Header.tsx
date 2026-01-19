@@ -36,6 +36,7 @@ export const Header: React.FC<HeaderProps> = ({
   const [isScrolled, setIsScrolled] = useState(false);
   const [isApplicationMenuOpen, setIsApplicationMenuOpen] = useState(false);
   const [isLoginMenuOpen, setIsLoginMenuOpen] = useState(false);
+  const [hoveredApplyItem, setHoveredApplyItem] = useState<'driver' | null>(null);
 
   // Dinamik navigation items oluştur
   const currentLang = i18n.language as 'tr' | 'en' | 'de';
@@ -105,48 +106,131 @@ export const Header: React.FC<HeaderProps> = ({
                 activeItem={resolvedActiveItem}
               />
 
+              {/* Başvuru alanı - yeni tasarım */}
               <div
                 className="relative"
                 onMouseEnter={() => setIsMobileMenuOpen(false)}
               >
-                <div className="group relative">
+                <div className="group relative inline-flex items-center">
                   <button
                     type="button"
-                    className="text-[16px] font-medium text-[#3A3A3A] px-4 py-2 rounded-[5px] hover:bg-gray-100 transition-colors duration-200"
+                    className="inline-flex items-center gap-1 text-[16px] font-medium text-[#3A3A3A] px-4 py-2 rounded-[5px] hover:bg-gray-100 transition-colors duration-200"
                     style={{ fontFamily: 'Roboto, sans-serif', fontVariationSettings: '"wdth" 100' }}
                   >
                     {t('nav.apply')}
+                    <svg
+                      className="w-4 h-4 text-gray-500 transition-transform duration-200 group-hover:rotate-180"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
                   </button>
 
-                  <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-opacity duration-200 absolute right-0 mt-2 w-[210px] rounded-[12px] p-[2px] space-y-[6px] z-50">
-                    <div className="relative group/driver">
-                      <Link to={getLocalizedPath('carrier', currentLang)}>
-                        <Button
-                          variant="secondary"
-                          size="sm"
-                          className="w-full h-[34px] !rounded-[8px] !bg-[#F4F4F4] !text-[#FF5B04] text-[11px] leading-[13px] flex items-center justify-start px-3"
+                  <div
+                    className={`invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 absolute left-0 top-full mt-3 ${hoveredApplyItem === 'driver' ? 'w-[420px]' : 'w-[200px]'} bg-white rounded-[16px] shadow-[0_10px_40px_rgba(0,0,0,0.15)] border border-gray-100 overflow-hidden z-50`}
+                    onMouseLeave={() => setHoveredApplyItem(null)}
+                  >
+                    <div className="flex">
+                      {/* Sol kolon: başvuru tipleri */}
+                      <div className={`${hoveredApplyItem === 'driver' ? 'w-[52%] border-r border-gray-100' : 'w-full'} py-2 transition-all duration-200`}>
+                        <Link
+                          to={getLocalizedPath('carrier', currentLang)}
+                          onMouseEnter={() => setHoveredApplyItem('driver')}
+                          className="flex items-center gap-3 px-4 py-3 hover:bg-orange-50 transition-colors duration-200"
                         >
-                          {t('nav.driverApplication')}
-                        </Button>
-                      </Link>
-                      <div className="invisible opacity-0 group-hover/driver:visible group-hover/driver:opacity-100 transition-opacity duration-200 absolute left-full top-0 ml-2 z-50">
-                        <div className="flex flex-col gap-[6px]">
-                          <Button
-                            variant="primary"
-                            size="sm"
-                            className="w-[180px] h-[42px] !rounded-[24px] !bg-[#FF5B04] !text-white text-[14px] font-medium flex items-center justify-center"
-                          >
-                            {t('nav.logisticsCourier')}
-                          </Button>
-                          <Button
-                            variant="primary"
-                            size="sm"
-                            className="w-[180px] h-[42px] !rounded-[24px] !bg-[#FF5B04] !text-white text-[14px] font-medium flex items-center justify-center"
-                          >
-                            {t('nav.restaurantCourier')}
-                          </Button>
-                        </div>
+                          <div className="w-8 h-8 rounded-full bg-orange-100 text-[#FF5B04] flex items-center justify-center flex-shrink-0">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M3 13l2-5h4l2 5m-2-5l1-3h4l2 6m-5 4a2 2 0 11-4 0 2 2 0 014 0zm7 0a2 2 0 11-4 0 2 2 0 014 0z"
+                              />
+                            </svg>
+                          </div>
+                          <div className="min-w-0">
+                            <p className="text-[14px] font-semibold text-[#3A3A3A]">
+                              {t('nav.driverApplication')}
+                            </p>
+                          </div>
+                        </Link>
+
+                        <Link
+                          to={getLocalizedPath('dealer', currentLang)}
+                          onMouseEnter={() => setHoveredApplyItem(null)}
+                          className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors duration-200"
+                        >
+                          <div className="w-8 h-8 rounded-full bg-gray-100 text-[#FF5B04] flex items-center justify-center flex-shrink-0">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M3 7h18M5 7v13h14V7M9 7V5a3 3 0 016 0v2"
+                              />
+                            </svg>
+                          </div>
+                          <div className="min-w-0">
+                            <p className="text-[14px] font-semibold text-[#3A3A3A]">
+                              {t('nav.franchiseApplication')}
+                            </p>
+                          </div>
+                        </Link>
+
+                        <Link
+                          to={getLocalizedPath('corporate', currentLang)}
+                          onMouseEnter={() => setHoveredApplyItem(null)}
+                          className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors duration-200"
+                        >
+                          <div className="w-8 h-8 rounded-full bg-gray-100 text-[#FF5B04] flex items-center justify-center flex-shrink-0">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M4 21V7a2 2 0 012-2h3m5 0h3a2 2 0 012 2v14M9 5v16M15 5v16"
+                              />
+                            </svg>
+                          </div>
+                          <div className="min-w-0">
+                            <p className="text-[14px] font-semibold text-[#3A3A3A]">
+                              {t('nav.corporateMembership')}
+                            </p>
+                          </div>
+                        </Link>
                       </div>
+
+                      {/* Sağ kolon: sadece sürücü başvuru hover'ında göster */}
+                      {hoveredApplyItem === 'driver' && (
+                        <div className="w-[48%] bg-gradient-to-br from-[#FF5B04] to-[#FF8A50] text-white p-3 flex flex-col justify-center">
+                          <div>
+                            <p className="text-[13px] font-semibold mb-2">
+                              {t('nav.driverApplication')}
+                            </p>
+                            <p className="text-[11px] text-white/90 mb-3">
+                              {t('nav.logisticsCourier')} &amp; {t('nav.restaurantCourier')}
+                            </p>
+                          </div>
+                          <div className="flex flex-col gap-2">
+                            <Button
+                              variant="primary"
+                              size="sm"
+                              className="w-full h-[32px] !rounded-[999px] !bg-white !text-[#FF5B04] text-[12px] font-semibold"
+                            >
+                              {t('nav.logisticsCourier')}
+                            </Button>
+                            <Button
+                              variant="primary"
+                              size="sm"
+                              className="w-full h-[32px] !rounded-[999px] !bg-white/90 !text-[#FF5B04] text-[12px] font-semibold"
+                            >
+                              {t('nav.restaurantCourier')}
+                            </Button>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -324,12 +408,12 @@ export const Header: React.FC<HeaderProps> = ({
                   <button
                     type="button"
                     onClick={() => setIsApplicationMenuOpen(!isApplicationMenuOpen)}
-                    className="w-full flex items-center justify-between px-4 py-3.5 rounded-xl text-[18px] font-bold text-[#3A3A3A] bg-gray-50 transition-colors"
+                    className="w-full flex items-center justify-between px-4 py-3.5 rounded-xl text-[18px] font-bold text-[#3A3A3A] bg-gray-50 hover:bg-gray-100 active:scale-[0.98] transition-all duration-200"
                     style={{ fontFamily: 'Roboto, sans-serif' }}
                   >
                     <span>{t('nav.apply')}</span>
                     <svg
-                      className={`w-5 h-5 text-gray-400 transition-transform duration-300 ${isApplicationMenuOpen ? 'rotate-180' : ''}`}
+                      className={`w-5 h-5 text-gray-500 transition-transform duration-300 ${isApplicationMenuOpen ? 'rotate-180' : ''}`}
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -338,15 +422,83 @@ export const Header: React.FC<HeaderProps> = ({
                     </svg>
                   </button>
 
-                  <div className={`overflow-hidden transition-all duration-300 ${isApplicationMenuOpen ? 'max-h-[400px] opacity-100 mt-3' : 'max-h-0 opacity-0'}`}>
-                    <div className="grid gap-3 pl-2">
-                      <Link to={getLocalizedPath('carrier', currentLang)} onClick={() => setIsMobileMenuOpen(false)}>
-                        <div className="p-3 bg-white border border-gray-100 rounded-xl shadow-sm hover:border-orange-200 transition-colors">
-                          <p className="text-[14px] font-bold text-gray-900">{t('nav.driverApplication')}</p>
-                          <div className="flex gap-2 mt-2">
-                            <span className="text-[10px] bg-orange-100 text-orange-600 px-2 py-0.5 rounded-full font-bold uppercase">{t('nav.logisticsCourier')}</span>
-                            <span className="text-[10px] bg-orange-100 text-orange-600 px-2 py-0.5 rounded-full font-bold uppercase">{t('nav.restaurantCourier')}</span>
+                  <div className={`overflow-hidden transition-all duration-300 ${isApplicationMenuOpen ? 'max-h-[500px] opacity-100 mt-3' : 'max-h-0 opacity-0'}`}>
+                    <div className="grid gap-3">
+                      <Link 
+                        to={getLocalizedPath('carrier', currentLang)} 
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="group"
+                      >
+                        <div className="p-4 bg-gradient-to-br from-white to-orange-50/30 border-2 border-orange-100 rounded-xl shadow-sm hover:border-orange-300 hover:shadow-md transition-all duration-200">
+                          <div className="flex items-center gap-3 mb-3">
+                            <div className="w-10 h-10 rounded-full bg-orange-100 text-[#FF5B04] flex items-center justify-center flex-shrink-0 group-hover:bg-orange-200 transition-colors">
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M3 13l2-5h4l2 5m-2-5l1-3h4l2 6m-5 4a2 2 0 11-4 0 2 2 0 014 0zm7 0a2 2 0 11-4 0 2 2 0 014 0z"
+                                />
+                              </svg>
+                            </div>
+                            <p className="text-[15px] font-bold text-gray-900 flex-1">{t('nav.driverApplication')}</p>
                           </div>
+                          <div className="flex flex-wrap gap-2">
+                            <span className="text-[11px] bg-[#FF5B04] text-white px-3 py-1.5 rounded-full font-semibold">
+                              {t('nav.logisticsCourier')}
+                            </span>
+                            <span className="text-[11px] bg-[#FF5B04] text-white px-3 py-1.5 rounded-full font-semibold">
+                              {t('nav.restaurantCourier')}
+                            </span>
+                          </div>
+                        </div>
+                      </Link>
+                      <Link 
+                        to={getLocalizedPath('dealer', currentLang)} 
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="group"
+                      >
+                        <div className="p-4 bg-white border border-gray-100 rounded-xl shadow-sm hover:border-orange-200 hover:shadow-md hover:bg-orange-50/30 transition-all duration-200 flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-full bg-gray-100 text-[#FF5B04] flex items-center justify-center flex-shrink-0 group-hover:bg-orange-100 transition-colors">
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M3 7h18M5 7v13h14V7M9 7V5a3 3 0 016 0v2"
+                                />
+                              </svg>
+                            </div>
+                            <span className="text-[15px] font-bold text-gray-900">{t('nav.franchiseApplication')}</span>
+                          </div>
+                          <svg className="w-5 h-5 text-orange-500 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </div>
+                      </Link>
+                      <Link 
+                        to={getLocalizedPath('corporate', currentLang)} 
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="group"
+                      >
+                        <div className="p-4 bg-white border border-gray-100 rounded-xl shadow-sm hover:border-orange-200 hover:shadow-md hover:bg-orange-50/30 transition-all duration-200 flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-full bg-gray-100 text-[#FF5B04] flex items-center justify-center flex-shrink-0 group-hover:bg-orange-100 transition-colors">
+                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M4 21V7a2 2 0 012-2h3m5 0h3a2 2 0 012 2v14M9 5v16M15 5v16"
+                                />
+                              </svg>
+                            </div>
+                            <span className="text-[15px] font-bold text-gray-900">{t('nav.corporateMembership')}</span>
+                          </div>
+                          <svg className="w-5 h-5 text-orange-500 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
                         </div>
                       </Link>
                     </div>
@@ -360,7 +512,7 @@ export const Header: React.FC<HeaderProps> = ({
                 <button
                   type="button"
                   onClick={() => setIsLoginMenuOpen(!isLoginMenuOpen)}
-                  className="w-full h-14 bg-[#FF5B04] text-white rounded-2xl flex items-center justify-center gap-3 shadow-lg shadow-orange-200 active:scale-95 transition-all"
+                  className="w-full h-14 bg-gradient-to-r from-[#FF5B04] to-[#FF8A50] text-white rounded-2xl flex items-center justify-center gap-3 shadow-lg shadow-orange-200/50 hover:shadow-xl hover:shadow-orange-300/50 active:scale-[0.97] transition-all duration-200"
                 >
                   <span className="text-[18px] font-bold" style={{ fontFamily: 'Roboto, sans-serif' }}>
                     {t('nav.login')}
@@ -375,34 +527,65 @@ export const Header: React.FC<HeaderProps> = ({
                   </svg>
                 </button>
 
-                <div className={`overflow-hidden transition-all duration-300 ${isLoginMenuOpen ? 'max-h-[300px] opacity-100 mt-4' : 'max-h-0 opacity-0'}`}>
-                  <div className="grid gap-2">
-                    <a href="https://kurumsal.yuksi.dev/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-3 bg-white border border-gray-100 rounded-xl shadow-sm">
-                      <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center text-orange-500 flex-shrink-0">
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                <div className={`overflow-hidden transition-all duration-300 ${isLoginMenuOpen ? 'max-h-[400px] opacity-100 mt-4' : 'max-h-0 opacity-0'}`}>
+                  <div className="grid gap-3">
+                    <a 
+                      href="https://kurumsal.yuksi.dev/" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="group flex items-center gap-4 p-4 bg-white border border-gray-100 rounded-xl shadow-sm hover:border-orange-200 hover:shadow-md hover:bg-orange-50/30 transition-all duration-200"
+                    >
+                      <div className="w-11 h-11 bg-gradient-to-br from-[#FF5B04] to-[#FF8A50] rounded-full flex items-center justify-center text-white flex-shrink-0 group-hover:scale-110 transition-transform">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
                       </div>
-                      <div className="min-w-0">
-                        <p className="text-sm font-bold text-gray-900 truncate">{t('nav.corporateLogin')}</p>
-                        <p className="text-[11px] text-gray-500 truncate">{t('nav.corporateLoginDesc')}</p>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-[15px] font-bold text-gray-900">{t('nav.corporateLogin')}</p>
+                        <p className="text-[12px] text-gray-500 mt-0.5">{t('nav.corporateLoginDesc')}</p>
                       </div>
+                      <svg className="w-5 h-5 text-orange-500 group-hover:translate-x-1 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
                     </a>
-                    <a href="https://bayi.yuksi.dev/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-3 bg-white border border-gray-100 rounded-xl shadow-sm">
-                      <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center text-orange-500 flex-shrink-0">
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    <a 
+                      href="https://bayi.yuksi.dev/" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="group flex items-center gap-4 p-4 bg-white border border-gray-100 rounded-xl shadow-sm hover:border-orange-200 hover:shadow-md hover:bg-orange-50/30 transition-all duration-200"
+                    >
+                      <div className="w-11 h-11 bg-gradient-to-br from-[#FF5B04] to-[#FF8A50] rounded-full flex items-center justify-center text-white flex-shrink-0 group-hover:scale-110 transition-transform">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
                       </div>
-                      <div className="min-w-0">
-                        <p className="text-sm font-bold text-gray-900 truncate">{t('nav.dealerLogin')}</p>
-                        <p className="text-[11px] text-gray-500 truncate">{t('nav.dealerLoginDesc')}</p>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-[15px] font-bold text-gray-900">{t('nav.dealerLogin')}</p>
+                        <p className="text-[12px] text-gray-500 mt-0.5">{t('nav.dealerLoginDesc')}</p>
                       </div>
+                      <svg className="w-5 h-5 text-orange-500 group-hover:translate-x-1 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
                     </a>
-                    <a href="https://restoran.yuksi.dev/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-3 bg-white border border-gray-100 rounded-xl shadow-sm">
-                      <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center text-orange-500 flex-shrink-0">
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                    <a 
+                      href="https://restoran.yuksi.dev/" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="group flex items-center gap-4 p-4 bg-white border border-gray-100 rounded-xl shadow-sm hover:border-orange-200 hover:shadow-md hover:bg-orange-50/30 transition-all duration-200"
+                    >
+                      <div className="w-11 h-11 bg-gradient-to-br from-[#FF5B04] to-[#FF8A50] rounded-full flex items-center justify-center text-white flex-shrink-0 group-hover:scale-110 transition-transform">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
                       </div>
-                      <div className="min-w-0">
-                        <p className="text-sm font-bold text-gray-900 truncate">{t('nav.restaurantLogin')}</p>
-                        <p className="text-[11px] text-gray-500 truncate">{t('nav.restaurantLoginDesc')}</p>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-[15px] font-bold text-gray-900">{t('nav.restaurantLogin')}</p>
+                        <p className="text-[12px] text-gray-500 mt-0.5">{t('nav.restaurantLoginDesc')}</p>
                       </div>
+                      <svg className="w-5 h-5 text-orange-500 group-hover:translate-x-1 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
                     </a>
                   </div>
                 </div>
