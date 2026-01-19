@@ -6,7 +6,8 @@ import { Navigation } from '../molecules/Navigation';
 import { Button } from '../atoms/Button';
 import { Icon } from '../atoms/Icon';
 import { LanguageSwitcher } from '../molecules/LanguageSwitcher';
-import { getLocalizedPath } from '../../i18n';
+import { getLocalizedPath, languages, routeTranslations } from '../../i18n';
+import { useNavigate, useLocation } from 'react-router-dom';
 import menuIcon from '../../assets/icons/menu.svg';
 import closeIcon from '../../assets/icons/close.svg';
 import kanguruGif from '../../assets/hero/kanguru.gif';
@@ -32,14 +33,35 @@ export const Header: React.FC<HeaderProps> = ({
   activeItem,
 }) => {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isApplicationMenuOpen, setIsApplicationMenuOpen] = useState(false);
   const [isLoginMenuOpen, setIsLoginMenuOpen] = useState(false);
+  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const [hoveredApplyItem, setHoveredApplyItem] = useState<'driver' | null>(null);
 
   // Dinamik navigation items oluştur
   const currentLang = i18n.language as 'tr' | 'en' | 'de';
+
+  const getCurrentRoute = (): string | null => {
+    const path = location.pathname.slice(1); // Remove leading slash
+
+    // Check for home page
+    if (!path) {
+      return 'home';
+    }
+
+    for (const [route, translations] of Object.entries(routeTranslations)) {
+      for (const translatedPath of Object.values(translations)) {
+        if (translatedPath === path) {
+          return route;
+        }
+      }
+    }
+    return null;
+  };
   const BASE_NAV_ITEMS: NavigationItem[] = [
     { label: t('nav.home'), href: getLocalizedPath('home', currentLang) },
     { label: t('nav.about'), href: getLocalizedPath('about', currentLang) },
@@ -324,7 +346,6 @@ export const Header: React.FC<HeaderProps> = ({
                   style={iconFilter}
                 />
               </button>
-              <LanguageSwitcher />
             </div>
           </div>
         </div>
@@ -587,6 +608,73 @@ export const Header: React.FC<HeaderProps> = ({
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
                     </a>
+                  </div>
+                </div>
+
+                {/* Dil Değişimi - En Altta */}
+                <div className="pt-4 border-t border-gray-200">
+                  <button
+                    type="button"
+                    onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
+                    className="w-full flex items-center justify-between px-4 py-3.5 rounded-xl text-[18px] font-bold text-[#3A3A3A] bg-gray-50 hover:bg-gray-100 active:scale-[0.98] transition-all duration-200"
+                    style={{ fontFamily: 'Roboto, sans-serif' }}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-7 h-5 overflow-hidden rounded-sm shadow-sm flex-shrink-0">
+                        <img
+                          src={languages[currentLang]?.flag}
+                          alt={languages[currentLang]?.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <span>{languages[currentLang]?.name}</span>
+                    </div>
+                    <svg
+                      className={`w-5 h-5 text-gray-500 transition-transform duration-300 ${isLanguageMenuOpen ? 'rotate-180' : ''}`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+
+                  <div className={`overflow-hidden transition-all duration-300 ${isLanguageMenuOpen ? 'max-h-[300px] opacity-100 mt-3' : 'max-h-0 opacity-0'}`}>
+                    <div className="space-y-2">
+                      {Object.entries(languages).map(([code, { name, flag }]) => {
+                        const isCurrentLang = currentLang === code;
+                        return (
+                          <button
+                            key={code}
+                            onClick={() => {
+                              const currentRoute = getCurrentRoute();
+                              if (currentRoute && routeTranslations[currentRoute]) {
+                                const newPath = routeTranslations[currentRoute][code];
+                                i18n.changeLanguage(code);
+                                navigate(newPath ? `/${newPath}` : '/');
+                              } else {
+                                i18n.changeLanguage(code);
+                              }
+                              setIsMobileMenuOpen(false);
+                            }}
+                            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all duration-200 ${
+                              isCurrentLang
+                                ? 'bg-orange-500 text-white shadow-lg shadow-orange-200'
+                                : 'bg-gray-50 text-[#3A3A3A] hover:bg-gray-100 active:scale-[0.98]'
+                            }`}
+                            style={{ fontFamily: 'Roboto, sans-serif' }}
+                          >
+                            <div className="w-7 h-5 overflow-hidden rounded-sm shadow-sm flex-shrink-0">
+                              <img src={flag} alt={name} className="w-full h-full object-cover" />
+                            </div>
+                            <span className="text-[16px] font-bold flex-1">{name}</span>
+                            {isCurrentLang && (
+                              <div className="w-2 h-2 rounded-full bg-white" />
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
               </div>
