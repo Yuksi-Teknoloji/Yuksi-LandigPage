@@ -1,15 +1,20 @@
+import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 import { Input } from '../atoms/Input';
 import { Textarea } from '../atoms/Textarea';
 import { Button } from '../atoms/Button';
+import { Select } from '../atoms/Select';
 import kurumsalImage from '../../assets/basvuru/kurumsal.png';
 import { submitCorporateContact } from '../../services/corporateContactService';
+import type { StateItem } from '../../services/locationService.ts';
+import { fetchStates } from '../../services/locationService.ts';
 
 interface CorporateFormValues {
     name: string;
     companyName: string;
+    city: string;
     email: string;
     phone: string;
     subject: string;
@@ -18,11 +23,40 @@ interface CorporateFormValues {
 
 export function CorporateForm() {
     const { t } = useTranslation();
+    const [cities, setCities] = useState<string[]>([]);
+    const [loadingCities, setLoadingCities] = useState(false);
+    const [cityFetchError, setCityFetchError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const loadCities = async () => {
+            setLoadingCities(true);
+            setCityFetchError(null);
+            try {
+                const states = await fetchStates();
+                const uniqueNames: string[] = [];
+                states.forEach((state: StateItem) => {
+                    const name = state.name;
+                    if (name && typeof name === 'string' && !uniqueNames.includes(name)) {
+                        uniqueNames.push(name);
+                    }
+                });
+                setCities(uniqueNames);
+            } catch (error) {
+                console.error('Corporate cities fetch error:', error);
+                setCityFetchError(t('common.error'));
+            } finally {
+                setLoadingCities(false);
+            }
+        };
+
+        loadCities();
+    }, [t]);
 
     const formik = useFormik<CorporateFormValues>({
         initialValues: {
             name: '',
             companyName: '',
+            city: '',
             email: '',
             phone: '',
             subject: '',
@@ -47,6 +81,15 @@ export function CorporateForm() {
                 errors.companyName = t('corporate.form.validation.companyMin');
             } else if (values.companyName.length > 200) {
                 errors.companyName = t('corporate.form.validation.companyMax');
+            }
+
+            // City validation
+            if (!values.city) {
+                errors.city = t('corporate.form.validation.cityRequired');
+            } else if (values.city.length < 2) {
+                errors.city = t('corporate.form.validation.cityMin');
+            } else if (values.city.length > 100) {
+                errors.city = t('corporate.form.validation.cityMax');
             }
 
             // Email validation
@@ -91,6 +134,7 @@ export function CorporateForm() {
                 const response = await submitCorporateContact({
                     name: values.name,
                     business_name: values.companyName,
+                    city: values.city,
                     email: values.email,
                     phone: values.phone,
                     subject: values.subject,
@@ -193,6 +237,37 @@ export function CorporateForm() {
                                     />
                                     {formik.touched.email && formik.errors.email && (
                                         <p className="mt-1 text-sm text-red-500">{formik.errors.email}</p>
+                                    )}
+                                </div>
+
+                                {/* Şehir */}
+                                <div>
+                                    <Select
+                                        variant="orange"
+                                        name="city"
+                                        value={formik.values.city}
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        disabled={loadingCities || !!cityFetchError}
+                                        error={!!(formik.touched.city && formik.errors.city)}
+                                        className=""
+                                    >
+                                        <option value="">
+                                            {loadingCities
+                                                ? t('common.loading')
+                                                : cityFetchError || t('corporate.form.cityPlaceholder')}
+                                        </option>
+                                        {cities.map((city) => (
+                                            <option key={city} value={city}>
+                                                {city}
+                                            </option>
+                                        ))}
+                                    </Select>
+                                    {cityFetchError && (
+                                        <p className="mt-1 text-sm text-red-500">{cityFetchError}</p>
+                                    )}
+                                    {formik.touched.city && formik.errors.city && (
+                                        <p className="mt-1 text-sm text-red-500">{formik.errors.city}</p>
                                     )}
                                 </div>
 

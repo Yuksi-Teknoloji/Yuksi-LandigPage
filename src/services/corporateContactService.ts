@@ -4,6 +4,7 @@ import { API_ENDPOINTS } from '../constants/apiEndpoints';
 export interface CorporateContactRequestPayload {
     name: string;
     business_name: string;
+    city: string;
     email: string;
     phone: string;
     subject: string;

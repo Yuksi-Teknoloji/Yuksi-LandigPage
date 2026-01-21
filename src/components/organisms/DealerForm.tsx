@@ -1,14 +1,19 @@
+import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 import { Input } from '../atoms/Input';
 import { Textarea } from '../atoms/Textarea';
 import { Button } from '../atoms/Button';
+import { Select } from '../atoms/Select';
 import bayiImage from '../../assets/basvuru/bayi.png';
 import { submitDealerForm } from '../../services/dealerFormService';
+import type { StateItem } from '../../services/locationService.ts';
+import { fetchStates } from '../../services/locationService.ts';
 
 interface DealerFormValues {
     name: string;
+    city: string;
     email: string;
     phone: string;
     subject: string;
@@ -17,10 +22,39 @@ interface DealerFormValues {
 
 export function DealerForm() {
     const { t } = useTranslation();
+    const [cities, setCities] = useState<string[]>([]);
+    const [loadingCities, setLoadingCities] = useState(false);
+    const [cityFetchError, setCityFetchError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const loadCities = async () => {
+            setLoadingCities(true);
+            setCityFetchError(null);
+            try {
+                const states = await fetchStates();
+                const uniqueNames: string[] = [];
+                states.forEach((state: StateItem) => {
+                    const name = state.name;
+                    if (name && typeof name === 'string' && !uniqueNames.includes(name)) {
+                        uniqueNames.push(name);
+                    }
+                });
+                setCities(uniqueNames);
+            } catch (error) {
+                console.error('Dealer cities fetch error:', error);
+                setCityFetchError(t('common.error'));
+            } finally {
+                setLoadingCities(false);
+            }
+        };
+
+        loadCities();
+    }, [t]);
 
     const formik = useFormik<DealerFormValues>({
         initialValues: {
             name: '',
+            city: '',
             email: '',
             phone: '',
             subject: '',
@@ -36,6 +70,15 @@ export function DealerForm() {
                 errors.name = t('dealer.form.validation.nameMin');
             } else if (values.name.length > 200) {
                 errors.name = t('dealer.form.validation.nameMax');
+            }
+
+            // City validation
+            if (!values.city) {
+                errors.city = t('dealer.form.validation.cityRequired');
+            } else if (values.city.length < 2) {
+                errors.city = t('dealer.form.validation.cityMin');
+            } else if (values.city.length > 100) {
+                errors.city = t('dealer.form.validation.cityMax');
             }
 
             // Email validation
@@ -79,6 +122,7 @@ export function DealerForm() {
             try {
                 const response = await submitDealerForm({
                     name: values.name,
+                    city: values.city,
                     email: values.email,
                     phone: values.phone,
                     subject: values.subject,
@@ -165,6 +209,37 @@ export function DealerForm() {
                                     />
                                     {formik.touched.email && formik.errors.email && (
                                         <p className="mt-1 text-sm text-red-500">{formik.errors.email}</p>
+                                    )}
+                                </div>
+
+                                {/* Şehir */}
+                                <div>
+                                    <Select
+                                        variant="orange"
+                                        name="city"
+                                        value={formik.values.city}
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        disabled={loadingCities || !!cityFetchError}
+                                        error={!!(formik.touched.city && formik.errors.city)}
+                                        className=""
+                                    >
+                                        <option value="">
+                                            {loadingCities
+                                                ? t('common.loading')
+                                                : cityFetchError || t('dealer.form.cityPlaceholder')}
+                                        </option>
+                                        {cities.map((city) => (
+                                            <option key={city} value={city}>
+                                                {city}
+                                            </option>
+                                        ))}
+                                    </Select>
+                                    {cityFetchError && (
+                                        <p className="mt-1 text-sm text-red-500">{cityFetchError}</p>
+                                    )}
+                                    {formik.touched.city && formik.errors.city && (
+                                        <p className="mt-1 text-sm text-red-500">{formik.errors.city}</p>
                                     )}
                                 </div>
 

@@ -3,6 +3,7 @@ import { API_ENDPOINTS } from '../constants/apiEndpoints';
 
 export interface DealerFormRequestPayload {
     name: string;
+    city: string;
     email: string;
     phone: string;
     subject: string;

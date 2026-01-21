@@ -38,7 +38,7 @@ export default function Hero() {
     }, []);
 
     return (
-        <section className="relative w-full bg-white overflow-visible lg:overflow-hidden font-roboto selection:bg-orange-200">
+        <section className="relative w-full bg-[#FFF6ED] lg:bg-white overflow-visible lg:overflow-hidden font-roboto selection:bg-orange-200">
             {/* Mobile Hero - background image */}
             <div className="relative w-full lg:hidden">
                 <img
@@ -112,7 +112,7 @@ export default function Hero() {
                         )}
                     </div>
                 </div>
-                <div className="bg-white rounded-t-[40px] px-6 pt-20 pb-10"></div>
+                <div className="bg-[#FFF6ED] rounded-t-[40px] px-6 pt-20 pb-10"></div>
             </div>
 
             {/* Desktop Hero */}
